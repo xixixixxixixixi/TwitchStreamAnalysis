@@ -16,6 +16,7 @@ def hello_world():  # put application's code here
 
 @app.route('/topK/<num>')
 def topK(num):  # put application's code here
+    num = int(num)
     data = TwitchHTTPClient.getTopK(num)
     return json.dumps(data)
 
