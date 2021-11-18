@@ -26,7 +26,7 @@ def getTopK(k):
     data = {'data': []}
     count = 0
     for stream in streams:
-        print(stream)
+        # print(stream)
         d = {}
         for field in fields:
             if field == 'started_at':
@@ -38,6 +38,14 @@ def getTopK(k):
         if count == k - 1:
             break
     return data
+# [
+#     {"gameName": "a", "peopleNum": "100"},
+#     {"gameName": "b", "peopleNum": "200"}
+# ]
+#
+# def getTrendForOneRoom(id):
+
+
 
 # #%%
 # def stream_preprocess(streams):
