@@ -5,6 +5,7 @@ from flask import *
 from flask_cors import CORS
 import twitch
 from APItest import TwitchHTTPClient
+import GetGraph
 # Credentials
 
 app = Flask(__name__)
@@ -32,20 +33,15 @@ def topK(num):  # put application's code here
         # }
         result = {}
         roomList = data['data']
-        gameList = []
-        for room in roomList:
-            gameList.append({
-                'gameName': room['game_name'],
-                'peopleNum': room['viewer_count']
-            })
+        gameList = GetGraph.gameAndViewerGraph(roomList)
         result['gameAndViewerGraph'] = gameList
         return json.dumps(result)
 
-# @app.route('/trend/<id>')
-# def trend(id):  # put application's code here
-#     num = int(id)
-#     data = TwitchHTTPClient.getTrendForOneRoom(id)
-#     return json.dumps(data)
+@app.route('/trend/<userId>')
+def trend(userId):  # put application's code here
+    num = int(userId)
+    data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
+    return json.dumps(data)
 
 
 # GET 127.0.0.1:5000/topK/50

@@ -43,9 +43,9 @@ def getTopK(k):
 #     {"gameName": "b", "peopleNum": "200"}
 # ]
 #
-# def getTrendForOneRoom(id):
-
-
+def getViewerTrendForOneRoom(id):
+    streams = client.get_streams(user_ids = [str(id)])
+    return streams[0]['viewer_count']
 
 # #%%
 # def stream_preprocess(streams):
