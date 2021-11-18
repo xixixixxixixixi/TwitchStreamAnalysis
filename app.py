@@ -19,11 +19,6 @@ def topK(num):  # put application's code here
 
 # GET 127.0.0.1:5000/topK/50
 
-# @app.route('/topK')
-# def topK(num):  # put application's code here
-#     data = TwitchHTTPClient.getTopK(num)
-#     return json.dumps(data)
-
 
 if __name__ == '__main__':
     app.run()
