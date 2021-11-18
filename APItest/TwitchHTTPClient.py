@@ -35,7 +35,7 @@ def getTopK(k):
                 d[field] = stream[field]
         data['data'].append(d)
         count += 1
-        if count == 49:
+        if count == k - 1:
             break
     return data
 
