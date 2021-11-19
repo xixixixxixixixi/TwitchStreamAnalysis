@@ -9,6 +9,8 @@ This module is used to pull data from twitch API and preprocess the data
 """
 
 import twitch
+import requests
+import json
 
 # Credentials
 client_id = '918pxgmrcct2dbuwu7tih5na23ogxq'
@@ -20,10 +22,10 @@ client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
 
 # get top k games with viewers
 '''
-    function: get top k popular game and return game name with correspoding viewers
+    function: get top k popular game and return game name with correspoding viewers(test with 5000 most popular rooms)
     
     data format for result: 
-    ['game1', 'viewers'],
+    ['game', 'viewers'],
     ['game2', 43.3, 85.8, 93.7],
     ['game3', 83.1, 73.4, 55.1],
     ['game4', 86.4, 65.2, 82.5],
@@ -55,6 +57,57 @@ def getTopKGames(k):
     for game in sorted(gameDict.items(), key=lambda d: d[1], reverse=True):
         result.append([game[0], game[1]])
     return result
+
+
+'''
+    function: get top k popular tags(test with 100 most popular rooms)
+
+    data format for result: 
+    ['tag', 'count'],
+    ['tag1', 3],
+    ['tag2', 3],
+    ['tag3', 2],
+    ['tag4', 1]
+'''
+def getTopKTags(k):
+    streams = client.get_streams(page_size=100)
+    count = 0
+    result = []
+    tagDict = {}
+    for stream in streams:
+        headers = {
+            # 'content-type': 'application/json',
+            'Authorization': 'Bearer ' + oauth_token,
+            'Client-Id': client_id
+        }
+        url = 'https://api.twitch.tv/helix/streams/tags' + '?' + 'broadcaster_id=' + stream['user_id']
+        response = json.loads(requests.get(url, headers=headers).content.decode('utf-8'))
+        # print(response)
+        # print(len(response['data']))
+        # TODO: finish key error check
+        for tag in response['data']:
+            if tagDict.__contains__(tag['tag_id']):
+                tagDict[tag['tag_id']][1] += 1
+            else:
+                tagDict[tag['tag_id']] = [tag['localization_names']['en-us'], 1]
+        print(tagDict)
+        count += 1
+        if count == 100:
+            break
+    result = []
+    result.append(['tag', 'count'])
+    count = 0
+    for tag in sorted(tagDict.items(), key=lambda d: d[1][1], reverse=True):
+        result.append([tag[1][0], tag[1][1]])
+        count += 1
+        if count == k:
+            break
+    print(result)
+    # for language in sorted(languageDict.items(), key=lambda d: d[1], reverse=True):
+    #     result.append({'value': language[1], 'name': language[0]})
+    return result
+    # https://www.cnblogs.com/skzxc/p/12688423.html
+
 
 
 '''

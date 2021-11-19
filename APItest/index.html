@@ -7,22 +7,93 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-        <div>This piechart shows the most popular live rooms in different language</div>
+        <div id = "text">This piechart shows the most popular live rooms in different language:</div>
         <div id="pieChart" style="width: 600px;height:400px;"></div>
         <div></div>
         <div id="." style="width: 600px;height:200px;"></div>
-        <div style="margin-top: 500px;">This barchart shows the most 10 popular live rooms</div>
-        <div id="barChart" style="width: 600px;height:400px;margin-top: 300px;">This is the barChart</div>
+        <div id = "text" style="margin-top: 700px;">This barchart shows the most 10 popular live games:</div>
+        <div id="barChartForTopKGames" style="width: 600px;height:400px;margin-top: 300px;"></div>
+        <div id="." style="width: 600px;height:200px;"></div>
+        <div id = "text" style="margin-top: 700px;">This barchart shows the most popular categories:</div>
+        <div id="barChartForTopKTags" style="width: 600px;height:400px;margin-top: 300px;"></div>
+
         <script type="text/javascript">
             // https://developers.google.com/chart/interactive/docs/gallery/piechart
             // https://www.runoob.com/echarts/echarts-ajax-data.html
+            var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
+                height: 1000,
+                width: 2000
+            });
+            var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
+                height: 1000,
+                width: 2000
+            });
             var pieChart = echarts.init(document.getElementById('pieChart'), null, {
                 height: 1000,
                 width: 2000
             });
             window.onload = function () {
                 drawPieChart([]);
+                drawBarChartForTopKGames([]);
+                drawBarChartForTopKTags([]);
             }
+
+            function drawBarChartForTopKGames(dataSet) {
+                var option = {
+                    dataset: [
+                        {
+                            dimensions: ['game', 'viewer'],
+                            source: dataSet
+                        },
+                        {
+                            transform: {
+                                type: 'sort',
+                                config: { dimension: 'viewer', order: 'desc' }
+                            }
+                        }
+                        ],
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: { interval: 0, rotate: 30 }
+                    },
+                    yAxis: {},
+                    series: {
+                        type: 'bar',
+                        encode: { x: 'name', y: 'score' },
+                        datasetIndex: 1
+                    }
+                };
+                BarChartForTopKGames.setOption(option);
+            }
+
+            function drawBarChartForTopKTags(dataSet) {
+                var option = {
+                    dataset: [
+                        {
+                            dimensions: ['tag', 'count'],
+                            source: dataSet
+                        },
+                        {
+                            transform: {
+                                type: 'sort',
+                                config: { dimension: 'count', order: 'desc' }
+                            }
+                        }
+                        ],
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: { interval: 0, rotate: 30 }
+                    },
+                    yAxis: {},
+                    series: {
+                        type: 'bar',
+                        encode: { x: 'name', y: 'score' },
+                        datasetIndex: 1
+                    }
+                };
+                BarChartForTopKTags.setOption(option);
+            }
+
             function drawPieChart(dataSet) {
                 option = {
                     legend: {
@@ -49,6 +120,40 @@
                 };
                 pieChart.setOption(option);
             }
+
+            // ajax for top K Games
+            var barDataSetForTopKGames;
+            $.ajax({
+                url:"http://127.0.0.1:5000/topKTags/" + 10,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    barDataSetForTopKTags = JSON.parse(r);
+                    drawBarChartForTopKGames(barDataSetForTopKTags);
+                }
+            })
+
+            // ajax for top K Tags
+            var barDataSetForTopKTags;
+            $.ajax({
+                url:"http://127.0.0.1:5000/topKGames/" + 10,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    barDataSetForTopKGames = JSON.parse(r);
+                    drawBarChartForTopKTags(barDataSetForTopKGames);
+                }
+            })
+
+            // ajax for pie chart
             var pieDataSet;
             $.ajax({
                 url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
@@ -65,74 +170,14 @@
                     drawPieChart(pieDataSet);
                 }
             })
-
-
-
-
-            var barChart = echarts.init(document.getElementById('barChart'), null, {
-                height: 1000,
-                width: 2000
-            });
-            window.onload = function () {
-                drawBarChart([]);
-            }
-
-            function drawBarChart(dataSet) {
-                var option = {
-                    dataset: [
-                        {
-                            dimensions: ['product', 'viewer'],
-                            source: dataSet
-                        },
-                        {
-                            transform: {
-                                type: 'sort',
-                                config: { dimension: 'viewer', order: 'desc' }
-                            }
-                        }
-                        ],
-                    xAxis: {
-                        type: 'category',
-                        axisLabel: { interval: 0, rotate: 30 }
-                    },
-                    yAxis: {},
-                    series: {
-                        type: 'bar',
-                        encode: { x: 'name', y: 'score' },
-                        datasetIndex: 1
-                    }
-                };
-                barChart.setOption(option);
-            }
-            var barDataSet;
-            $.ajax({
-                url:"http://127.0.0.1:5000/topKGames/" + 10,
-                type: 'GET',
-                headers:{'Content-type' : 'application/json'},
-                cache: false,
-                dataType : 'html',
-                processData : false,
-                contentType : 'application/json',
-                success: function (r){
-                    barDataSet = JSON.parse(r).gameAndViewerGraph;
-                    console.log(barDataSet);
-                    console.log(typeof barDataSet[0]);
-                    console.log(barDataSet[0]);
-                    drawBarChart(barDataSet);
-                }
-            })
         </script>
 </body>
 </html>
 
 <style>
-     barChart{
-        margin-top: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: calc(10px + 2vmin);
-        color: black;}
+    #text{
+         font-size: 35px;
+         font-weight: 1000;
+     }
 </style>
 
