@@ -81,7 +81,7 @@ def getLanguageForRooms(k):
         if count == k:
             break
     for language in languageDict:
-        result.append({'Language': language, 'roomCount': languageDict[language]})
+        result.append({'roomCount': languageDict[language], 'Language': language})
     return result
 
 
