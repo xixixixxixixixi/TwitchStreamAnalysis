@@ -21,9 +21,14 @@ def topKGames(num):  # put application's code here
     if request.method == 'GET':
         num = int(num)
         data = TwitchHTTPClient.getTopKGames(num)
-        result = {}
-        result['gameAndViewerGraph'] = data
-        return json.dumps(result)
+        return json.dumps(data)
+
+@app.route('/topKTags/<num>', methods=['GET'])
+def topKTags(num):  # put application's code here
+    if request.method == 'GET':
+        num = int(num)
+        data = TwitchHTTPClient.getTopKTags(num)
+        return json.dumps(data)
 
 @app.route('/getLanguageCount/<num>', methods=['GET'])
 def getLanguageCount(num):  # put application's code here
