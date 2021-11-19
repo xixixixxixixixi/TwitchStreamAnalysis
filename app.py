@@ -37,14 +37,20 @@ def topK(num):  # put application's code here
         result['gameAndViewerGraph'] = gameList
         return json.dumps(result)
 
+@app.route('/topKGames/<num>', methods=['GET'])
+def topKGames(num):  # put application's code here
+    if request.method == 'GET':
+        num = int(num)
+        data = TwitchHTTPClient.getTopKGames(num)
+        result = {}
+        result['gameAndViewerGraph'] = data
+        return json.dumps(result)
+
 @app.route('/trend/<userId>')
 def trend(userId):  # put application's code here
     num = int(userId)
     data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
     return json.dumps(data)
-
-
-# GET 127.0.0.1:5000/topK/50
 
 
 if __name__ == '__main__':

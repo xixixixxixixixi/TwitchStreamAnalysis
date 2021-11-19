@@ -18,6 +18,7 @@ client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
 # streams = client.get_streams()  # APICursor containing Stream objects
 # streams_top20 = streams._queue  # List of Stream objects
 
+# get top k rooms
 def getTopK(k):
     streams = client.get_streams()  # APICursor containing Stream objects
     streams_top20 = streams._queue  # List of Stream objects
@@ -38,11 +39,45 @@ def getTopK(k):
         if count == k - 1:
             break
     return data
-# [
-#     {"gameName": "a", "peopleNum": "100"},
-#     {"gameName": "b", "peopleNum": "200"}
-# ]
-#
+
+# get top k games with viewers
+def getTopKGames(k):
+    topGames = client.get_top_games()
+    print(topGames)
+    print(len(topGames))
+    gameIds = []
+    count = 0
+    for game in topGames:
+        print(game)
+        gameIds.append(game['id'])
+        count += 1
+        if count == k:
+            break
+    print(gameIds)
+    streams = client.get_streams(game_ids=gameIds,page_size=100)
+    print(streams)
+    count = 0
+    gameDict = {}
+    for stream in streams:
+        # print(stream)
+        if gameDict.__contains__(stream['game_name']):
+            gameDict[stream['game_name']] += stream['viewer_count']
+        else:
+            gameDict[stream['game_name']] = stream['viewer_count']
+        print(gameDict)
+        count += 1
+        if count == 5000:
+            break
+    result = []
+    gameDictTuple = sorted(gameDict.items(), key=lambda d: d[1], reverse=True)
+    for game in gameDictTuple:
+        result.append({
+            "gameName": game[0],
+            "peopleNum": game[1]
+        })
+    return result
+
+# get viewers for a specific room
 def getViewerTrendForOneRoom(id):
     streams = client.get_streams(user_ids = [str(id)])
     return streams[0]['viewer_count']
