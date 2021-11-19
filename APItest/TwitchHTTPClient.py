@@ -56,9 +56,38 @@ def getTopKGames(k):
         result.append([game[0], game[1]])
     return result
 
-# get viewers for a specific room
-def getViewerTrendForOneRoom(id):
-    streams = client.get_streams(user_ids = [str(id)])
-    return streams[0]['viewer_count']
+
+'''
+    function: get language counts for top k rooms
+
+    data format for result: 
+    [
+        {'name': 'en', 'value': 1},
+        {'name': 'cn', 'value': 2}
+    ]
+'''
+def getLanguageForRooms(k):
+    streams = client.get_streams(page_size=100)
+    count = 0
+    result = []
+    languageDict = {}
+    for stream in streams:
+        print(stream)
+        if languageDict.__contains__(stream['language']):
+            languageDict[stream['language']] += 1
+        else:
+            languageDict[stream['language']] = 1
+        count += 1
+        if count == k:
+            break
+    for language in languageDict:
+        result.append({'Language': language, 'roomCount': languageDict[language]})
+    return result
+
+
+# # get viewers for a specific room
+# def getViewerTrendForOneRoom(id):
+#     streams = client.get_streams(user_ids = [str(id)])
+#     return streams[0]['viewer_count']
 
 

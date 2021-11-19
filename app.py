@@ -25,11 +25,20 @@ def topKGames(num):  # put application's code here
         result['gameAndViewerGraph'] = data
         return json.dumps(result)
 
-@app.route('/trend/<userId>')
-def trend(userId):  # put application's code here
-    num = int(userId)
-    data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
-    return json.dumps(data)
+@app.route('/getLanguageCount/<num>', methods=['GET'])
+def getLanguageCount(num):  # put application's code here
+    if request.method == 'GET':
+        num = int(num)
+        result = TwitchHTTPClient.getLanguageForRooms(num)
+        return json.dumps(result)
+
+
+
+# @app.route('/trend/<userId>')
+# def trend(userId):  # put application's code here
+#     num = int(userId)
+#     data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
+#     return json.dumps(data)
 
 
 if __name__ == '__main__':
