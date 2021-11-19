@@ -30,18 +30,28 @@
                                   height: 1000
                               });
                               var option = {
-                                  legend: {
-                                      // Try 'horizontal'
-                                      // orient: 'vertical',
-                                      // right: 10,
-                                      // top: 'center'
+                                  dataset: [
+                                      {
+                                          dimensions: ['product', 'viewer'],
+                                          source: dataSet
+                                      },
+                                      {
+                                          transform: {
+                                              type: 'sort',
+                                              config: { dimension: 'viewer', order: 'desc' }
+                                          }
+                                      }
+                                      ],
+                                  xAxis: {
+                                      type: 'category',
+                                      axisLabel: { interval: 0, rotate: 30 }
                                   },
-                              dataset: {
-                                      source: dataSet
-                              },
-                                  xAxis: { type: 'category' },
                                   yAxis: {},
-                                  series: [{ type: 'bar' }]
+                                  series: {
+                                      type: 'bar',
+                                      encode: { x: 'name', y: 'score' },
+                                      datasetIndex: 1
+                                  }
                               };
 
                               // 使用刚指定的配置项和数据显示图表。
