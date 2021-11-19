@@ -2,35 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Languages of most populer live rooms</title>
+    <title>Twitch Stream Analysis</title>
     <script src="echarts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-        <div id = "text">This piechart shows the most popular live rooms in different language:</div>
-        <div id="pieChart" style="width: 600px;height:400px;"></div>
-        <div></div>
-        <div id="." style="width: 600px;height:200px;"></div>
-        <div id = "text" style="margin-top: 700px;">This barchart shows the most 10 popular live games:</div>
-        <div id="barChartForTopKGames" style="width: 600px;height:400px;margin-top: 300px;"></div>
-        <div id="." style="width: 600px;height:200px;"></div>
-        <div id = "text" style="margin-top: 700px;">This barchart shows the most popular categories:</div>
-        <div id="barChartForTopKTags" style="width: 600px;height:400px;margin-top: 300px;"></div>
+        <div id="pieChart"></div>
+        <div id="sp"></div>
+        <div id="barChartForTopKGames"></div>
+        <div id="sp"></div>
+        <div id="barChartForTopKTags"></div>
+        <div id="sp"></div>
 
         <script type="text/javascript">
             // https://developers.google.com/chart/interactive/docs/gallery/piechart
             // https://www.runoob.com/echarts/echarts-ajax-data.html
             var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
-                height: 1000,
-                width: 2000
+                height: 500,
+                width: 700
             });
             var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
-                height: 1000,
-                width: 2000
+                height: 500,
+                width: 700
             });
             var pieChart = echarts.init(document.getElementById('pieChart'), null, {
-                height: 1000,
-                width: 2000
+                height: 450,
+                width: 700
             });
             window.onload = function () {
                 drawPieChart([]);
@@ -40,6 +37,10 @@
 
             function drawBarChartForTopKGames(dataSet) {
                 var option = {
+                    title:{
+                        left: 'left',
+                        text: 'TOP 10 Popular Live Games'
+                    },
                     dataset: [
                         {
                             dimensions: ['game', 'viewer'],
@@ -54,9 +55,15 @@
                         ],
                     xAxis: {
                         type: 'category',
-                        axisLabel: { interval: 0, rotate: 30 }
+                        axisLabel: {
+                            interval: 0,
+                            rotate: 15,
+                            textStyle: {fontSize: 11}
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {
+                        textStyle: {fontSize: 12}
+                    },
                     series: {
                         type: 'bar',
                         encode: { x: 'name', y: 'score' },
@@ -68,6 +75,10 @@
 
             function drawBarChartForTopKTags(dataSet) {
                 var option = {
+                    title:{
+                        left: 'left',
+                        text: 'Most Popular Categories'
+                    },
                     dataset: [
                         {
                             dimensions: ['tag', 'count'],
@@ -82,13 +93,20 @@
                         ],
                     xAxis: {
                         type: 'category',
-                        axisLabel: { interval: 0, rotate: 30 }
+                        axisLabel: {
+                            interval: 0,
+                            rotate: 15,
+                            textStyle: {fontSize: 12}
+                        }
                     },
-                    yAxis: {},
+                    yAxis: {
+                        textStyle: {fontSize: 13}
+                    },
                     series: {
                         type: 'bar',
                         encode: { x: 'name', y: 'score' },
-                        datasetIndex: 1
+                        datasetIndex: 1,
+                        itemStyle: {color: '#3BA272'}
                     }
                 };
                 BarChartForTopKTags.setOption(option);
@@ -96,20 +114,28 @@
 
             function drawPieChart(dataSet) {
                 option = {
+                    title:{
+                        left: 90,
+                        text: 'Most Popular Live Rooms in Different Language'
+                    },
                     legend: {
-                        top: 'bottom',
+                        right: 'left',
+                        orient: 'vertical',
+                        top: 'center',
+                        icon: 'square',
                         textStyle: {
-                            fontSize: '35',
+                            fontSize: '12',
                         },
                     },
                     label: {
                         show: true,
                         position: 'top',
-                        fontSize: 35,
+                        fontSize: 13,
                     },
+                    icon: 'rect',
                     series: [
                         {
-                            name: 'Nightingale Chart',
+                            name: 'Pie Chart',
                             type: 'pie',
                             radius: '70%',
                             center: ['50%', '50%'],
@@ -124,7 +150,7 @@
             // ajax for top K Games
             var barDataSetForTopKGames;
             $.ajax({
-                url:"http://127.0.0.1:5000/topKTags/" + 10,
+                url:"http://127.0.0.1:5000/topKGames/" + 10,
                 type: 'GET',
                 headers:{'Content-type' : 'application/json'},
                 cache: false,
@@ -140,7 +166,7 @@
             // ajax for top K Tags
             var barDataSetForTopKTags;
             $.ajax({
-                url:"http://127.0.0.1:5000/topKGames/" + 10,
+                url:"http://127.0.0.1:5000/topKTags/" + 10,
                 type: 'GET',
                 headers:{'Content-type' : 'application/json'},
                 cache: false,
@@ -175,9 +201,28 @@
 </html>
 
 <style>
-    #text{
-         font-size: 35px;
-         font-weight: 1000;
+    #pieChart{
+        width: 300px;
+        height: 200px;
+        margin-bottom: 150px;
+        margin-top: 50px;
+    }
+    #barChartForTopKGames{
+        width: 300px;
+        height: 400px;
+        margin-top: 100px;
+        margin-left: 100px;
+    }
+    #barChartForTopKTags{
+        width: 300px;
+        height: 400px;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        margin-left: 100px;
+    }
+    #sp{
+        width: 100px;
+        height: 100px;
      }
 </style>
 
