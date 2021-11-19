@@ -53,6 +53,7 @@ $.ajax({
   processData : false,
   contentType : 'application/json',
   success: function (r){
+    console.log(r)
     dataSet = JSON.parse(r);
     drawBarChart(dataSet);
   }

@@ -3,10 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Languages of most populer live rooms</title>
+    <script src="echarts.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <script src="pieChart.js"></script>
-</body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('main'), null, {
+            });
+            window.onload = function () {
+                drawBarChart([]);
+            }
+            function drawBarChart(dataSet) {
+                var option = {
+                    title: {
+                        text: 'Referer of a Website',
+                        subtext: 'Fake Data',
+                        left: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left'
+                    },
+                    series: [
+                        {
+                            name: 'Access From',
+                            type: 'pie',
+                            radius: '50%',
+                            data: dataSet,
+                            emphasis: {
+                                itemStyle: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                        ]
+                };
+                myChart.setOption(option);
+            }
+            var dataSet;
+            $.ajax({
+                url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    console.log(r)
+                    dataSet = JSON.parse(r);
+                    console.log(dataSet);
+                    drawBarChart(dataSet);
+                }
+            })
+        </script>
+    </body>
 </html>
