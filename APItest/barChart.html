@@ -9,13 +9,15 @@
     <body>
         <div id="main" style="width: 600px;height:400px;"></div>
         <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('main'), null, {
+                width: 4000,
+                height: 1000
+            });
+            window.onload = function () {
+                drawBarChart([]);
+            }
 
             function drawBarChart(dataSet) {
-                document.getElementById('main').innerHTML = "";
-                var myChart = echarts.init(document.getElementById('main'), null, {
-                    width: 4000,
-                    height: 1000
-                });
                 var option = {
                     dataset: [
                         {
