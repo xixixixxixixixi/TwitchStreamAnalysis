@@ -4,10 +4,12 @@
     <head>
         <meta charset="utf-8">
         <title>EECS E6893 Project</title>
+        <svg id = "svg2"></svg>
         <script type="text/javascript"></script>
         <script src="./lib/D3/d3.min.js"></script>
         <script src="https://d3js.org/d3.v4.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
     <body>
@@ -28,8 +30,10 @@
                     processData : false,
                     contentType : 'application/json',
                     success: function (r){
-                        console.log(r);
-                        data = r;
+                        data = JSON.parse(r).gameAndViewerGraph;
+                        console.log(data);
+                        console.log(typeof data[0]);
+                        console.log(data[0]);
                     }
                 })
 
@@ -38,47 +42,19 @@
                     height = 400 - margin.top - margin.bottom;
 
                 // append the svg object to the body of the page
-                var svg = d3.select("#my_dataviz")
-                    .append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
+                var svg = d3.select('svg')
+                .attr("width", width)
+                .attr("height", height);
 
-                // Parse the Data
-                d3.json(data.get(), function(data) {
-
-                    // X axis
-                    var x = d3.scaleBand()
-                        .range([ 0, width ])
-                        .domain(data.map(function(d) { return d.Country; }))
-                        .padding(0.2);
-                    svg.append("g")
-                        .attr("transform", "translate(0," + height + ")")
-                        .call(d3.axisBottom(x))
-                        .selectAll("text")
-                        .attr("transform", "translate(-10,0)rotate(-45)")
-                        .style("text-anchor", "end");
-
-                    // Add Y axis
-                    var y = d3.scaleLinear()
-                        .domain([0, 13000])
-                        .range([ height, 0]);
-                    svg.append("g")
-                        .call(d3.axisLeft(y));
-
-                    // Bars
-                    svg.selectAll("mybar")
-                        .data(data)
-                        .enter()
-                        .append("rect")
-                        .attr("x", function(d) { return x(d.Country); })
-                        .attr("y", function(d) { return y(d.Value); })
-                        .attr("width", x.bandwidth())
-                        .attr("height", function(d) { return height - y(d.Value); })
-                        .attr("fill", "#69b3a2")
-                })
+                var barchart = svg.select_all("rect")
+                    .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr('x', 20)
+                .attr('y', function (d){return d.gameName})
+                .attr('height', 25)
+                .attr('width', function (d) {return d.peopleNum})
 
             </script>
         </section>
