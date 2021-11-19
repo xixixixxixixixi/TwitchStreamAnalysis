@@ -9,7 +9,9 @@
     <body>
         <div id="main" style="width: 600px;height:400px;"></div>
         <script type="text/javascript">
-            window.onload = function drawBarChart(dataSet) {
+
+            function drawBarChart(dataSet) {
+                document.getElementById('main').innerHTML = "";
                 var myChart = echarts.init(document.getElementById('main'), null, {
                     width: 4000,
                     height: 1000
