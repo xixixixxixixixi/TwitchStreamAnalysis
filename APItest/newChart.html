@@ -25,7 +25,10 @@
                         console.log(dataSet);
                         console.log(typeof dataSet[0]);
                         console.log(dataSet[0]);
-                              var myChart = echarts.init(document.getElementById('main'));
+                              var myChart = echarts.init(document.getElementById('main'), null, {
+                                  width: 4000,
+                                  height: 1000
+                              });
                               var option = {
                                   legend: {
                                       // Try 'horizontal'
