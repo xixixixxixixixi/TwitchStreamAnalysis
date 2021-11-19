@@ -25,39 +25,30 @@
                         console.log(dataSet);
                         console.log(typeof dataSet[0]);
                         console.log(dataSet[0]);
+                              var myChart = echarts.init(document.getElementById('main'));
+                              var option = {
+                                  legend: {
+                                      // Try 'horizontal'
+                                      // orient: 'vertical',
+                                      // right: 10,
+                                      // top: 'center'
+                                  },
+                              dataset: {
+                                      source: dataSet
+                              },
+                                  xAxis: { type: 'category' },
+                                  yAxis: {},
+                                  series: [{ type: 'bar' }]
+                              };
+
+                              // 使用刚指定的配置项和数据显示图表。
+                              myChart.setOption(option);
                     }
                 })
 
 
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('main'));
 
-      var result = [];
-      for(var i in dataSet.size())
-          var temp = [];
-          temp.push(dataSet[i][0])
-          temp.push(dataSet[i][1])
-          result.push(temp);
-      console.log(result);
-      // 指定图表的配置项和数据
-
-      var option = {
-  legend: {
-    // Try 'horizontal'
-    orient: 'vertical',
-    right: 10,
-    top: 'center'
-  },
-  dataset: {
-    source: result
-  },
-  xAxis: { type: 'category' },
-  yAxis: {},
-  series: [{ type: 'bar' }]
-};
-
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
     </script>
   </body>
 </html>
