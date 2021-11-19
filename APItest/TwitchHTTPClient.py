@@ -80,8 +80,8 @@ def getLanguageForRooms(k):
         count += 1
         if count == k:
             break
-    for language in languageDict:
-        result.append({'roomCount': languageDict[language], 'Language': language})
+    for language in sorted(languageDict.items(), key=lambda d: d[1], reverse=True):
+        result.append({'value': language[1], 'name': language[0]})
     return result
 
 

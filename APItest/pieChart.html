@@ -9,37 +9,36 @@
 <body>
         <div id="main" style="width: 600px;height:400px;"></div>
         <script type="text/javascript">
+            // https://developers.google.com/chart/interactive/docs/gallery/piechart
+            // https://www.runoob.com/echarts/echarts-ajax-data.html
             var myChart = echarts.init(document.getElementById('main'), null, {
-                height: 800
+                height: 1000,
+                width: 1500
             });
             window.onload = function () {
-                drawBarChart([]);
+                drawPieChart([]);
             }
-            function drawBarChart(dataSet) {
+            function drawPieChart(dataSet) {
                 option = {
                     legend: {
-                        top: 'bottom'
-                    },
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            mark: { show: true },
-                            dataView: { show: true, readOnly: false },
-                            restore: { show: true },
-                            saveAsImage: { show: true }
-                        }
+                        top: 'bottom',
+                        textStyle: {
+                            fontSize: '35',
                         },
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        fontSize: 35,
+                    },
                     series: [
                         {
                             name: 'Nightingale Chart',
                             type: 'pie',
-                            radius: [50, 250],
+                            radius: '70%',
                             center: ['50%', '50%'],
-                            roseType: 'area',
-                            itemStyle: {
-                                borderRadius: 8
-                            },
-                            data: dataSet
+                            // roseType: 'angle',
+                            data: dataSet,
                         }
                         ]
                 };
@@ -56,9 +55,9 @@
                 contentType : 'application/json',
                 success: function (r){
                     console.log(r)
-                    dataSet = r;
+                    dataSet = JSON.parse(r);
                     console.log(dataSet);
-                    drawBarChart(dataSet);
+                    drawPieChart(dataSet);
                 }
             })
         </script>
