@@ -45,7 +45,7 @@ function drawBarChart(dataSet) {
 }
 var dataSet;
 $.ajax({
-  url:"http://127.0.0.1:5000/topKGames/" + 10,
+  url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
   type: 'GET',
   headers:{'Content-type' : 'application/json'},
   cache: false,
@@ -53,10 +53,7 @@ $.ajax({
   processData : false,
   contentType : 'application/json',
   success: function (r){
-    dataSet = JSON.parse(r).gameAndViewerGraph;
-    console.log(dataSet);
-    console.log(typeof dataSet[0]);
-    console.log(dataSet[0]);
+    dataSet = JSON.parse(r);
     drawBarChart(dataSet);
   }
 })
