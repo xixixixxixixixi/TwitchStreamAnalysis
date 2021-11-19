@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Languages of most populer live rooms</title>
+    <script src="echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            // https://developers.google.com/chart/interactive/docs/gallery/piechart
+            // https://www.runoob.com/echarts/echarts-ajax-data.html
+            var myChart = echarts.init(document.getElementById('main'), null, {
+                height: 1000,
+                width: 1500
+            });
+            window.onload = function () {
+                drawPieChart([]);
+            }
+            function drawPieChart(dataSet) {
+                option = {
+                    legend: {
+                        top: 'bottom',
+                        textStyle: {
+                            fontSize: '35',
+                        },
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        fontSize: 35,
+                    },
+                    series: [
+                        {
+                            name: 'Nightingale Chart',
+                            type: 'pie',
+                            radius: '70%',
+                            center: ['50%', '50%'],
+                            // roseType: 'angle',
+                            data: dataSet,
+                        }
+                        ]
+                };
+                myChart.setOption(option);
+            }
+            var dataSet;
+            $.ajax({
+                url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    console.log(r)
+                    dataSet = JSON.parse(r);
+                    console.log(dataSet);
+                    drawPieChart(dataSet);
+                }
+            })
+        </script>
+    </body>
+</html>

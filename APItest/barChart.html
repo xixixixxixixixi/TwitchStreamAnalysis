@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>ECharts</title>
+        <script src="echarts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('main'), null, {
+                width: 4000,
+                height: 1000
+            });
+            window.onload = function () {
+                drawBarChart([]);
+            }
+
+            function drawBarChart(dataSet) {
+                var option = {
+                    dataset: [
+                        {
+                            dimensions: ['product', 'viewer'],
+                            source: dataSet
+                        },
+                        {
+                            transform: {
+                                type: 'sort',
+                                config: { dimension: 'viewer', order: 'desc' }
+                            }
+                        }
+                        ],
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: { interval: 0, rotate: 30 }
+                    },
+                    yAxis: {},
+                    series: {
+                        type: 'bar',
+                        encode: { x: 'name', y: 'score' },
+                        datasetIndex: 1
+                    }
+                };
+                myChart.setOption(option);
+            }
+            var dataSet;
+            $.ajax({
+                url:"http://127.0.0.1:5000/topKGames/" + 10,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    dataSet = JSON.parse(r).gameAndViewerGraph;
+                    console.log(dataSet);
+                    console.log(typeof dataSet[0]);
+                    console.log(dataSet[0]);
+                    drawBarChart(dataSet);
+                }
+            })
+        </script>
+    </body>
+</html>
