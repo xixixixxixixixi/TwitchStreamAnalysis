@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>ECharts</title>
-    <!-- 引入刚刚下载的 ECharts 文件 -->
-    <script src="echarts.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  </head>
-  <body>
-    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <script type="text/javascript">
-        var dataSet;
-                $.ajax({
-                    url:"http://127.0.0.1:5000/topKGames/" + 10,
-                    type: 'GET',
-                    headers:{'Content-type' : 'application/json'},
-                    cache: false,
-                    dataType : 'html',
-                    processData : false,
-                    contentType : 'application/json',
-                    success: function (r){
-                        dataSet = JSON.parse(r).gameAndViewerGraph;
-                        console.log(dataSet);
-                        console.log(typeof dataSet[0]);
-                        console.log(dataSet[0]);
-                              var myChart = echarts.init(document.getElementById('main'), null, {
-                                  width: 4000,
-                                  height: 1000
-                              });
-                              var option = {
-                                  legend: {
-                                      // Try 'horizontal'
-                                      // orient: 'vertical',
-                                      // right: 10,
-                                      // top: 'center'
-                                  },
-                              dataset: {
-                                      source: dataSet
-                              },
-                                  xAxis: { type: 'category' },
-                                  yAxis: {},
-                                  series: [{ type: 'bar' }]
-                              };
-
-                              // 使用刚指定的配置项和数据显示图表。
-                              myChart.setOption(option);
+    <head>
+        <meta charset="utf-8" />
+        <title>ECharts</title>
+        <script src="echarts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            window.onload = function drawBarChart(dataSet) {
+                var myChart = echarts.init(document.getElementById('main'), null, {
+                    width: 4000,
+                    height: 1000
+                });
+                var option = {
+                    dataset: [
+                        {
+                            dimensions: ['product', 'viewer'],
+                            source: dataSet
+                        },
+                        {
+                            transform: {
+                                type: 'sort',
+                                config: { dimension: 'viewer', order: 'desc' }
+                            }
+                        }
+                        ],
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: { interval: 0, rotate: 30 }
+                    },
+                    yAxis: {},
+                    series: {
+                        type: 'bar',
+                        encode: { x: 'name', y: 'score' },
+                        datasetIndex: 1
                     }
-                })
-
-
-      // 基于准备好的dom，初始化echarts实例
-
-    </script>
-  </body>
+                };
+                myChart.setOption(option);
+            }
+            var dataSet;
+            $.ajax({
+                url:"http://127.0.0.1:5000/topKGames/" + 10,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    dataSet = JSON.parse(r).gameAndViewerGraph;
+                    console.log(dataSet);
+                    console.log(typeof dataSet[0]);
+                    console.log(dataSet[0]);
+                    drawBarChart(dataSet);
+                }
+            })
+        </script>
+    </body>
 </html>
