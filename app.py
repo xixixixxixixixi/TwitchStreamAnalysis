@@ -19,22 +19,19 @@ def hello_world():  # put application's code here
 @app.route('/topKGames/<num>', methods=['GET'])
 def topKGames(num):  # put application's code here
     if request.method == 'GET':
-        num = int(num)
-        data = TwitchHTTPClient.getTopKGames(num)
+        data = TwitchHTTPClient.getTopKGames(int(num))
         return json.dumps(data)
 
 @app.route('/topKTags/<num>', methods=['GET'])
 def topKTags(num):  # put application's code here
     if request.method == 'GET':
-        num = int(num)
-        data = TwitchHTTPClient.getTopKTags(num)
+        data = TwitchHTTPClient.getTopKTags(int(num))
         return json.dumps(data)
 
 @app.route('/getLanguageCount/<num>', methods=['GET'])
 def getLanguageCount(num):  # put application's code here
     if request.method == 'GET':
-        num = int(num)
-        result = TwitchHTTPClient.getLanguageForRooms(num)
+        result = TwitchHTTPClient.getLanguageForRooms(int(num))
         return json.dumps(result)
 
 

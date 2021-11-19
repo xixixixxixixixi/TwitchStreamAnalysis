@@ -22,7 +22,8 @@ client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
 
 # get top k games with viewers
 '''
-    function: get top k popular game and return game name with correspoding viewers(test with 5000 most popular rooms)
+    function: get top k popular game and return game name with correspoding viewers
+    (test with 5000 most popular rooms)
     
     data format for result: 
     ['game', 'viewers'],
