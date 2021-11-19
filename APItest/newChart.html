@@ -32,11 +32,15 @@
       // 基于准备好的dom，初始化echarts实例
       var myChart = echarts.init(document.getElementById('main'));
 
-
-        var result = [];
-        for(var i in dataSet)
-            result.push([i, dataSet [i]]);
+      var result = [];
+      for(var i in dataSet.size())
+          var temp = [];
+          temp.push(dataSet[i][0])
+          temp.push(dataSet[i][1])
+          result.push(temp);
+      console.log(result);
       // 指定图表的配置项和数据
+
       var option = {
   legend: {
     // Try 'horizontal'
@@ -45,17 +49,11 @@
     top: 'center'
   },
   dataset: {
-    source: [
-      ['product', '2015', '2016', '2017'],
-      ['Matcha Latte', 43.3, 85.8, 93.7],
-      ['Milk Tea', 83.1, 73.4, 55.1],
-      ['Cheese Cocoa', 86.4, 65.2, 82.5],
-      ['Walnut Brownie', 72.4, 53.9, 39.1]
-    ]
+    source: result
   },
   xAxis: { type: 'category' },
   yAxis: {},
-  series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+  series: [{ type: 'bar' }]
 };
 
       // 使用刚指定的配置项和数据显示图表。
