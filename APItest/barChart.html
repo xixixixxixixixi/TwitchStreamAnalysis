@@ -1,30 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>ECharts</title>
-    <!-- 引入刚刚下载的 ECharts 文件 -->
-    <script src="echarts.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  </head>
-  <body>
-    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <script type="text/javascript">
-        var dataSet;
-        $.ajax({
-            url:"http://127.0.0.1:5000/topKGames/" + 10,
-            type: 'GET',
-            headers:{'Content-type' : 'application/json'},
-            cache: false,
-            dataType : 'html',
-            processData : false,
-            contentType : 'application/json',
-            success: function (r){
-                dataSet = JSON.parse(r).gameAndViewerGraph;
-                console.log(dataSet);
-                console.log(typeof dataSet[0]);
-                console.log(dataSet[0]);
+    <head>
+        <meta charset="utf-8" />
+        <title>ECharts</title>
+        <script src="echarts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="main" style="width: 600px;height:400px;"></div>
+        <script type="text/javascript">
+            window.onload = function drawBarChart(dataSet) {
                 var myChart = echarts.init(document.getElementById('main'), null, {
                     width: 4000,
                     height: 1000
@@ -53,14 +38,25 @@
                         datasetIndex: 1
                     }
                 };
-                // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
             }
-        })
-
-
-      // 基于准备好的dom，初始化echarts实例
-
-    </script>
-  </body>
+            var dataSet;
+            $.ajax({
+                url:"http://127.0.0.1:5000/topKGames/" + 10,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    dataSet = JSON.parse(r).gameAndViewerGraph;
+                    console.log(dataSet);
+                    console.log(typeof dataSet[0]);
+                    console.log(dataSet[0]);
+                    drawBarChart(dataSet);
+                }
+            })
+        </script>
+    </body>
 </html>
