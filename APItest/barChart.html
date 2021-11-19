@@ -12,52 +12,51 @@
     <div id="main" style="width: 600px;height:400px;"></div>
     <script type="text/javascript">
         var dataSet;
-                $.ajax({
-                    url:"http://127.0.0.1:5000/topKGames/" + 10,
-                    type: 'GET',
-                    headers:{'Content-type' : 'application/json'},
-                    cache: false,
-                    dataType : 'html',
-                    processData : false,
-                    contentType : 'application/json',
-                    success: function (r){
-                        dataSet = JSON.parse(r).gameAndViewerGraph;
-                        console.log(dataSet);
-                        console.log(typeof dataSet[0]);
-                        console.log(dataSet[0]);
-                              var myChart = echarts.init(document.getElementById('main'), null, {
-                                  width: 4000,
-                                  height: 1000
-                              });
-                              var option = {
-                                  dataset: [
-                                      {
-                                          dimensions: ['product', 'viewer'],
-                                          source: dataSet
-                                      },
-                                      {
-                                          transform: {
-                                              type: 'sort',
-                                              config: { dimension: 'viewer', order: 'desc' }
-                                          }
-                                      }
-                                      ],
-                                  xAxis: {
-                                      type: 'category',
-                                      axisLabel: { interval: 0, rotate: 30 }
-                                  },
-                                  yAxis: {},
-                                  series: {
-                                      type: 'bar',
-                                      encode: { x: 'name', y: 'score' },
-                                      datasetIndex: 1
-                                  }
-                              };
-
-                              // 使用刚指定的配置项和数据显示图表。
-                              myChart.setOption(option);
+        $.ajax({
+            url:"http://127.0.0.1:5000/topKGames/" + 10,
+            type: 'GET',
+            headers:{'Content-type' : 'application/json'},
+            cache: false,
+            dataType : 'html',
+            processData : false,
+            contentType : 'application/json',
+            success: function (r){
+                dataSet = JSON.parse(r).gameAndViewerGraph;
+                console.log(dataSet);
+                console.log(typeof dataSet[0]);
+                console.log(dataSet[0]);
+                var myChart = echarts.init(document.getElementById('main'), null, {
+                    width: 4000,
+                    height: 1000
+                });
+                var option = {
+                    dataset: [
+                        {
+                            dimensions: ['product', 'viewer'],
+                            source: dataSet
+                        },
+                        {
+                            transform: {
+                                type: 'sort',
+                                config: { dimension: 'viewer', order: 'desc' }
+                            }
+                        }
+                        ],
+                    xAxis: {
+                        type: 'category',
+                        axisLabel: { interval: 0, rotate: 30 }
+                    },
+                    yAxis: {},
+                    series: {
+                        type: 'bar',
+                        encode: { x: 'name', y: 'score' },
+                        datasetIndex: 1
                     }
-                })
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }
+        })
 
 
       // 基于准备好的dom，初始化echarts实例
