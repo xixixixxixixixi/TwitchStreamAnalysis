@@ -33,6 +33,9 @@
       var myChart = echarts.init(document.getElementById('main'));
 
 
+        var result = [];
+        for(var i in dataSet)
+            result.push([i, dataSet [i]]);
       // 指定图表的配置项和数据
       var option = {
   legend: {
