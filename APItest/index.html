@@ -7,13 +7,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-        <div>This piechart shows the most popular live rooms in different language</div>
+        <div id = "text">This piechart shows the most popular live rooms in different language:</div>
         <div id="pieChart" style="width: 600px;height:400px;"></div>
         <div></div>
         <div id="." style="width: 600px;height:200px;"></div>
-        <div style="margin-top: 500px;">This barchart shows the most 10 popular live rooms</div>
+        <div id = "text" style="margin-top: 700px;">This barchart shows the most 10 popular live games:</div>
         <div id="barChartForTopKGames" style="width: 600px;height:400px;margin-top: 300px;"></div>
+        <div id="." style="width: 600px;height:200px;"></div>
+        <div id = "text" style="margin-top: 700px;">This barchart shows the most popular categories:</div>
         <div id="barChartForTopKTags" style="width: 600px;height:400px;margin-top: 300px;"></div>
+
         <script type="text/javascript">
             // https://developers.google.com/chart/interactive/docs/gallery/piechart
             // https://www.runoob.com/echarts/echarts-ajax-data.html
@@ -129,8 +132,8 @@
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
-                    barDataSetForTopKGames = JSON.parse(r);
-                    drawBarChartForTopKGames(barDataSetForTopKGames);
+                    barDataSetForTopKTags = JSON.parse(r);
+                    drawBarChartForTopKGames(barDataSetForTopKTags);
                 }
             })
 
@@ -145,8 +148,8 @@
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
-                    barDataSetForTopKTags = JSON.parse(r);
-                    drawBarChartForTopKTags(barDataSetForTopKTags);
+                    barDataSetForTopKGames = JSON.parse(r);
+                    drawBarChartForTopKTags(barDataSetForTopKGames);
                 }
             })
 
@@ -172,6 +175,9 @@
 </html>
 
 <style>
-
+    #text{
+         font-size: 35px;
+         font-weight: 1000;
+     }
 </style>
 
