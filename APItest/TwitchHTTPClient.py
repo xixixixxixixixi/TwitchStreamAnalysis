@@ -69,12 +69,14 @@ def getTopKGames(k):
         if count == 5000:
             break
     result = []
+    result.append(['product', 'viewers'])
+    # ['Matcha Latte', 43.3, 85.8, 93.7],
+    # ['Milk Tea', 83.1, 73.4, 55.1],
+    # ['Cheese Cocoa', 86.4, 65.2, 82.5],
+    # ['Walnut Brownie', 72.4, 53.9, 39.1]
     gameDictTuple = sorted(gameDict.items(), key=lambda d: d[1], reverse=True)
     for game in gameDictTuple:
-        result.append({
-            "gameName": game[0],
-            "peopleNum": game[1]
-        })
+        result.append([game[0], game[1]])
     return result
 
 # get viewers for a specific room
@@ -82,31 +84,4 @@ def getViewerTrendForOneRoom(id):
     streams = client.get_streams(user_ids = [str(id)])
     return streams[0]['viewer_count']
 
-# #%%
-# def stream_preprocess(streams):
-#     """
-#
-#     :param streams: list of Stream objects
-#     :return:
-#     {'data': [{'id': ***, 'user_id': ***, 'user_login': ***, 'user_name': ***, ..., 'tag_ids': ***, 'is_mature': ***},
-#               {'id': ***, 'user_id': ***, 'user_login': ***, 'user_name': ***, ..., 'tag_ids': ***, 'is_mature': ***},
-#               ...
-#               ]
-#     }
-#     """
-#
-#     fields = ['id', 'user_id', 'user_login', 'user_name', 'game_id', 'game_name', 'type', 'title', 'viewer_count',
-#               'started_at', 'language', 'thumbnail_url', 'tag_ids', 'is_mature']
-#     data = {'data': []}
-#     for stream in streams:
-#         print(stream)
-#         d = {}
-#         for field in fields:
-#             if field == 'started_at':
-#                 d[field] = stream[field].strftime('%Y-%m-%d %H:%M:%S')
-#             else:
-#                 d[field] = stream[field]
-#         data['data'].append(d)
-#
-#     return data
 
