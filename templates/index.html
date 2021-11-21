@@ -7,322 +7,320 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-        <div id="pieChart"></div>
-        <div id="sp"></div>
-        <div id="barChartForTopKGames"></div>
-        <div id="sp"></div>
-        <div id="barChartForTopKTags"></div>
-        <div id="sp"></div>
-        <div id="barChartForTop10Anchors"></div>
-        <div id="sp"></div>
+<div id="pieChart"></div>
+<div id="sp"></div>
+<div id="barChartForTopKGames"></div>
+<div id="sp"></div>
+<div id="barChartForTopKTags"></div>
+<div id="sp"></div>
+<div id="barChartForTop10Anchors"></div>
+<div id="sp"></div>
 
-        <script type="text/javascript">
-            // https://developers.google.com/chart/interactive/docs/gallery/piechart
-            // https://www.runoob.com/echarts/echarts-ajax-data.html
-            var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
-                height: 500,
-                width: 700
-            });
-            var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
-                height: 500,
-                width: 700
-            });
-            var pieChart = echarts.init(document.getElementById('pieChart'), null, {
-                height: 450,
-                width: 700
-            });
-            var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
-                height: 500,
-                width: 4000
-            });
-            window.onload = function () {
-                drawPieChart([]);
-                drawBarChartForTopKGames([]);
-                drawBarChartForTopKTags([]);
-                drawBarChartForTop10Anchors([]);
-            }
+<script type="text/javascript">
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
+    var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
+        height: 500,
+        width: 700
+    });
+    var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
+        height: 500,
+        width: 700
+    });
+    var pieChart = echarts.init(document.getElementById('pieChart'), null, {
+        height: 450,
+        width: 700
+    });
+    var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
+        height: 500,
+        width: 4000
+    });
+    window.onload = function () {
+        drawPieChart([]);
+        drawBarChartForTopKGames([]);
+        drawBarChartForTopKTags([]);
+        drawBarChartForTop10Anchors([]);
+    }
 
-            function drawBarChartForTopKGames(dataSet) {
-                var option = {
-                    title:{
-                        left: 'left',
-                        text: 'TOP 10 Popular Live Games'
-                    },
-                    dataset: [
-                        {
-                            dimensions: ['game', 'viewer'],
-                            source: dataSet
-                        },
-                        {
-                            transform: {
-                                type: 'sort',
-                                config: { dimension: 'viewer', order: 'desc' }
-                            }
-                        }
-                        ],
-                    xAxis: {
-                        type: 'category',
-                        axisLabel: {
-                            interval: 0,
-                            rotate: 15,
-                            textStyle: {fontSize: 11}
-                        }
-                    },
-                    yAxis: {
-                        textStyle: {fontSize: 12}
-                    },
-                    series: {
-                        type: 'bar',
-                        encode: { x: 'name', y: 'score' },
-                        datasetIndex: 1
+    function drawBarChartForTopKGames(dataSet) {
+        var option = {
+            title: {
+                left: 'left',
+                text: 'TOP 10 Popular Live Games'
+            },
+            dataset: [
+                {
+                    dimensions: ['game', 'viewer'],
+                    source: dataSet
+                },
+                {
+                    transform: {
+                        type: 'sort',
+                        config: {dimension: 'viewer', order: 'desc'}
                     }
-                };
-                BarChartForTopKGames.setOption(option);
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                axisLabel: {
+                    interval: 0,
+                    rotate: 15,
+                    textStyle: {fontSize: 11}
+                }
+            },
+            yAxis: {
+                textStyle: {fontSize: 12}
+            },
+            series: {
+                type: 'bar',
+                encode: {x: 'name', y: 'score'},
+                datasetIndex: 1
             }
+        };
+        BarChartForTopKGames.setOption(option);
+    }
 
-            function drawBarChartForTopKTags(dataSet) {
-                var option = {
-                    title:{
-                        left: 'left',
-                        text: 'Most Popular Tags'
-                    },
-                    dataset: [
-                        {
-                            dimensions: ['tag', 'count'],
-                            source: dataSet
-                        },
-                        {
-                            transform: {
-                                type: 'sort',
-                                config: { dimension: 'count', order: 'desc' }
-                            }
-                        }
-                        ],
-                    xAxis: {
-                        type: 'category',
-                        axisLabel: {
-                            interval: 0,
-                            rotate: 15,
-                            textStyle: {fontSize: 12}
-                        }
-                    },
-                    yAxis: {
-                        textStyle: {fontSize: 13}
-                    },
-                    series: {
-                        type: 'bar',
-                        encode: { x: 'name', y: 'score' },
-                        datasetIndex: 1,
-                        itemStyle: {color: '#3BA272'}
+    function drawBarChartForTopKTags(dataSet) {
+        var option = {
+            title: {
+                left: 'left',
+                text: 'Most Popular Tags'
+            },
+            dataset: [
+                {
+                    dimensions: ['tag', 'count'],
+                    source: dataSet
+                },
+                {
+                    transform: {
+                        type: 'sort',
+                        config: {dimension: 'count', order: 'desc'}
                     }
-                };
-                BarChartForTopKTags.setOption(option);
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                axisLabel: {
+                    interval: 0,
+                    rotate: 15,
+                    textStyle: {fontSize: 12}
+                }
+            },
+            yAxis: {
+                textStyle: {fontSize: 13}
+            },
+            series: {
+                type: 'bar',
+                encode: {x: 'name', y: 'score'},
+                datasetIndex: 1,
+                itemStyle: {color: '#3BA272'}
             }
+        };
+        BarChartForTopKTags.setOption(option);
+    }
 
-            function drawPieChart(dataSet) {
-                var option = {
-                    title:{
-                        left: 90,
-                        text: 'Most Popular Live Rooms in Different Language'
+    function drawPieChart(dataSet) {
+        var option = {
+            title: {
+                left: 90,
+                text: 'Most Popular Live Rooms in Different Language'
+            },
+            legend: {
+                right: 'left',
+                orient: 'vertical',
+                top: 'center',
+                icon: 'square',
+                textStyle: {
+                    fontSize: '12',
+                },
+            },
+            label: {
+                show: true,
+                position: 'top',
+                fontSize: 13,
+            },
+            icon: 'rect',
+            series: [
+                {
+                    name: 'Pie Chart',
+                    type: 'pie',
+                    radius: '70%',
+                    center: ['50%', '50%'],
+                    // roseType: 'angle',
+                    data: dataSet,
+                }
+            ]
+        };
+        pieChart.setOption(option);
+    }
+
+
+    var categoryData = []
+    var valueData = []
+
+    function generateData(count) {
+        for (let i = 0; i < count; i++) {
+
+        }
+        return {
+            categoryData: categoryData,
+            valueData: valueData
+        };
+    }
+
+    const data = generateData(10);
+
+    function drawBarChartForTop10Anchors(dataSet) {
+        option = {
+            title: {
+                text: 'Waterfall Chart',
+                subtext: 'Living Expenses in Shenzhen'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                },
+                formatter: function (params) {
+                    var tar = params[1];
+                    return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                splitLine: {show: false},
+                data: dataSet.name
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Placeholder',
+                    type: 'time',
+                    stack: 'Total',
+                    itemStyle: {
+                        borderColor: 'transparent',
+                        color: 'transparent'
                     },
-                    legend: {
-                        right: 'left',
-                        orient: 'vertical',
-                        top: 'center',
-                        icon: 'square',
-                        textStyle: {
-                            fontSize: '12',
-                        },
+                    emphasis: {
+                        itemStyle: {
+                            borderColor: 'transparent',
+                            color: 'transparent'
+                        }
                     },
+                    data: data.categoryData
+                },
+                {
+                    name: 'Life Cost',
+                    type: 'time',
+                    stack: 'Total',
                     label: {
                         show: true,
-                        position: 'top',
-                        fontSize: 13,
+                        position: 'inside'
                     },
-                    icon: 'rect',
-                    series: [
-                        {
-                            name: 'Pie Chart',
-                            type: 'pie',
-                            radius: '70%',
-                            center: ['50%', '50%'],
-                            // roseType: 'angle',
-                            data: dataSet,
-                        }
-                        ]
-                };
-                pieChart.setOption(option);
-            }
-
-
-            var categoryData = []
-            var valueData = []
-            function generateData(count) {
-                for (let i = 0; i < count; i++) {
-                    categoryData.push(
-                        echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', barChartForTop10Anchors.starttime[i], false)
-                    );
-                    valueData.push(
-                        echarts.format.formatTime('hh:mm:ss', barChartForTop10Anchors.duration[i], false)
-                    );
+                    data: data.valueData
                 }
-                return {
-                categoryData: categoryData,
-                valueData: valueData
-                };
-            }
-            const data = generateData(10);
-
-            function drawBarChartForTop10Anchors(dataSet) {
-                option = {
-  title: {
-    text: 'Waterfall Chart',
-    subtext: 'Living Expenses in Shenzhen'
-  },
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-      type: 'shadow'
-    },
-    formatter: function (params) {
-      var tar = params[1];
-      return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+            ]
+        };
+        barChartForTop10Anchors.setOption(option);
     }
-  },
-  grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'category',
-    splitLine: { show: false },
-    data: barDataSetForTop10Anchors.name
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      name: 'Placeholder',
-      type: 'time',
-      stack: 'Total',
-      itemStyle: {
-        borderColor: 'transparent',
-        color: 'transparent'
-      },
-      emphasis: {
-        itemStyle: {
-          borderColor: 'transparent',
-          color: 'transparent'
+
+
+    // ajax for top K Games
+    var barDataSetForTopKGames;
+    $.ajax({
+        url: "http://127.0.0.1:5000/topKGames/" + 10,
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            barDataSetForTopKTags = JSON.parse(r);
+            drawBarChartForTopKGames(barDataSetForTopKTags);
         }
-      },
-      data: data.categoryData
-    },
-    {
-      name: 'Life Cost',
-      type: 'time',
-      stack: 'Total',
-      label: {
-        show: true,
-        position: 'inside'
-      },
-      data: data.valueData
-    }
-  ]
-};
-                barChartForTop10Anchors.setOption(option);
-            }
+    })
 
+    // ajax for top K Tags
+    var barDataSetForTopKTags;
+    $.ajax({
+        url: "http://127.0.0.1:5000/topKTags/" + 10,
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            barDataSetForTopKGames = JSON.parse(r);
+            drawBarChartForTopKTags(barDataSetForTopKGames);
+        }
+    })
 
+    // ajax for pie chart
+    var pieDataSet;
+    $.ajax({
+        url: "http://127.0.0.1:5000/getLanguageCount/" + 500,
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            pieDataSet = JSON.parse(r);
+            console.log(pieDataSet);
+            drawPieChart(pieDataSet);
+        }
+    })
 
-
-            // ajax for top K Games
-            var barDataSetForTopKGames;
-            $.ajax({
-                url:"http://127.0.0.1:5000/topKGames/" + 10,
-                type: 'GET',
-                cache: false,
-                processData : false,
-                contentType : 'application/json',
-                success: function (r){
-                    barDataSetForTopKTags = JSON.parse(r);
-                    drawBarChartForTopKGames(barDataSetForTopKTags);
-                }
-            })
-
-            // ajax for top K Tags
-            var barDataSetForTopKTags;
-            $.ajax({
-                url:"http://127.0.0.1:5000/topKTags/" + 10,
-                type: 'GET',
-                cache: false,
-                processData : false,
-                contentType : 'application/json',
-                success: function (r){
-                    barDataSetForTopKGames = JSON.parse(r);
-                    drawBarChartForTopKTags(barDataSetForTopKGames);
-                }
-            })
-
-            // ajax for pie chart
-            var pieDataSet;
-            $.ajax({
-                url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
-                type: 'GET',
-                cache: false,
-                processData : false,
-                contentType : 'application/json',
-                success: function (r){
-                    console.log(r)
-                    pieDataSet = JSON.parse(r);
-                    console.log(pieDataSet);
-                    drawPieChart(pieDataSet);
-                }
-            })
-
-            var barDataSetForTop10Anchors;
-            $.ajax({
-                url:"http://127.0.0.1:5000/getChannelStreamSchedule/" + 10,
-                type: 'GET',
-                cache: false,
-                processData : false,
-                contentType : 'application/json',
-                success: function (r){
-                    console.log(r)
-                    barDataSetForTop10Anchors = JSON.parse(r);
-                    console.log(barDataSetForTop10Anchors);
-                    drawBarChartForTop10Anchors(barDataSetForTop10Anchors);
-                }
-            })
-        </script>
+    var barDataSetForTop10Anchors;
+    $.ajax({
+        url: "http://127.0.0.1:5000/getChannelStreamSchedule/" + 10,
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            barDataSetForTop10Anchors = JSON.parse(r);
+            console.log(barDataSetForTop10Anchors);
+            drawBarChartForTop10Anchors(barDataSetForTop10Anchors);
+        }
+    })
+</script>
 </body>
 </html>
 
 <style>
-    #pieChart{
+    #pieChart {
         width: 300px;
         height: 200px;
         margin-bottom: 150px;
         margin-top: 50px;
     }
-    #barChartForTopKGames{
+
+    #barChartForTopKGames {
         width: 300px;
         height: 400px;
         margin-top: 100px;
         margin-left: 100px;
     }
-    #barChartForTopKTags{
+
+    #barChartForTopKTags {
         width: 300px;
         height: 400px;
         margin-top: 200px;
         margin-bottom: 200px;
         margin-left: 100px;
     }
-    #sp{
+
+    #sp {
         width: 100px;
         height: 100px;
-     }
+    }
 </style>
 
