@@ -153,7 +153,26 @@
                 };
                 pieChart.setOption(option);
             }
-            var data = []
+
+
+            var categoryData = []
+            var valueData = []
+            function generateData(count) {
+                for (let i = 0; i < count; i++) {
+                    categoryData.push(
+                        echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', barChartForTop10Anchors.starttime[i], false)
+                    );
+                    valueData.push(
+                        echarts.format.formatTime('hh:mm:ss', barChartForTop10Anchors.duration[i], false)
+                    );
+                }
+                return {
+                categoryData: categoryData,
+                valueData: valueData
+                };
+            }
+            const data = generateData(10);
+
             function drawBarChartForTop10Anchors(dataSet) {
                 option = {
   title: {
@@ -199,7 +218,7 @@
           color: 'transparent'
         }
       },
-      data: categoryData
+      data: data.categoryData
     },
     {
       name: 'Life Cost',
@@ -209,32 +228,12 @@
         show: true,
         position: 'inside'
       },
-      data: valueData
+      data: data.valueData
     }
   ]
 };
                 barChartForTop10Anchors.setOption(option);
             }
-
-            var categoryData = []
-            var valueData = []
-            var count = barChartForTop10Anchors.starttime.length
-            function generateData(count) {
-                for (let i = 0; i < count; i++) {
-                    categoryData.push(
-                        echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', barChartForTop10Anchors.starttime[i], false)
-                    );
-                    valueData.push(
-                        echarts.format.formatTime('hh:mm:ss', barChartForTop10Anchors.duration[i], false)
-                    );
-                }
-                return {
-                categoryData: categoryData,
-                valueData: valueData
-                };
-            }
-
-
 
 
 
