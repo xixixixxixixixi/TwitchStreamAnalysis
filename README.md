@@ -8,7 +8,7 @@ of Twitch API).
 ![](StuffForREADME/architecture.jpg)
 
 # Demo
-![](StuffForREADME/demo.gif)
+![](StuffForREADME/Demo.gif)
 
 # Sample of Results
 
