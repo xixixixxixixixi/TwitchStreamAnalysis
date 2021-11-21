@@ -13,6 +13,8 @@
         <div id="sp"></div>
         <div id="barChartForTopKTags"></div>
         <div id="sp"></div>
+        <div id="barChartForTop10Anchors"></div>
+        <div id="sp"></div>
 
         <script type="text/javascript">
             // https://developers.google.com/chart/interactive/docs/gallery/piechart
@@ -29,10 +31,15 @@
                 height: 450,
                 width: 700
             });
+            var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
+                height: 500,
+                width: 700
+            });
             window.onload = function () {
                 drawPieChart([]);
                 drawBarChartForTopKGames([]);
                 drawBarChartForTopKTags([]);
+                drawBarChartForTop10Anchors([]);
             }
 
             function drawBarChartForTopKGames(dataSet) {
@@ -147,6 +154,41 @@
                 pieChart.setOption(option);
             }
 
+            function drawBarChartForTop10Anchors(dataSet) {
+                option = {
+                    title:{
+                        left: 90,
+                        text: 'Most Popular Live Rooms in Different Language'
+                    },
+                    legend: {
+                        right: 'left',
+                        orient: 'vertical',
+                        top: 'center',
+                        icon: 'square',
+                        textStyle: {
+                            fontSize: '12',
+                        },
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        fontSize: 13,
+                    },
+                    icon: 'rect',
+                    series: [
+                        {
+                            name: 'Pie Chart',
+                            type: 'pie',
+                            radius: '70%',
+                            center: ['50%', '50%'],
+                            // roseType: 'angle',
+                            data: dataSet,
+                        }
+                        ]
+                };
+                pieChart.setOption(option);
+            }
+
             // ajax for top K Games
             var barDataSetForTopKGames;
             $.ajax({
@@ -194,6 +236,23 @@
                     pieDataSet = JSON.parse(r);
                     console.log(pieDataSet);
                     drawPieChart(pieDataSet);
+                }
+            })
+
+            var barDataSetForTop10Anchors;
+            $.ajax({
+                url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
+                type: 'GET',
+                headers:{'Content-type' : 'application/json'},
+                cache: false,
+                dataType : 'html',
+                processData : false,
+                contentType : 'application/json',
+                success: function (r){
+                    console.log(r)
+                    barDataSetForTop10Anchors = JSON.parse(r);
+                    console.log(barDataSetForTop10Anchors);
+                    drawPieChart(barDataSetForTop10Anchors);
                 }
             })
         </script>
