@@ -33,7 +33,7 @@
             });
             var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
                 height: 500,
-                width: 700
+                width: 4000
             });
             window.onload = function () {
                 drawPieChart([]);
@@ -120,7 +120,7 @@
             }
 
             function drawPieChart(dataSet) {
-                option = {
+                var option = {
                     title:{
                         left: 90,
                         text: 'Most Popular Live Rooms in Different Language'
@@ -153,41 +153,91 @@
                 };
                 pieChart.setOption(option);
             }
-
+            var data = []
             function drawBarChartForTop10Anchors(dataSet) {
                 option = {
-                    title:{
-                        left: 90,
-                        text: 'Most Popular Live Rooms in Different Language'
-                    },
-                    legend: {
-                        right: 'left',
-                        orient: 'vertical',
-                        top: 'center',
-                        icon: 'square',
-                        textStyle: {
-                            fontSize: '12',
-                        },
-                    },
-                    label: {
-                        show: true,
-                        position: 'top',
-                        fontSize: 13,
-                    },
-                    icon: 'rect',
-                    series: [
-                        {
-                            name: 'Pie Chart',
-                            type: 'pie',
-                            radius: '70%',
-                            center: ['50%', '50%'],
-                            // roseType: 'angle',
-                            data: dataSet,
-                        }
-                        ]
-                };
-                pieChart.setOption(option);
+  title: {
+    text: 'Waterfall Chart',
+    subtext: 'Living Expenses in Shenzhen'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    },
+    formatter: function (params) {
+      var tar = params[1];
+      return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    splitLine: { show: false },
+    data: barDataSetForTop10Anchors.name
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: 'Placeholder',
+      type: 'time',
+      stack: 'Total',
+      itemStyle: {
+        borderColor: 'transparent',
+        color: 'transparent'
+      },
+      emphasis: {
+        itemStyle: {
+          borderColor: 'transparent',
+          color: 'transparent'
+        }
+      },
+      data: categoryData
+    },
+    {
+      name: 'Life Cost',
+      type: 'time',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'inside'
+      },
+      data: valueData
+    }
+  ]
+};
+                barChartForTop10Anchors.setOption(option);
             }
+
+            var categoryData = []
+            var valueData = []
+            var count = barChartForTop10Anchors.starttime.length
+            function generateData(count) {
+                for (let i = 0; i < count; i++) {
+                    categoryData.push(
+                        echarts.format.formatTime('yyyy-MM-dd\nhh:mm:ss', barChartForTop10Anchors.starttime[i], false)
+                    );
+                    valueData.push(
+                        echarts.format.formatTime('hh:mm:ss', barChartForTop10Anchors.duration[i], false)
+                    );
+                }
+                return {
+                categoryData: categoryData,
+                valueData: valueData
+                };
+            }
+
+
+
+
+
 
             // ajax for top K Games
             var barDataSetForTopKGames;
