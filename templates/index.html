@@ -84,7 +84,7 @@
                 var option = {
                     title:{
                         left: 'left',
-                        text: 'Most Popular Categories'
+                        text: 'Most Popular Tags'
                     },
                     dataset: [
                         {
@@ -194,9 +194,7 @@
             $.ajax({
                 url:"http://127.0.0.1:5000/topKGames/" + 10,
                 type: 'GET',
-                headers:{'Content-type' : 'application/json'},
                 cache: false,
-                dataType : 'html',
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
@@ -210,9 +208,7 @@
             $.ajax({
                 url:"http://127.0.0.1:5000/topKTags/" + 10,
                 type: 'GET',
-                headers:{'Content-type' : 'application/json'},
                 cache: false,
-                dataType : 'html',
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
@@ -226,9 +222,7 @@
             $.ajax({
                 url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
                 type: 'GET',
-                headers:{'Content-type' : 'application/json'},
                 cache: false,
-                dataType : 'html',
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
@@ -241,18 +235,16 @@
 
             var barDataSetForTop10Anchors;
             $.ajax({
-                url:"http://127.0.0.1:5000/getLanguageCount/" + 500,
+                url:"http://127.0.0.1:5000/getChannelStreamSchedule/" + 10,
                 type: 'GET',
-                headers:{'Content-type' : 'application/json'},
                 cache: false,
-                dataType : 'html',
                 processData : false,
                 contentType : 'application/json',
                 success: function (r){
                     console.log(r)
                     barDataSetForTop10Anchors = JSON.parse(r);
                     console.log(barDataSetForTop10Anchors);
-                    drawPieChart(barDataSetForTop10Anchors);
+                    drawBarChartForTop10Anchors(barDataSetForTop10Anchors);
                 }
             })
         </script>
