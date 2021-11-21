@@ -33,7 +33,7 @@
     });
     var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
         height: 500,
-        width: 4000
+        width: 700
     });
     window.onload = function () {
         drawPieChart([]);
@@ -154,27 +154,38 @@
         pieChart.setOption(option);
     }
 
-
-    var categoryData = []
-    var valueData = []
-
-    function generateData(count) {
-        for (let i = 0; i < count; i++) {
-
+    function covertToDatetimeFormat(dataSet) {
+        if (dataSet == null || dataSet.length === 0) {
+            return;
         }
-        return {
-            categoryData: categoryData,
-            valueData: valueData
-        };
+        let length = dataSet.starttime.length;
+        let minStartTime = new Date(dataSet.starttime[0]).getTime();
+        for (let i = 0; i < length; i++) {
+            let st = new Date(dataSet.starttime[i]).getTime();
+            if (st < minStartTime) {
+                minStartTime = st;
+            }
+        }
+        for (let i = 0; i < length; i++) {
+            dataSet.starttime[i] = new Date(dataSet.starttime[i]).getTime() - minStartTime;
+            dataSet.endtime[i] = new Date(dataSet.endtime[i]).getTime() - minStartTime;
+            dataSet.duration[i] = dataSet.endtime[i] - dataSet.starttime[i];
+            // dataSet.starttime[i] = echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', dataSet.starttime[i], false);
+            // dataSet.duration[i] = echarts.format.formatTime('hh:mm:ss', dataSet.duration[i], false);
+        }
+        console.log(dataSet.starttime);
+        console.log(dataSet.endtime);
+        console.log(dataSet.duration);
+        return minStartTime;
     }
 
-    const data = generateData(10);
-
     function drawBarChartForTop10Anchors(dataSet) {
+        console.log(dataSet)
+        let minStartTime = covertToDatetimeFormat(dataSet);
+
         option = {
             title: {
-                text: 'Waterfall Chart',
-                subtext: 'Living Expenses in Shenzhen'
+                text: 'Streaming Schedule for popular channels'
             },
             tooltip: {
                 trigger: 'axis',
@@ -183,7 +194,14 @@
                 },
                 formatter: function (params) {
                     var tar = params[1];
-                    return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+                    // https://www.tutorialspoint.com/How-to-get-time-difference-between-two-timestamps-in-seconds
+                    let value = tar.value / 1000;
+                    let days = Math.floor(value / 86400);
+                    let hours = Math.floor(value / 3600) % 24;
+                    let minutes = Math.floor(value / 60) % 60;
+                    let seconds = tar.value % 60;
+                    return days + "days " + hours + "hours " + minutes + "minutes " +seconds + "seconds"
+                    // return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
                 }
             },
             grid: {
@@ -194,16 +212,26 @@
             },
             xAxis: {
                 type: 'category',
-                splitLine: {show: false},
+                axisLabel: {
+                    interval: 0,
+                    rotate: 15,
+                    textStyle: {fontSize: 12}
+                },
+                // splitLine: {show: false},
                 data: dataSet.name
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
+                axisLabel: {
+                    formatter: function (value) {
+                        return echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', value + minStartTime);
+                    }
+                }
             },
             series: [
                 {
                     name: 'Placeholder',
-                    type: 'time',
+                    type: 'bar',
                     stack: 'Total',
                     itemStyle: {
                         borderColor: 'transparent',
@@ -215,17 +243,25 @@
                             color: 'transparent'
                         }
                     },
-                    data: data.categoryData
+                    data: dataSet.starttime
                 },
                 {
                     name: 'Life Cost',
-                    type: 'time',
+                    type: 'bar',
                     stack: 'Total',
-                    label: {
-                        show: true,
-                        position: 'inside'
-                    },
-                    data: data.valueData
+                    // label: {
+                    //     show: true,
+                    //     position: 'inside',
+                    //     formatter: function (c) {
+                    //         // https://www.tutorialspoint.com/How-to-get-time-difference-between-two-timestamps-in-seconds
+                    //         let days = Math.floor(c / 86400);
+                    //         let hours = Math.floor(c / 3600) % 24;
+                    //         let minutes = Math.floor(c / 60) % 60;
+                    //         let seconds = c % 60;
+                    //         return days + "days " + hours + "hours " + minutes + "minutes " +seconds + "seconds"
+                    //     }
+                    // },
+                    data: dataSet.duration
                 }
             ]
         };
@@ -311,6 +347,14 @@
     }
 
     #barChartForTopKTags {
+        width: 300px;
+        height: 400px;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        margin-left: 100px;
+    }
+
+    #barChartForTop10Anchors {
         width: 300px;
         height: 400px;
         margin-top: 200px;

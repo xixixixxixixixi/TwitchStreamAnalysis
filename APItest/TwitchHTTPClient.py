@@ -199,12 +199,19 @@ def getChannelStreamSchedule(k):
                 response['data']['segments'][0]['end_time'] == None
         ):
             # https://stackoverflow.com/questions/1941927/convert-an-rfc-3339-time-to-a-standard-python-timestamp
-            startTime = dt.datetime.strptime(response['data']['segments'][0]['start_time'], '%Y-%m-%dT%H:%M:%SZ')
-            endTime = dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ')
+            # startTime = dt.datetime.strptime(response['data']['segments'][0]['start_time'], '%Y-%m-%dT%H:%M:%SZ')
+            # endTime = dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ')
+            startTime = response['data']['segments'][0]['start_time']
+            endTime = response['data']['segments'][0]['end_time']
             scheduleDict['name'].append(response['data']['broadcaster_name'])
             scheduleDict['starttime'].append(str(startTime))
             scheduleDict['endtime'].append(str(endTime))
-            scheduleDict['duration'].append(str(endTime - startTime))
+            scheduleDict['duration'].append(
+                str (
+                    dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ') -
+                    dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ')
+                )
+            )
             print(scheduleDict)
             # https://stackoverflow.com/questions/1941927/convert-an-rfc-3339-time-to-a-standard-python-timestamp
             count += 1
