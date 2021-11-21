@@ -2,7 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Columbia EECS E6893 Big Data Analytics
-
+import datetime as dt
 """
 This module is used to pull data from twitch API and preprocess the data
 
@@ -11,6 +11,7 @@ This module is used to pull data from twitch API and preprocess the data
 import twitch
 import requests
 import json
+import datetime
 
 # Credentials
 client_id = '918pxgmrcct2dbuwu7tih5na23ogxq'
@@ -137,6 +138,80 @@ def getLanguageForRooms(k):
     for language in sorted(languageDict.items(), key=lambda d: d[1], reverse=True):
         result.append({'value': language[1], 'name': language[0]})
     return result
+
+
+# # get top m chips with viewers for top k games
+# '''
+#     function: get top m chips with viewers for top k games
+#     documentation: https://dev.twitch.tv/docs/api/reference#get-clips
+#
+#     data format for result:
+#     ['clip', 'viewers'],
+#     ['clip1', 123],
+#     ['clip2', 456]
+# '''
+# def getTopKClips(m, k):
+#     topGames = client.get_top_games()
+#     gameIds = []
+#     count = 0
+#     for game in topGames:
+#         gameIds.append(game['id'])
+#         count += 1
+#         if count == k:
+#             break
+#     topKClipsDict = {}
+#     for gameId in gameIds:
+#         headers = {
+#             # 'content-type': 'application/json',
+#             'Authorization': 'Bearer ' + oauth_token,
+#             'Client-Id': client_id
+#         }
+#         url = 'https://api.twitch.tv/helix/clips' + '?' + 'game_id=' + gameId
+#         response = json.loads(requests.get(url, headers=headers).content.decode('utf-8'))
+#         for clip in response['data']:
+#
+#         print(response)
+#
+# getTopKClips(4,4)
+
+def getChannelStreamSchedule(k):
+    streams = client.get_streams(page_size=100)
+    count = 0
+    scheduleDict = {}
+    scheduleDict['name'] = []
+    scheduleDict['starttime'] = []
+    scheduleDict['endtime'] = []
+    scheduleDict['duration'] = []
+    for stream in streams:
+        userId = stream['user_id']
+        headers = {
+            'Authorization': 'Bearer ' + oauth_token,
+            'Client-Id': client_id
+        }
+        url = 'https://api.twitch.tv/helix/schedule' + '?' + 'broadcaster_id=' + userId
+        response = json.loads(requests.get(url, headers=headers).content.decode('utf-8'))
+        # print(response)
+        if not (response.__contains__('error') or
+                response == None or
+                response['data'] == None or
+                response['data']['segments'] == None or
+                response['data']['segments'][0]['start_time'] == None or
+                response['data']['segments'][0]['end_time'] == None
+        ):
+            # https://stackoverflow.com/questions/1941927/convert-an-rfc-3339-time-to-a-standard-python-timestamp
+            startTime = dt.datetime.strptime(response['data']['segments'][0]['start_time'], '%Y-%m-%dT%H:%M:%SZ')
+            endTime = dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ')
+            scheduleDict['name'].append(response['data']['broadcaster_name'])
+            scheduleDict['starttime'].append(str(startTime))
+            scheduleDict['endtime'].append(str(endTime))
+            scheduleDict['duration'].append(str(endTime - startTime))
+            print(scheduleDict)
+            # https://stackoverflow.com/questions/1941927/convert-an-rfc-3339-time-to-a-standard-python-timestamp
+            count += 1
+        if count == k:
+            break
+    return scheduleDict
+    # print(scheduleDict)
 
 
 # # get viewers for a specific room

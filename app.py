@@ -34,6 +34,12 @@ def getLanguageCount(num):  # put application's code here
         result = TwitchHTTPClient.getLanguageForRooms(int(num))
         return json.dumps(result)
 
+@app.route('/getChannelStreamSchedule/<num>', methods=['GET'])
+def getChannelStreamSchedule(num):  # put application's code here
+    if request.method == 'GET':
+        result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
+        return json.dumps(result)
+
 
 
 # @app.route('/trend/<userId>')
