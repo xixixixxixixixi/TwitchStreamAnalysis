@@ -4,8 +4,7 @@ from flask import Flask
 from flask import *
 from flask_cors import CORS
 import twitch
-from APItest import TwitchHTTPClient
-import GetGraph
+from ApiInterface import TwitchHTTPClient
 # Credentials
 
 app = Flask(__name__)
