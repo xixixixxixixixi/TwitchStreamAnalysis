@@ -6,7 +6,7 @@ from flask_cors import CORS
 import twitch
 from ApiInterface import TwitchHTTPClient
 # Credentials
-
+# build: https://stackabuse.com/deploying-a-flask-application-to-heroku/
 app = Flask(__name__)
 CORS(app, support_credentials = True)
 
