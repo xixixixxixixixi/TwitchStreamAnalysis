@@ -1,5 +1,5 @@
 import json
-
+import flask
 from flask import Flask
 from flask import *
 from flask_cors import CORS
@@ -38,15 +38,6 @@ def getChannelStreamSchedule(num):  # put application's code here
     if request.method == 'GET':
         result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
         return json.dumps(result)
-
-
-
-# @app.route('/trend/<userId>')
-# def trend(userId):  # put application's code here
-#     num = int(userId)
-#     data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
-#     return json.dumps(data)
-
 
 if __name__ == '__main__':
     application.run()
