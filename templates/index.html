@@ -16,7 +16,11 @@
 <!--<div class="sp"></div>-->
 <div id="barChartForTop10Anchors"></div>
 <!--<div class="sp"></div>-->
-
+<iframe id="twitch-chat-embed"
+        src="https://www.twitch.tv/embed/xQcOW/chat?parent=127.0.0.1:5000"
+        height="500"
+        width="350">
+</iframe>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
@@ -36,6 +40,8 @@
         height: 500,
         width: 700
     });
+    // https://dev.twitch.tv/docs/embed/chat
+
     window.onload = function () {
         drawPieChart([]);
         drawBarChartForTopKGames([]);

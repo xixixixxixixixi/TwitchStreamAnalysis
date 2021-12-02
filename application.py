@@ -7,33 +7,33 @@ import twitch
 from ApiInterface import TwitchHTTPClient
 # Credentials
 
-app = Flask(__name__)
-CORS(app, support_credentials = True)
+application = Flask(__name__)
+CORS(application, support_credentials = True)
 
 # bk
-@app.route('/')
+@application.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return render_template("index.html")
 
-@app.route('/topKGames/<num>', methods=['GET'])
+@application.route('/topKGames/<num>', methods=['GET'])
 def topKGames(num):  # put application's code here
     if request.method == 'GET':
         data = TwitchHTTPClient.getTopKGames(int(num))
         return json.dumps(data)
 
-@app.route('/topKTags/<num>', methods=['GET'])
+@application.route('/topKTags/<num>', methods=['GET'])
 def topKTags(num):  # put application's code here
     if request.method == 'GET':
         data = TwitchHTTPClient.getTopKTags(int(num))
         return json.dumps(data)
 
-@app.route('/getLanguageCount/<num>', methods=['GET'])
+@application.route('/getLanguageCount/<num>', methods=['GET'])
 def getLanguageCount(num):  # put application's code here
     if request.method == 'GET':
         result = TwitchHTTPClient.getLanguageForRooms(int(num))
         return json.dumps(result)
 
-@app.route('/getChannelStreamSchedule/<num>', methods=['GET'])
+@application.route('/getChannelStreamSchedule/<num>', methods=['GET'])
 def getChannelStreamSchedule(num):  # put application's code here
     if request.method == 'GET':
         result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
@@ -49,4 +49,4 @@ def getChannelStreamSchedule(num):  # put application's code here
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
