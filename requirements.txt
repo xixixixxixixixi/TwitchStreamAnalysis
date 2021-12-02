@@ -5,7 +5,6 @@ toml~=0.10.2
 zlib~=1.2.11
 wheel~=0.36.2
 google~=3.0.0
-openssl~=1.1.1k
 cryptography~=3.4.7
 py~=1.10.0
 lxml~=4.6.3
