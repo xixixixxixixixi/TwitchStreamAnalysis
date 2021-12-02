@@ -17,7 +17,7 @@
 <div id="barChartForTop10Anchors"></div>
 <!--<div class="sp"></div>-->
 <iframe id="twitch-chat-embed"
-        src="https://www.twitch.tv/embed/xQcOW/chat?parent=127.0.0.1:5000"
+        src="https://www.twitch.tv/embed/xQcOW/chat?parent=https://proj6893.herokuapp.com"
         height="500"
         width="350">
 </iframe>
@@ -25,6 +25,7 @@
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
     var domain = "https://proj6893.herokuapp.com"
+    // var domain = "127.0.0.1:5000";
     var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
         height: 500,
         width: 700
