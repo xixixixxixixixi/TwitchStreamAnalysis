@@ -15,7 +15,7 @@ import datetime
 
 # Credentials
 client_id = '918pxgmrcct2dbuwu7tih5na23ogxq'
-oauth_token = 'if6rhr2bfebpxqlie36i66bazekgz0'
+oauth_token = 'qvifs7zxuwsw8d4uz15tm1yn9tox0v'
 
 client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
 # streams = client.get_streams()  # APICursor containing Stream objects

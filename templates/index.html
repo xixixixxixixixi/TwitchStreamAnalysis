@@ -17,9 +17,24 @@
 <div id="barChartForTop10Anchors"></div>
 <!--<div class="sp"></div>-->
 
+<!--https://dev.twitch.tv/docs/embed/chat-->
+<iframe id="twitch-chat-embed"
+        src="https://www.twitch.tv/embed/xqcow/chat?parent=proj6893.herokuapp.com"
+        height="500"
+        width="350">
+</iframe>
+<!--https://dev.twitch.tv/docs/embed/video-and-clips#non-interactive-inline-frames-for-live-streams-and-vods-->
+<iframe
+    src="https://player.twitch.tv/?channel=xqcow&parent=proj6893.herokuapp.com&muted=true"
+    height="720"
+    width="1280"
+    allowfullscreen="true">
+</iframe>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
+    var domain = "https://proj6893.herokuapp.com"
+    // var domain = "127.0.0.1:5000";
     var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
         height: 500,
         width: 700
@@ -36,6 +51,8 @@
         height: 500,
         width: 700
     });
+    // https://dev.twitch.tv/docs/embed/chat
+
     window.onload = function () {
         drawPieChart([]);
         drawBarChartForTopKGames([]);
@@ -273,7 +290,7 @@
     // ajax for top K Games
     var barDataSetForTopKGames;
     $.ajax({
-        url: "http://127.0.0.1:5000/topKGames/" + 10,
+        url: domain + "/topKGames/" + 10,
         type: 'GET',
         cache: false,
         processData: false,
@@ -287,7 +304,7 @@
     // ajax for top K Tags
     var barDataSetForTopKTags;
     $.ajax({
-        url: "http://127.0.0.1:5000/topKTags/" + 10,
+        url: domain + "/topKTags/" + 10,
         type: 'GET',
         cache: false,
         processData: false,
@@ -301,7 +318,7 @@
     // ajax for pie chart
     var pieDataSet;
     $.ajax({
-        url: "http://127.0.0.1:5000/getLanguageCount/" + 500,
+        url: domain + "/getLanguageCount/" + 500,
         type: 'GET',
         cache: false,
         processData: false,
@@ -316,7 +333,7 @@
 
     var barDataSetForTop10Anchors;
     $.ajax({
-        url: "http://127.0.0.1:5000/getChannelStreamSchedule/" + 10,
+        url: domain + "/getChannelStreamSchedule/" + 10,
         type: 'GET',
         cache: false,
         processData: false,

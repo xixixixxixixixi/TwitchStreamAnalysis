@@ -1,19 +1,19 @@
 import json
-
+import flask
 from flask import Flask
 from flask import *
 from flask_cors import CORS
 import twitch
 from ApiInterface import TwitchHTTPClient
 # Credentials
-
+# build: https://stackabuse.com/deploying-a-flask-application-to-heroku/
 app = Flask(__name__)
 CORS(app, support_credentials = True)
 
 # bk
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return render_template("index.html")
 
 @app.route('/topKGames/<num>', methods=['GET'])
 def topKGames(num):  # put application's code here
@@ -38,15 +38,6 @@ def getChannelStreamSchedule(num):  # put application's code here
     if request.method == 'GET':
         result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
         return json.dumps(result)
-
-
-
-# @app.route('/trend/<userId>')
-# def trend(userId):  # put application's code here
-#     num = int(userId)
-#     data = TwitchHTTPClient.getViewerTrendForOneRoom(userId)
-#     return json.dumps(data)
-
 
 if __name__ == '__main__':
     app.run()
