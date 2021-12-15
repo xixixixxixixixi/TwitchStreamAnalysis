@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitch Stream Analysis</title>
+    <!--    <script src="../ApiInterface/echarts.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="pieChart"></div>
+<div id="sp"></div>
+<!--<div class="sp"></div>-->
+<div id="barDynamicHistory"></div>
+
+<script type="text/javascript">
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
+    // var domain = "https://proj6893.herokuapp.com"
+    var domain = "127.0.0.1:5000";
+
+    var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
+        height: 500,
+        width: 700
+    });
+    // https://dev.twitch.tv/docs/embed/chat
+
+    window.onload = function () {
+        console.log("data");
+        drawBarDynamicHistory([]);
+    }
+
+    function drawBarDynamicHistory(dataset) {
+        const data = dataset.label;
+        const data2 = dataset.data;
+        console.log("data:" + data);
+        for (let i = 0; i < 5; ++i) {
+            data.push(100);
+        }
+        console.log(data);
+        option = {
+            xAxis: {
+                max: 'dataMax'
+            },
+            yAxis: {
+                type: 'category',
+                data: ['lol', 'cs', 'C', 'D', 'E'],
+                inverse: true,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
+                max: 4 // only the largest 3 bars will be displayed
+            },
+            series: [
+                {
+                    realtimeSort: true,
+                    name: 'X',
+                    type: 'bar',
+                    data: data,
+                    label: {
+                        show: true,
+                        position: 'right',
+                        valueAnimation: true
+                    }
+                }
+            ],
+            legend: {
+                show: true
+            },
+            animationDuration: 0,
+            animationDurationUpdate: 3000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+
+        console.log("1");
+        function run() {
+            console.log("2");
+            for (var i = 0; i < data.length; ++i) {
+                for (var j = 0; j < data2[i].length; ++j) {
+                    data[i] = data2[i][j];
+                    console.log(data[i]);
+                    barDynamicHistory.setOption(option);
+                }
+            }
+            myChart.setOption({
+                series: [
+                    {
+                        type: 'bar',
+                        data
+                    }
+                ]
+            });
+        }
+
+        setTimeout(function () {
+            console.log("setTimeout");
+            run();
+        }, 0);
+        setInterval(function () {
+            run();
+        }, 3000);
+    }
+
+    var barDataSetForTop10Anchors;
+    $.ajax({
+        url: domain + "/getChannelStreamSchedule/" + 10,
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            barDataSetForTop10Anchors = JSON.parse(r);
+            console.log(barDataSetForTop10Anchors);
+            drawBarChartForTop10Anchors(barDataSetForTop10Anchors);
+        }
+    })
+
+
+
+
+
+</script>
+</body>
+</html>
+
+<style>
+    #pieChart {
+        width: 300px;
+        height: 200px;
+        margin-bottom: 150px;
+        margin-top: 50px;
+    }
+
+    #barChartForTopKGames {
+        width: 300px;
+        height: 400px;
+        margin-top: 100px;
+        margin-left: 100px;
+    }
+
+    #barChartForTopKTags {
+        width: 300px;
+        height: 400px;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        margin-left: 100px;
+    }
+
+    #barChartForTop10Anchors {
+        width: 300px;
+        height: 400px;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        margin-left: 100px;
+    }
+
+    #sp {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
