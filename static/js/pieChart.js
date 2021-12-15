@@ -1,5 +1,4 @@
-// var domain = "https://proj6893.herokuapp.com";
-// var domain = "http://127.0.0.1:5000";
+
 var pieChart = echarts.init(document.getElementById('pieChart'), null, {
     height: 450,
     width: 700
