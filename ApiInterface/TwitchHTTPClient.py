@@ -229,9 +229,8 @@ def getChannelStreamSchedule(k):
 #     return streams[0]['viewer_count']
 
 def getDynamicHistory(game_list):
-    credentials = service_account.Credentials.from_service_account_file('key.json')
     table_id = 'big-data-analytics-326904.project.top_game_viewers'
-
+    credentials = service_account.Credentials.from_service_account_file("key.json")
     pandas_gbq.context.credentials = credentials
     pandas_gbq.context.project = "big-data-analytics-326904"
 
@@ -248,6 +247,7 @@ def getDynamicHistory(game_list):
     #     label: ['lol', 'cod', 'CSGO'],
     #     data: [[1,2,3], [1,2,3], [1,2,3]]
     # }
+    # TODO： implement add game list to sql
     SQL = "SELECT * FROM `{}`".format(table_id)
     df = pandas_gbq.read_gbq(SQL)
     print(list(df))
@@ -259,3 +259,7 @@ def getDynamicHistory(game_list):
     result["data"] = viewer_list
     print(df)
     return result
+
+# getDynamicHistory(['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
+#             'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
+#             'TeamfightTactics', 'Minecraft', 'Pokemon'])

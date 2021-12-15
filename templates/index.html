@@ -16,7 +16,8 @@
 <!--<div class="sp"></div>-->
 <div id="barChartForTop10Anchors"></div>
 <!--<div class="sp"></div>-->
-
+<div id="barDynamicHistory"></div>
+<!--<div class="sp"></div>-->
 <!--https://dev.twitch.tv/docs/embed/chat-->
 <iframe id="twitch-chat-embed"
         src="https://www.twitch.tv/embed/xqcow/chat?parent=proj6893.herokuapp.com"
@@ -51,6 +52,10 @@
         height: 500,
         width: 700
     });
+    var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
+        height: 500,
+        width: 700
+    });
     // https://dev.twitch.tv/docs/embed/chat
 
     window.onload = function () {
@@ -58,6 +63,7 @@
         drawBarChartForTopKGames([]);
         drawBarChartForTopKTags([]);
         drawBarChartForTop10Anchors([]);
+        drawBarDynamicHistory([]);
     }
 
     function drawBarChartForTopKGames(dataSet) {
@@ -274,6 +280,77 @@
         barChartForTop10Anchors.setOption(option);
     }
 
+    function drawBarDynamicHistory(dataSet) {
+        const data = dataSet.label;
+        const data2 = dataSet.data;
+        console.log("data:" + data);
+        for (let i = 0; i < 5; ++i) {
+            data.push(100);
+        }
+        console.log(data);
+        option = {
+            xAxis: {
+                max: 'dataMax'
+            },
+            yAxis: {
+                type: 'category',
+                data: ['lol', 'cs', 'C', 'D', 'E'],
+                inverse: true,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
+                max: 4 // only the largest 3 bars will be displayed
+            },
+            series: [
+                {
+                    realtimeSort: true,
+                    name: 'X',
+                    type: 'bar',
+                    data: data,
+                    label: {
+                        show: true,
+                        position: 'right',
+                        valueAnimation: true
+                    }
+                }
+            ],
+            legend: {
+                show: true
+            },
+            animationDuration: 0,
+            animationDurationUpdate: 3000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+
+        console.log("1");
+        function run() {
+            console.log("2");
+            for (var i = 0; i < data.length; ++i) {
+                for (var j = 0; j < data2[i].length; ++j) {
+                    data[i] = data2[i][j];
+                    console.log(data[i]);
+                    barDynamicHistory.setOption(option);
+                }
+            }
+            myChart.setOption({
+                series: [
+                    {
+                        type: 'bar',
+                        data
+                    }
+                ]
+            });
+        }
+
+        setTimeout(function () {
+            console.log("setTimeout");
+            run();
+        }, 0);
+        setInterval(function () {
+            run();
+        }, 3000);
+    }
+
 
     // ajax for top K Games
     var barDataSetForTopKGames;
@@ -336,10 +413,11 @@
 
     var dataSetForHistoryDynamicChart;
     $.ajax({
-        url: domain + "/getDynamicPopularGamesBarChart/",
+        url: domain + "/getDynamicPopularGamesBarChart",
         type: 'POST',
-        data: ['Chatting', 'GrandTheftAutoV', 'LeagueofLegends', 'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
-            'TeamfightTactics', 'Minecraft', 'Pokemon'],
+        data: JSON.stringify(['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
+            'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
+            'TeamfightTactics', 'Minecraft', 'Pokemon']),
         cache: false,
         processData: false,
         contentType: 'application/json',
@@ -347,7 +425,7 @@
             console.log(r)
             dataSetForHistoryDynamicChart = JSON.parse(r);
             console.log(dataSetForHistoryDynamicChart);
-            drawBarChartForTop10Anchors(dataSetForHistoryDynamicChart);
+            drawBarDynamicHistory(dataSetForHistoryDynamicChart);
         }
     })
 
