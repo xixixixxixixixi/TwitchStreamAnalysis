@@ -346,17 +346,18 @@
         }
     })
 
-    console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))
-
-    $("#Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container").on('DOMNodeInserted', function(e) {
-        console.log(e.target, ' was inserted');
-    });
-
     //
     // $("#parent").on('DOMNodeRemoved', function(e) {
     //     console.log(e.target, ' was removed');
     // });
 
+</script>
+<script>
+    console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))
+
+    $("#Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container").on('DOMNodeInserted', function(e) {
+        console.log(e.target, ' was inserted');
+    });
 </script>
 </body>
 </html>
