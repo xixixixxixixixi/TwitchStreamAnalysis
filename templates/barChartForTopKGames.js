@@ -3,6 +3,9 @@ var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopK
     height: 500,
     width: 700
 });
+window.onload = function () {
+    drawBarChartForTopKGames([]);
+}
 
 function drawBarChartForTopKGames(dataSet) {
     var option = {
