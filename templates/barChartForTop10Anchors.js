@@ -1,5 +1,5 @@
 // var domain = "https://proj6893.herokuapp.com";
-// var domain = "http://127.0.0.1:5000";
+var domain = "http://127.0.0.1:5000";
 var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
     height: 500,
     width: 700
@@ -38,7 +38,7 @@ function drawBarChartForTop10Anchors(dataSet) {
     console.log(dataSet)
     let minStartTime = covertToDatetimeFormat(dataSet);
 
-    option = {
+    let option = {
         title: {
             text: 'Streaming Schedule for popular channels'
         },

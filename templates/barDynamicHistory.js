@@ -1,3 +1,5 @@
+// var domain = "https://proj6893.herokuapp.com";
+var domain = "http://127.0.0.1:5000";
 var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
     height: 500,
     width: 700
@@ -18,7 +20,7 @@ function drawBarDynamicHistory(dataSet) {
     for (let i = 0; i < viewerCount.length; ++i) {
         dataToShow.push(100);
     }
-    option = {
+    let option = {
         xAxis: {
             max: 'dataMax'
         },
