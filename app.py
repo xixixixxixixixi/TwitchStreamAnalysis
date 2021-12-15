@@ -41,7 +41,7 @@ def getChannelStreamSchedule(num):  # put application's code here
 
 @app.route('/getDynamicPopularGamesBarChart', methods=['POST'])
 def getChannelStreamSchedule():  # put application's code here
-    if request.method == 'GET':
+    if request.method == 'POST':
         game_list = request.data
         result = TwitchHTTPClient.getDynamicHistory(game_list)
         return json.dumps(result)
