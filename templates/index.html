@@ -354,10 +354,12 @@
 </script>
 <script>
     console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))
-
-    $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {
-        console.log(e.target, ' was inserted');
-    });
+    setInterval(function () {
+        console.log(document.querySelector(".text-fragment"))
+    })
+    // $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {
+    //     console.log(e.target, ' was inserted');
+    // });
 </script>
 </body>
 </html>
