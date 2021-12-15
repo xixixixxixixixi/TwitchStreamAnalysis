@@ -359,7 +359,7 @@
     setInterval(function () {
         // console.log(document.querySelector("span[data-a-target]"))
         // console.log(document.getElementsByClassName("tw-root--hover js-focus-visible tw-root--theme-light").length)
-        console.log(document.getElementById('twitch-chat-embed').contentDocument)
+        console.log(document.getElementById('twitch-chat-embed').contentWindow.document)
     }, 1000)
     // $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {
     //     console.log(e.target, ' was inserted');
