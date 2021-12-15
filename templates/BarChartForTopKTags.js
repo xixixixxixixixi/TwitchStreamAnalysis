@@ -3,6 +3,7 @@ var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKT
     height: 500,
     width: 700
 });
+
 window.onload = function () {
     drawBarChartForTopKTags([]);
 }
