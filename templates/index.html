@@ -346,6 +346,23 @@
         }
     })
 
+    var dataSetForHistoryDynamicChart;
+    $.ajax({
+        url: domain + "/getDynamicPopularGamesBarChart/",
+        type: 'POST',
+        data: ['Chatting', 'GrandTheftAutoV', 'LeagueofLegends', 'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
+            'TeamfightTactics', 'Minecraft', 'Pokemon'],
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            dataSetForHistoryDynamicChart = JSON.parse(r);
+            console.log(dataSetForHistoryDynamicChart);
+            drawBarChartForTop10Anchors(dataSetForHistoryDynamicChart);
+        }
+    })
+
     //
     // $("#parent").on('DOMNodeRemoved', function(e) {
     //     console.log(e.target, ' was removed');
