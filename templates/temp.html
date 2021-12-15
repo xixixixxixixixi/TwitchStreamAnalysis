@@ -26,29 +26,26 @@
     // https://dev.twitch.tv/docs/embed/chat
 
     window.onload = function () {
-        console.log("data");
         drawBarDynamicHistory([]);
     }
 
     function drawBarDynamicHistory(dataset) {
         const data = dataset.label;
         const data2 = dataset.data;
-        console.log("data:" + data);
-        for (let i = 0; i < 5; ++i) {
-            data.push(100);
+        for (let i = 0; i < data.length; ++i) {
+            data.push(0);
         }
-        console.log(data);
         option = {
             xAxis: {
                 max: 'dataMax'
             },
             yAxis: {
                 type: 'category',
-                data: ['lol', 'cs', 'C', 'D', 'E'],
+                data: data,
                 inverse: true,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
-                max: 4 // only the largest 3 bars will be displayed
+                max: 9 // only the largest 3 bars will be displayed
             },
             series: [
                 {
@@ -72,17 +69,14 @@
             animationEasingUpdate: 'linear'
         };
 
-        console.log("1");
         function run() {
-            console.log("2");
             for (var i = 0; i < data.length; ++i) {
                 for (var j = 0; j < data2[i].length; ++j) {
                     data[i] = data2[i][j];
-                    console.log(data[i]);
                     barDynamicHistory.setOption(option);
                 }
             }
-            myChart.setOption({
+            barDynamicHistory.setOption({
                 series: [
                     {
                         type: 'bar',
