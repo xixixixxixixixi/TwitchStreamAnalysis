@@ -12,6 +12,8 @@ import twitch
 import requests
 import json
 import datetime
+import pandas_gbq
+from google.oauth2 import service_account
 
 # Credentials
 client_id = '9tq8ugh8o679ce3bgoa29fhdpwfjbi'
@@ -226,4 +228,34 @@ def getChannelStreamSchedule(k):
 #     streams = client.get_streams(user_ids = [str(id)])
 #     return streams[0]['viewer_count']
 
+def getDynamicHistory(game_list):
+    credentials = service_account.Credentials.from_service_account_file('key.json')
+    table_id = 'big-data-analytics-326904.project.top_game_viewers'
 
+    pandas_gbq.context.credentials = credentials
+    pandas_gbq.context.project = "big-data-analytics-326904"
+
+    """
+    Fetch data from Big Query
+
+    :param game_name: string.
+    'Chatting', 'GrandTheftAutoV', 'LeagueofLegends', 'ApexLegends', 'Valorant', CallofDuty', 'Fortnite',
+    'TeamfightTactics', 'Minecraft', 'Pokemon', or 'Total'
+    :return:
+    """
+    #
+    # {
+    #     label: ['lol', 'cod', 'CSGO'],
+    #     data: [[1,2,3], [1,2,3], [1,2,3]]
+    # }
+    SQL = "SELECT * FROM `{}`".format(table_id)
+    df = pandas_gbq.read_gbq(SQL)
+    print(list(df))
+    result = {}
+    result["label"] = list(df)[2: len(list(df))]
+    viewer_list = []
+    for game in list(df)[2: len(list(df))]:
+        viewer_list.append(df[game].to_list())
+    result["data"] = viewer_list
+    print(df)
+    return result
