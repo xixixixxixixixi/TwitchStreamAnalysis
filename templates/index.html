@@ -33,8 +33,8 @@
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
-    var domain = "https://proj6893.herokuapp.com"
-    // var domain = "127.0.0.1:5000";
+    // var domain = "https://proj6893.herokuapp.com";
+    var domain = "http://127.0.0.1:5000";
     var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
         height: 500,
         width: 700
@@ -353,18 +353,18 @@
 
 
 </script>
-<script>
-    // https://stackoverflow.com/questions/3999101/get-iframes-document-from-javascript-in-main-document
-    console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))
-    setInterval(function () {
-        // console.log(document.querySelector("span[data-a-target]"))
-        // console.log(document.getElementsByClassName("tw-root--hover js-focus-visible tw-root--theme-light").length)
-        console.log(document.getElementById('twitch-chat-embed').contentWindow.document)
-    }, 1000)
-    // $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {
-    //     console.log(e.target, ' was inserted');
-    // });
-</script>
+<!--<script>-->
+<!--    // https://stackoverflow.com/questions/3999101/get-iframes-document-from-javascript-in-main-document-->
+<!--    console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))-->
+<!--    setInterval(function () {-->
+<!--        // console.log(document.querySelector("span[data-a-target]"))-->
+<!--        // console.log(document.getElementsByClassName("tw-root&#45;&#45;hover js-focus-visible tw-root&#45;&#45;theme-light").length)-->
+<!--        console.log(document.getElementById('twitch-chat-embed').contentWindow.document)-->
+<!--    }, 1000)-->
+<!--    // $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {-->
+<!--    //     console.log(e.target, ' was inserted');-->
+<!--    // });-->
+<!--</script>-->
 </body>
 </html>
 
