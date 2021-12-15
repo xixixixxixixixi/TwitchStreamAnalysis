@@ -16,10 +16,10 @@ def fetch_data(game_name):
     :param game_name: string.
     'Chatting', 'GrandTheftAutoV', 'LeagueofLegends', 'ApexLegends', 'Valorant', CallofDuty', 'Fortnite',
     'TeamfightTactics', 'Minecraft', 'Pokemon', or 'Total'
-    :return:
+    :return: dataframe, column name = ['ds', 'y']
     """
 
-    SQL = "SELECT Time, {} FROM `{}`".format(game_name, table_id)
+    SQL = "SELECT Time, {} FROM `{}` order by Time".format(game_name, table_id)
     df = pandas_gbq.read_gbq(SQL)
     df = df.rename(columns={'Time': 'ds', game_name: 'y'})
 
@@ -43,4 +43,5 @@ def trend_prediction(game_name):
             prediction['yhat_upper'].tolist())
 
 
-time, y, yhat, yhat_lower, yhat_upper = trend_prediction('GrandTheftAutoV')
+if __name__ == "__main__":
+    time, y, yhat, yhat_lower, yhat_upper = trend_prediction('GrandTheftAutoV')
