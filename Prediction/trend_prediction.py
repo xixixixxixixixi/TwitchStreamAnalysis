@@ -2,7 +2,7 @@ import pandas_gbq
 from google.oauth2 import service_account
 from prophet import Prophet
 
-credentials = service_account.Credentials.from_service_account_file('key.json')
+credentials = service_account.Credentials.from_service_account_file('../ApiInterface/key.json')
 table_id = 'big-data-analytics-326904.project.top_game_viewers'
 
 pandas_gbq.context.credentials = credentials
