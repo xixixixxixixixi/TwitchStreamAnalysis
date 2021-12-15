@@ -34,11 +34,11 @@
     }
 
     function drawBarDynamicHistory(dataset) {
-        const data = dataset.label;
+        const dataToShow = [];
         const data2 = dataset.data;
-        // for (let i = 0; i < data.length; ++i) {
-        //     data.push(100);
-        // }
+        for (let i = 0; i < data2.length; ++i) {
+            dataToShow.push(100);
+        }
         option = {
             xAxis: {
                 max: 'dataMax'
@@ -56,7 +56,7 @@
                     realtimeSort: true,
                     name: 'X',
                     type: 'bar',
-                    data: data,
+                    data: dataToShow,
                     label: {
                         show: true,
                         position: 'right',
@@ -74,9 +74,9 @@
         };
 
         function run() {
-            for (var i = 0; i < data.length; ++i) {
+            for (var i = 0; i < data2.length; ++i) {
                 for (var j = 0; j < data2[i].length; ++j) {
-                    data[i] = data2[i][j];
+                    dataToShow[i] = data2[i][j];
                     barDynamicHistory.setOption(option);
                 }
             }
