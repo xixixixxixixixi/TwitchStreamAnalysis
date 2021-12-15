@@ -350,13 +350,14 @@
     // $("#parent").on('DOMNodeRemoved', function(e) {
     //     console.log(e.target, ' was removed');
     // });
-    
+
 
 </script>
 <script>
     console.log(document.getElementsByClassName("Layout-sc-nxg1ff-0 lgtHpz chat-scrollable-area__message-container"))
     setInterval(function () {
-        console.log(document.querySelector("span[data-a-target]"))
+        // console.log(document.querySelector("span[data-a-target]"))
+        console.log(document.getElementsByClassName("char-Line__message").length)
     }, 1000)
     // $("#twitch-chat-embed").on('DOMNodeInserted', function(e) {
     //     console.log(e.target, ' was inserted');
