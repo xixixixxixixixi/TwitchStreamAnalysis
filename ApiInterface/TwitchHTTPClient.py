@@ -252,11 +252,11 @@ def getDynamicHistory(game_list):
     df = pandas_gbq.read_gbq(SQL)
     print(list(df))
     result = {}
-    result["label"] = list(df)[2: len(list(df))]
+    result["gameLabel"] = list(df)[2: len(list(df))]
     viewer_list = []
     for game in list(df)[2: len(list(df))]:
         viewer_list.append(df[game].to_list())
-    result["data"] = viewer_list
+    result["viewerCount"] = viewer_list
     print(df)
     return result
 

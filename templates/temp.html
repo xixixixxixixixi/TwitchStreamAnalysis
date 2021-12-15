@@ -33,10 +33,12 @@
         drawBarDynamicHistory1();
     }
 
-    function drawBarDynamicHistory(dataset) {
+    function drawBarDynamicHistory(dataSet) {
         const dataToShow = [];
-        const data2 = dataset.data;
-        for (let i = 0; i < data2.length; ++i) {
+        // const data2 = dataSet.data;
+        let viewerCount = dataSet["viewerCount"];
+        let label = dataSet["gameLabel"];
+        for (let i = 0; i < viewerCount.length; ++i) {
             dataToShow.push(100);
         }
         option = {
@@ -45,7 +47,7 @@
             },
             yAxis: {
                 type: 'category',
-                data: dataset.label,
+                data: label,
                 inverse: true,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
@@ -74,13 +76,21 @@
         };
 
         function run() {
-            for (var i = 0; i < data2.length; ++i) {
-                for (var j = 0; j < data2[i].length; ++j) {
-                    dataToShow[i] = data2[i][j];
+            for (var i = 0; i < viewerCount.length; ++i) {
+                for (var j = 0; j < 5; ++j) {
+                    dataToShow[i] = viewerCount[i][j];
                     barDynamicHistory.setOption(option);
                 }
-            }
 
+            }
+            // barDynamicHistory.setOption({
+            //     series: [
+            //         {
+            //             type: 'bar',
+            //             data
+            //         }
+            //     ]
+            // });
         }
 
         setTimeout(function () {
