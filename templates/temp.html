@@ -36,7 +36,7 @@
     function drawBarDynamicHistory(dataset) {
         const data = dataset.label;
         const data2 = dataset.data;
-        for (let i = 0; i < 5; ++i) {
+        for (let i = 0; i < data.length; ++i) {
             data.push(100);
         }
         option = {
@@ -45,11 +45,11 @@
             },
             yAxis: {
                 type: 'category',
-                data: ['lol', 'cs', 'C', 'D', 'E'],
+                data: dataset.label,
                 inverse: true,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
-                max: 4 // only the largest 3 bars will be displayed
+                max: 9 // only the largest 3 bars will be displayed
             },
             series: [
                 {
