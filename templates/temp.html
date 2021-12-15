@@ -29,11 +29,13 @@
     });
 
     window.onload = function () {
-        drawBarDynamicHistory();
-        drawBarDynamicHistory1();
+        drawBarDynamicHistory([]);
     }
 
     function drawBarDynamicHistory(dataSet) {
+        if (dataSet == null || dataSet.length === 0) {
+            return;
+        }
         const dataToShow = [];
         // const data2 = dataSet.data;
         let viewerCount = dataSet["viewerCount"];
@@ -93,9 +95,6 @@
             // });
         }
 
-        setTimeout(function () {
-            run();
-        }, 0);
         setInterval(function () {
             run();
         }, 3000);
@@ -119,64 +118,64 @@
         }
     })
 
-
-    function drawBarDynamicHistory1() {
-        const data = [];
-        const data2 = [[123, 234, 456], [423, 214, 740], [963, 159, 753], [777, 888, 999], [111, 444, 555]];
-        for (let i = 0; i < 5; ++i) {
-            data.push(100);
-        }
-        option = {
-            xAxis: {
-                max: 'dataMax'
-            },
-            yAxis: {
-                type: 'category',
-                data: ['lol', 'cs', 'C', 'D', 'E'],
-                inverse: true,
-                animationDuration: 300,
-                animationDurationUpdate: 300,
-                max: 4 // only the largest 3 bars will be displayed
-            },
-            series: [
-                {
-                    realtimeSort: true,
-                    name: 'X',
-                    type: 'bar',
-                    data: data,
-                    label: {
-                        show: true,
-                        position: 'right',
-                        valueAnimation: true
-                    }
-                }
-            ],
-            legend: {
-                show: true
-            },
-            animationDuration: 0,
-            animationDurationUpdate: 3000,
-            animationEasing: 'linear',
-            animationEasingUpdate: 'linear'
-        };
-
-        function run() {
-            for (var i = 0; i < data.length; ++i) {
-                for (var j = 0; j < data2[i].length; ++j) {
-                    data[i] = data2[i][j];
-                    barDynamicHistory.setOption(option);
-                }
-            }
-
-        }
-
-        setTimeout(function () {
-            run();
-        }, 0);
-        setInterval(function () {
-            run();
-        }, 3000);
-    }
+    //
+    // function drawBarDynamicHistory1() {
+    //     const data = [];
+    //     const data2 = [[123, 234, 456], [423, 214, 740], [963, 159, 753], [777, 888, 999], [111, 444, 555]];
+    //     for (let i = 0; i < 5; ++i) {
+    //         data.push(100);
+    //     }
+    //     option = {
+    //         xAxis: {
+    //             max: 'dataMax'
+    //         },
+    //         yAxis: {
+    //             type: 'category',
+    //             data: ['lol', 'cs', 'C', 'D', 'E'],
+    //             inverse: true,
+    //             animationDuration: 300,
+    //             animationDurationUpdate: 300,
+    //             max: 4 // only the largest 3 bars will be displayed
+    //         },
+    //         series: [
+    //             {
+    //                 realtimeSort: true,
+    //                 name: 'X',
+    //                 type: 'bar',
+    //                 data: data,
+    //                 label: {
+    //                     show: true,
+    //                     position: 'right',
+    //                     valueAnimation: true
+    //                 }
+    //             }
+    //         ],
+    //         legend: {
+    //             show: true
+    //         },
+    //         animationDuration: 0,
+    //         animationDurationUpdate: 3000,
+    //         animationEasing: 'linear',
+    //         animationEasingUpdate: 'linear'
+    //     };
+    //
+    //     function run() {
+    //         for (var i = 0; i < data.length; ++i) {
+    //             for (var j = 0; j < data2[i].length; ++j) {
+    //                 data[i] = data2[i][j];
+    //                 barDynamicHistory.setOption(option);
+    //             }
+    //         }
+    //
+    //     }
+    //
+    //     setTimeout(function () {
+    //         run();
+    //     }, 0);
+    //     setInterval(function () {
+    //         run();
+    //     }, 3000);
+    // }
 
 
 </script>
