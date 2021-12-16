@@ -30,7 +30,7 @@ function InformationInjection(popularChannelData) {
     //         channelName[i] + "\">" + channelName[i] + "</option>";
     // }
     document.getElementById("popularChannelSelection").innerHTML += "<button id=\"goToChannel\" " +
-        "onClick=\"changeChannel()\"></button>";
+        "onClick=\"changeChannel()\">change channel</button>";
     generateChannelPreview($('#channelList').val());
 }
 
