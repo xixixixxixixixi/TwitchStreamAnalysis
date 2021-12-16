@@ -32,7 +32,7 @@ def trend_prediction(game_name):
     future = m.make_future_dataframe(periods=200, freq='3min')
     forecast = m.predict(future)
     prediction = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
-
+    print(prediction)
     fig = m.plot(forecast)
     fig.show()
 
