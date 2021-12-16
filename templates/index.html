@@ -19,23 +19,29 @@
 <div id="barDynamicHistory"></div>
 <!--<div class="sp"></div>-->
 <!--https://dev.twitch.tv/docs/embed/chat-->
-<iframe id="twitch-chat-embed"
-        src="https://www.twitch.tv/embed/xqcow/chat?parent=proj6893.herokuapp.com"
-        height="500"
-        width="350">
-</iframe>
-<!--https://dev.twitch.tv/docs/embed/video-and-clips#non-interactive-inline-frames-for-live-streams-and-vods-->
-<iframe
-        src="https://player.twitch.tv/?channel=xqcow&parent=proj6893.herokuapp.com&muted=true"
-        height="720"
-        width="1280"
-        allowfullscreen="true">
-</iframe>
+<div id="popularChannelInspection">
+    <div id="popularChannelSelection"></div>
+    <div id="popularChannelChat"></div>
+    <div id="popularChannelStream"></div>
+</div>
+
+<!--<iframe id="twitch-chat-embed"-->
+<!--        src="https://www.twitch.tv/embed/xqcow/chat?parent=proj6893.herokuapp.com"-->
+<!--        height="500"-->
+<!--        width="350">-->
+<!--</iframe>-->
+<!--&lt;!&ndash;https://dev.twitch.tv/docs/embed/video-and-clips#non-interactive-inline-frames-for-live-streams-and-vods&ndash;&gt;-->
+<!--<iframe-->
+<!--        src="https://player.twitch.tv/?channel=xqcow&parent=proj6893.herokuapp.com&muted=true"-->
+<!--        height="720"-->
+<!--        width="1280"-->
+<!--        allowfullscreen="true">-->
+<!--</iframe>-->
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
-    let domain = "https://proj6893.herokuapp.com";
-    // var domain = "http://127.0.0.1:5000";
+    // let domain = "https://proj6893.herokuapp.com";
+    var domain = "http://127.0.0.1:5000";
 </script>
 <!--<script src="barChartForTopKGames.js"></script>-->
 <!--<script src="BarChartForTopKTags.js"></script>-->

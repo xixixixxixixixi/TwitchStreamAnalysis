@@ -20,6 +20,9 @@ function drawBarDynamicHistory(dataSet) {
         dataToShow.push(100);
     }
     let option = {
+        // title: {
+        //     text: 'Recent Growing Trend of Most Popular Games'
+        // },
         xAxis: {
             max: 'dataMax'
         },
@@ -34,7 +37,7 @@ function drawBarDynamicHistory(dataSet) {
         series: [
             {
                 realtimeSort: true,
-                name: 'X',
+                name: 'Viewer Count',
                 type: 'bar',
                 data: dataToShow,
                 label: {
