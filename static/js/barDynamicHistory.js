@@ -1,5 +1,5 @@
 
-var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
+let barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
     height: 500,
     width: 700
 });
@@ -72,7 +72,7 @@ function drawBarDynamicHistory(dataSet) {
 }
 
 
-var dataSetForHistoryDynamicChart;
+let dataSetForHistoryDynamicChart;
 $.ajax({
     url: domain + "/getDynamicPopularGamesBarChart",
     type: 'POST',

@@ -1,5 +1,5 @@
 
-var pieChart = echarts.init(document.getElementById('pieChart'), null, {
+let pieChart = echarts.init(document.getElementById('pieChart'), null, {
     height: 450,
     width: 700
 });
@@ -44,7 +44,7 @@ function drawPieChart(dataSet) {
 }
 
 // ajax for pie chart
-var pieDataSet;
+let pieDataSet;
 $.ajax({
     url: domain + "/getLanguageCount/" + 500,
     type: 'GET',

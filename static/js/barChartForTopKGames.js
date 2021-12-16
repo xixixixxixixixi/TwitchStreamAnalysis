@@ -1,5 +1,5 @@
 
-var BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
+let BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
     height: 500,
     width: 700
 });
@@ -9,7 +9,7 @@ window.onload = function () {
 }
 
 function drawBarChartForTopKGames(dataSet) {
-    var option = {
+    let option = {
         title: {
             left: 'left',
             text: 'TOP 10 Popular Live Games'
@@ -46,7 +46,7 @@ function drawBarChartForTopKGames(dataSet) {
     BarChartForTopKGames.setOption(option);
 }
 
-var barDataSetForTopKGames;
+let barDataSetForTopKGames;
 $.ajax({
     url: domain + "/topKGames/" + 10,
     type: 'GET',

@@ -1,4 +1,4 @@
-var popularChannelData;
+let popularChannelData;
 $.ajax({
     url: domain + "/getChannelStreamSchedule/" + 10,
     type: 'GET',
@@ -18,23 +18,35 @@ $.ajax({
 
 function InformationInjection(popularChannelData) {
     let channelName = popularChannelData["name"];
-    document.getElementById("popularChannelSelection").innerHTML = "<select id=\"channelList\">";
+    let channelListString = "";
     for (let i = 0; i < channelName.length; i++) {
-        document.getElementById("popularChannelSelection").innerHTML += "<option value=\"" +
+        channelListString += "<option value=\"" +
             channelName[i] + "\">" + channelName[i] + "</option>";
     }
-    document.getElementById("popularChannelSelection").innerHTML += "</select>";
+    document.getElementById("popularChannelSelection").innerHTML = "<select id=\"channelList\">" +
+        channelListString + "</select>";
+    // for (let i = 0; i < channelName.length; i++) {
+    //     document.getElementById("popularChannelSelection").innerHTML += "<option value=\"" +
+    //         channelName[i] + "\">" + channelName[i] + "</option>";
+    // }
+    generateChannelPreview($('#channelList').val());
 }
 
+$('#channelList').change(function(){
+    var data= $(this).val();
+    alert(data);
+    generateChannelPreview(data);
+});
+
 function generateChannelPreview(data) {
-    document.getElementById("popularChannelChat").innerHTML = "< iframe\n" +
-        "id = \"twitch-chat-embed\"\n" +
-        " src = \"https://www.twitch.tv/embed/" +
+    document.getElementById("popularChannelChat").innerHTML = "" +
+        "<iframe id=\"twitch-chat-embed\"" +
+        " src=\"https://www.twitch.tv/embed/" +
         data +
-        "/chat?parent=proj6893.herokuapp.com\"\n" +
-        "height = \"500\"\n" +
-        "width = \"350\" >\n" +
-        "< /iframe>";
+        "/chat?parent=proj6893.herokuapp.com\"" +
+        " height=\"500\"" +
+        " width=\"350\">" +
+        "</iframe>"
     document.getElementById("popularChannelStream").innerHTML = "<iframe\n" +
         "    src=\"https://player.twitch.tv/?channel=" +
         data +
@@ -44,12 +56,3 @@ function generateChannelPreview(data) {
         "    allowFullScreen=\"true\">\n" +
         "</iframe>";
 }
-
-$(function(){
-    // $('.check').trigger('change'); //This event will fire the change event.
-    $('.channelList').change(function(){
-      let data= $(this).val();
-      generateChannelPreview(data);
-      alert(data);
-    });
-});
