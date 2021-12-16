@@ -29,14 +29,22 @@ function InformationInjection(popularChannelData) {
     //     document.getElementById("popularChannelSelection").innerHTML += "<option value=\"" +
     //         channelName[i] + "\">" + channelName[i] + "</option>";
     // }
+    document.getElementById("popularChannelSelection").innerHTML += "<button id=\"goToChannel\" " +
+        "onClick=\"changeChannel()\"></button>";
     generateChannelPreview($('#channelList').val());
 }
 
-$('#channelList').change(function(){
-    var data= $(this).val();
-    alert(data);
-    generateChannelPreview(data);
-});
+function changeChannel() {
+    let channel = $('#channelList').val();
+    generateChannelPreview(channel);
+}
+
+//
+// $('#channelList').change(function(){
+//     var data= $(this).val();
+//     alert(data);
+//     generateChannelPreview(data);
+// });
 
 function generateChannelPreview(data) {
     document.getElementById("popularChannelChat").innerHTML = "" +
