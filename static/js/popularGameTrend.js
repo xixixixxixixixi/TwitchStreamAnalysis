@@ -11,7 +11,14 @@
 //         gameTrendInformationInjection(dataForTopKGames);
 //     }
 // })
+let LineChartForGameTrend = echarts.init(document.getElementById('barChartForTopKTags'), null, {
+    height: 500,
+    width: 700
+});
 
+window.onload = function () {
+    drawLineChartForGameTrend([]);
+}
 
 function drawLineChartForGameTrend(dataSet) {
 
@@ -66,11 +73,3 @@ function submitRequestForGameTrend() {
         }
     })
 }
-
-
-
-//
-// function changeChannel() {
-//     let channel = $('#channelList').val();
-//     generateChannelPreview(channel);
-// }
