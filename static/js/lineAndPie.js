@@ -32,18 +32,18 @@ function drawLineAndPie(dataSet) {
             grid: {top: '55%'},
             series: [
                 // TODO: implement changing length of series
-                {
-                    type: 'line',
-                    smooth: true,
-                    seriesLayoutBy: 'row',
-                    emphasis: {focus: 'series'}
-                },
-                {
-                    type: 'line',
-                    smooth: true,
-                    seriesLayoutBy: 'row',
-                    emphasis: {focus: 'series'}
-                },
+                // {
+                //     type: 'line',
+                //     smooth: true,
+                //     seriesLayoutBy: 'row',
+                //     emphasis: {focus: 'series'}
+                // },
+                // {
+                //     type: 'line',
+                //     smooth: true,
+                //     seriesLayoutBy: 'row',
+                //     emphasis: {focus: 'series'}
+                // },
                 {
                     type: 'line',
                     smooth: true,
