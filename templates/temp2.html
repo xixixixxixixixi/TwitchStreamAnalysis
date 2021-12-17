@@ -11,7 +11,7 @@
 <div id="pieChart"></div>
 <div id="sp"></div>
 <!--<div class="sp"></div>-->
-<div id="barDynamicHistory"></div>
+<div id="lineAndPie"></div>
 
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
@@ -19,18 +19,17 @@
     // var domain = "https://proj6893.herokuapp.com"
     var domain = "127.0.0.1:5000";
 
-    var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
+    var lineAndPie = echarts.init(document.getElementById('lineAndPie'), null, {
         height: 500,
         width: 700
     });
-    // https://dev.twitch.tv/docs/embed/chat
 
     window.onload = function () {
         console.log("data");
-        drawBarDynamicHistory();
+        drawLineAndPie([]);
     }
 
-    function drawBarDynamicHistory() {
+    function drawLineAndPie(dataSet) {
 
         setTimeout(function () {
             option = {
@@ -95,11 +94,11 @@
                     }
                 ]
             };
-            barDynamicHistory.on('updateAxisPointer', function (event) {
+            lineAndPie.on('updateAxisPointer', function (event) {
                 const xAxisInfo = event.axesInfo[0];
                 if (xAxisInfo) {
                     const dimension = xAxisInfo.value + 1;
-                    barDynamicHistory.setOption({
+                    lineAndPie.setOption({
                         series: {
                             id: 'pie',
                             label: {
@@ -113,9 +112,24 @@
                     });
                 }
             });
-            barDynamicHistory.setOption(option);
+            lineAndPie.setOption(option);
         });
     }
+
+    var LinePieData;
+    $.ajax({
+        url: domain + "/getDailyMeanViewerCount",
+        type: 'GET',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            LinePieData = JSON.parse(r);
+            console.log(LinePieData);
+            drawLineAndPie(LinePieData);
+        }
+    })
 
 
 </script>
