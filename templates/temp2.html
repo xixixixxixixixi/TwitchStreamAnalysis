@@ -35,7 +35,7 @@
             return;
         }
         setTimeout(function () {
-            option = {
+            let option = {
                 legend: {},
                 tooltip: {
                     trigger: 'axis',
@@ -97,6 +97,24 @@
                         emphasis: {focus: 'series'}
                     },
                     {
+                        type: 'line',
+                        smooth: true,
+                        seriesLayoutBy: 'row',
+                        emphasis: {focus: 'series'}
+                    },
+                    {
+                        type: 'line',
+                        smooth: true,
+                        seriesLayoutBy: 'row',
+                        emphasis: {focus: 'series'}
+                    },
+                    {
+                        type: 'line',
+                        smooth: true,
+                        seriesLayoutBy: 'row',
+                        emphasis: {focus: 'series'}
+                    },
+                    {
                         type: 'pie',
                         id: 'pie',
                         radius: '30%',
@@ -109,8 +127,8 @@
                         },
                         encode: {
                             itemName: 'product',
-                            value: '2012',
-                            tooltip: '2012'
+                            value: dataSet[0][1],
+                            tooltip: dataSet[0][1]
                         }
                     }
                 ]

@@ -16,14 +16,16 @@ let LineChartForGameTrend = echarts.init(document.getElementById('lineChartForGa
     width: 2000
 });
 
+// TODO: implement Custome Game Name
 window.onload = function () {
+    console.log("111111111111111111")
+    gameTrendInformationInjection();
     drawLineChartForGameTrend([]);
 }
 
-
 function drawLineChartForGameTrend(dataSet) {
     // let minStartTime = covertToDatetimeFormat(dataSet);
-    option = {
+    let option = {
         title: {
             text: 'Viewer Count Trend'
         },
@@ -68,12 +70,9 @@ function drawLineChartForGameTrend(dataSet) {
     LineChartForGameTrend.setOption(option);
 }
 
-// TODO: implement Custome Game Name
-window.onload = function () {
-    gameTrendInformationInjection();
-}
 
 function gameTrendInformationInjection() {
+    console.log("111111111111")
     let gameName = [
         "Chatting",
         "GrandTheftAutoV",
@@ -100,7 +99,6 @@ function gameTrendInformationInjection() {
 
 
 let lineDataSetForPopularGameTrend;
-
 function submitRequestForGameTrend() {
     $.ajax({
         url: domain + "/getViewerPrediction",
