@@ -111,7 +111,7 @@ function submitRequestForGameTrend() {
         url: domain + "/getViewerPrediction",
         type: 'POST',
         cache: false,
-        data: JSON.stringify($('#popularGameTrendSelection').val()),
+        data: JSON.stringify($('#gameList').val()),
         processData: false,
         contentType: 'application/json',
         success: function (r) {
@@ -122,3 +122,7 @@ function submitRequestForGameTrend() {
         }
     })
 }
+
+setInterval(function () {
+    console.log($('#gameList').val())
+}, 1000)
