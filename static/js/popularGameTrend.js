@@ -20,7 +20,31 @@ window.onload = function () {
     drawLineChartForGameTrend([]);
 }
 
+function covertToDatetimeFormat(dataSet) {
+    if (dataSet == null || dataSet.length === 0) {
+        return;
+    }
+    let length = dataSet.time.length;
+    let minStartTime = new Date(dataSet.time[0]).getTime();
+    for (let i = 0; i < length; i++) {
+        let st = new Date(dataSet.time[i]).getTime();
+        if (st < minStartTime) {
+            minStartTime = st;
+        }
+    }
+    for (let i = 0; i < length; i++) {
+        dataSet.starttime[i] = new Date(dataSet.starttime[i]).getTime() - minStartTime;
+        dataSet.endtime[i] = new Date(dataSet.endtime[i]).getTime() - minStartTime;
+        dataSet.duration[i] = dataSet.endtime[i] - dataSet.starttime[i];
+    }
+    console.log(dataSet.starttime);
+    console.log(dataSet.endtime);
+    console.log(dataSet.duration);
+    return time;
+}
+
 function drawLineChartForGameTrend(dataSet) {
+    let minStartTime = covertToDatetimeFormat(dataSet);
     option = {
         title: {
             text: 'Stacked Line'
@@ -29,7 +53,7 @@ function drawLineChartForGameTrend(dataSet) {
             trigger: 'axis'
         },
         legend: {
-            data: dataset.label
+            data: dataSet.label
         },
         grid: {
             left: '3%',
@@ -45,7 +69,7 @@ function drawLineChartForGameTrend(dataSet) {
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: dataset.time
+            data: dataSet.time
         },
         yAxis: {
             type: 'value',
@@ -60,13 +84,13 @@ function drawLineChartForGameTrend(dataSet) {
                 name: 'True',
                 type: 'line',
                 stack: 'Total',
-                data: dataset.true
+                data: dataSet.true
             },
             {
                 name: 'Prediction',
                 type: 'line',
                 stack: 'Total',
-                data: dataset.predict
+                data: dataSet.predict
             }
         ]
     };
@@ -122,6 +146,7 @@ function submitRequestForGameTrend() {
         }
     })
 }
+
 //
 // setInterval(function () {
 //     console.log($('#gameList').val())
