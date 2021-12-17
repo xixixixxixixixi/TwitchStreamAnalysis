@@ -13,38 +13,16 @@
 // })
 let LineChartForGameTrend = echarts.init(document.getElementById('lineChartForGameTrend'), null, {
     height: 500,
-    width: 700
+    width: 2000
 });
 
 window.onload = function () {
     drawLineChartForGameTrend([]);
 }
 
-function covertToDatetimeFormat(dataSet) {
-    if (dataSet == null || dataSet.length === 0) {
-        return;
-    }
-    let length = dataSet.time.length;
-    let minStartTime = new Date(dataSet.time[0]).getTime();
-    for (let i = 0; i < length; i++) {
-        let st = new Date(dataSet.time[i]).getTime();
-        if (st < minStartTime) {
-            minStartTime = st;
-        }
-    }
-    for (let i = 0; i < length; i++) {
-        dataSet.starttime[i] = new Date(dataSet.starttime[i]).getTime() - minStartTime;
-        dataSet.endtime[i] = new Date(dataSet.endtime[i]).getTime() - minStartTime;
-        dataSet.duration[i] = dataSet.endtime[i] - dataSet.starttime[i];
-    }
-    console.log(dataSet.starttime);
-    console.log(dataSet.endtime);
-    console.log(dataSet.duration);
-    return time;
-}
 
 function drawLineChartForGameTrend(dataSet) {
-    let minStartTime = covertToDatetimeFormat(dataSet);
+    // let minStartTime = covertToDatetimeFormat(dataSet);
     option = {
         title: {
             text: 'Stacked Line'
@@ -72,12 +50,7 @@ function drawLineChartForGameTrend(dataSet) {
             data: dataSet.time
         },
         yAxis: {
-            type: 'value',
-            axisLabel: {
-                formatter: function (value) {
-                    return echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', value + minStartTime);
-                }
-            }
+            type: 'value'
         },
         series: [
             {
@@ -90,7 +63,7 @@ function drawLineChartForGameTrend(dataSet) {
                 name: 'Prediction',
                 type: 'line',
                 stack: 'Total',
-                data: dataSet.predict
+                data: dataSet.pred
             }
         ]
     };
