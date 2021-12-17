@@ -21,8 +21,12 @@ client_id = '9tq8ugh8o679ce3bgoa29fhdpwfjbi'
 oauth_token = 'b55lks0s75s1xqlcgxe42uyz0p4etw'
 
 client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
-# streams = client.get_streams()  # APICursor containing Stream objects
-# streams_top20 = streams._queue  # List of Stream objects
+
+# Connect Big Query
+table_id = 'big-data-analytics-326904.project.top_game_viewers'
+credentials = service_account.Credentials.from_service_account_file("key.json")
+pandas_gbq.context.credentials = credentials
+pandas_gbq.context.project = "big-data-analytics-326904"
 
 # get top k games with viewers
 '''
@@ -230,10 +234,6 @@ def getChannelStreamSchedule(k):
 #     return streams[0]['viewer_count']
 
 def getDynamicHistory(game_list):
-    table_id = 'big-data-analytics-326904.project.top_game_viewers'
-    credentials = service_account.Credentials.from_service_account_file("key.json")
-    pandas_gbq.context.credentials = credentials
-    pandas_gbq.context.project = "big-data-analytics-326904"
 
     """
     Fetch data from Big Query
@@ -283,3 +283,24 @@ def getPrediction(game_name):
     time, y, yhat, _, _ = trend_prediction(game_name)
     prediction = {'label': ['True', 'Predict'], 'time': time, 'true': y, 'pred': yhat}
     return prediction
+
+
+def getDailyMeanViewerCount():
+    game_list = ['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
+                 'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
+                 'TeamfightTactics', 'Minecraft', 'Pokemon']
+
+    sql = ', '.join(['avg({}) {}'.format(game, game) for game in game_list])
+    sql = "SELECT Date(Time) hour, " + sql + " FROM `{}` ".format(table_id) + "group by hour"
+
+    df = pandas_gbq.read_gbq(sql)
+    results = {'time': ['time'] + df['hour'].tolist()}
+    for game in game_list:
+        results[game] = [game] + df[game].tolist()
+
+    return results
+
+
+
+
+
