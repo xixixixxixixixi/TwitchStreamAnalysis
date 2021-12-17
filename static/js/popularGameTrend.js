@@ -25,7 +25,7 @@ function drawLineChartForGameTrend(dataSet) {
     // let minStartTime = covertToDatetimeFormat(dataSet);
     option = {
         title: {
-            text: 'Stacked Line'
+            text: 'Viewer Count Trend'
         },
         tooltip: {
             trigger: 'axis'
@@ -56,13 +56,11 @@ function drawLineChartForGameTrend(dataSet) {
             {
                 name: 'True',
                 type: 'line',
-                stack: 'Total',
                 data: dataSet.true
             },
             {
-                name: 'Prediction',
+                name: 'Predict',
                 type: 'line',
-                stack: 'Total',
                 data: dataSet.pred
             }
         ]
