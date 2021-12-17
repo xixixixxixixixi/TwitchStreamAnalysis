@@ -94,7 +94,7 @@ function gameTrendInformationInjection() {
         "<select id=\"gameList\">" + gameListString + "</select>";
     document.getElementById("popularGameTrendSelection").innerHTML +=
         "<button id=\"gameList\" " +
-        "onClick=\"submitRequestForGameTrend()\">change channel</button>";
+        "onClick=\"submitRequestForGameTrend()\">change game</button>";
 }
 
 
