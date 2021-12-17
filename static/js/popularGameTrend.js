@@ -111,7 +111,7 @@ function submitRequestForGameTrend() {
         url: domain + "/getViewerPrediction",
         type: 'POST',
         cache: false,
-        data: JSON.stringify($('#gameList').val()),
+        data: $('#gameList').val(),
         processData: false,
         contentType: 'application/json',
         success: function (r) {
