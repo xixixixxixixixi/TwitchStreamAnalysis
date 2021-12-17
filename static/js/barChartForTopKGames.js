@@ -54,7 +54,7 @@ $.ajax({
     processData: false,
     contentType: 'application/json',
     success: function (r) {
-        barDataSetForTopKTags = JSON.parse(r);
-        drawBarChartForTopKGames(barDataSetForTopKTags);
+        barDataSetForTopKGames = JSON.parse(r);
+        drawBarChartForTopKGames(barDataSetForTopKGames);
     }
 })
