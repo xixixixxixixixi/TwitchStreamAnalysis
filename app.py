@@ -50,7 +50,7 @@ def getDynamicPopularGamesBarChart():  # put application's code here
         game_list = request.data
         print(game_list)
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        result = TwitchHTTPClient.getDynamicHistory(game_list)
+        result = TwitchHTTPClient.getDynamicHistory(game_list.decode())
         return json.dumps(result)
 
 
@@ -64,7 +64,7 @@ def getViewerPrediction():  # put application's code here
     if request.method == 'POST':
         game_name = request.data
         print(game_name)
-        result = TwitchHTTPClient.getPrediction(game_name)
+        result = TwitchHTTPClient.getPrediction(game_name.decode())
         return json.dumps(result)
 
 
