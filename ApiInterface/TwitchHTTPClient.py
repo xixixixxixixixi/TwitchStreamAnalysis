@@ -14,6 +14,7 @@ import json
 import datetime
 import pandas_gbq
 from google.oauth2 import service_account
+from Prediction.trend_prediction import trend_prediction
 
 # Credentials
 client_id = '9tq8ugh8o679ce3bgoa29fhdpwfjbi'
@@ -263,3 +264,22 @@ def getDynamicHistory(game_list):
 # getDynamicHistory(['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
 #             'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
 #             'TeamfightTactics', 'Minecraft', 'Pokemon'])
+
+
+def getPrediction(game_name):
+    """
+    Get trend prediction results.
+    :param game_name: string
+    :return: dict
+
+     {
+         "label": ['True', 'Prediction'],
+         "time": ['2021-12-17 00:00:00', '2021-12-17 00:03:00', ...],
+         "true": [12322,24322, ...]
+         "pred": [12432,25342, ...]
+     }
+
+    """
+    time, y, yhat, _, _ = trend_prediction(game_name)
+    prediction = {'label': ['True', 'Predict'], 'time': time, 'true': y, 'pred': yhat}
+    return prediction

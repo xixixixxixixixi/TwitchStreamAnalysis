@@ -19,8 +19,8 @@ def fig_plot(method_name, time_axis, true_values, pred_values, start_idx):
         mean_squared_error(true_values[start_idx: len(true_values)], pred_values[start_idx: len(pred_values)]))
     print('Root mean squared error RMSE of {} method is {}'.format(method_name, rmse))
     mape = mean_absolute_percentage_error(true_values[start_idx: len(true_values)], pred_values[start_idx: len(pred_values)])
-    print('R Square of {} method is {}'.format(method_name, mape))
-    plt.title('{}            (RMSE = {}, mape = {})'.format(method_name, rmse, mape))
+    print('Mean absolute percentage error of {} method is {}'.format(method_name, mape))
+    plt.title('{}            (RMSE = {}, MAPE = {})'.format(method_name, rmse, mape))
     plt.grid()
     plt.show()
 
@@ -32,7 +32,7 @@ def split_data(_df, start_idx):
 
 
 if __name__ == "__main__":
-    df = fetch_data('Total')
+    df = fetch_data('GrandTheftAutoV')
     portion = round(df.shape[0] * 0.8)
     train_set, test_set = split_data(df, portion)
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     # ARIMA
     model = ARIMA(train_set['y'], order=(1, 0, 0))
     model_fit = model.fit()
-    pred_arima = model_fit.predict(start=1, end=df.shape[0])
+    pred_arima = model_fit.predict(start=1, end=train_set.shape[0])
     pred_arima = pred_arima.tolist()
     forecast = model_fit.forecast(test_set.shape[0])
     forecast = forecast.tolist()

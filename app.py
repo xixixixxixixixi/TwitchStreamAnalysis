@@ -54,5 +54,13 @@ def getDynamicPopularGamesBarChart():  # put application's code here
         return json.dumps(result)
 
 
+@app.route('/getViewerPrediction', methods=['POST'])
+def getViewerPrediction():  # put application's code here
+    if request.method == 'POST':
+        game_name = request.data
+        result = TwitchHTTPClient.getPrediction(game_name)
+        return json.dumps(result)
+
+
 if __name__ == '__main__':
     app.run()
