@@ -22,15 +22,12 @@
     var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
         height: 500,
         width: 700
-    });
-    // https://dev.twitch.tv/docs/embed/chat
-
-    window.onload = function () {
+    }window.onload = function () {
         console.log("data");
-        drawBarDynamicHistory();
+        drawBarDynamicHistory([]);
     }
 
-    function drawBarDynamicHistory() {
+    function drawBarDynamicHistory(dataset) {
 
         option = {
             title: {
@@ -40,7 +37,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+                data: dataset.label
             },
             grid: {
                 left: '3%',
@@ -56,46 +53,51 @@
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                data: dataset.time
             },
             yAxis: {
-                type: 'value'
+                type: 'value',
+                axisLabel: {
+                    formatter: function (value) {
+                        return echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', value + minStartTime);
+                    }
+                }
             },
             series: [
                 {
-                    name: 'Email',
+                    name: 'True',
                     type: 'line',
                     stack: 'Total',
-                    data: [120, 132, 101, 134, 90, 230, 210]
+                    data: dataset.true
                 },
                 {
-                    name: 'Union Ads',
+                    name: 'Prediction',
                     type: 'line',
                     stack: 'Total',
-                    data: [220, 182, 191, 234, 290, 330, 310]
-                },
-                {
-                    name: 'Video Ads',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [150, 232, 201, 154, 190, 330, 410]
-                },
-                {
-                    name: 'Direct',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: 'Search Engine',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                    data: dataset.predict
                 }
             ]
         };
         barDynamicHistory.setOption(option);
-    }
+    });
+    // https://dev.twitch.tv/docs/embed/chat
+
+
+
+    var barDataSetForTop10Anchors;
+    $.ajax({
+        url: domain + "/getViewerPrediction",
+        type: 'POST',
+        cache: false,
+        processData: false,
+        contentType: 'application/json',
+        success: function (r) {
+            console.log(r)
+            barDataSetForTop10Anchors = JSON.parse(r);
+            console.log(barDataSetForTop10Anchors);
+            drawBarDynamicHistory(barDataSetForTop10Anchors);
+        }
+    })
 
 
 </script>

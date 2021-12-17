@@ -11,7 +11,7 @@
 //         gameTrendInformationInjection(dataForTopKGames);
 //     }
 // })
-let LineChartForGameTrend = echarts.init(document.getElementById('barChartForTopKTags'), null, {
+let LineChartForGameTrend = echarts.init(document.getElementById('lineChartForGameTrend'), null, {
     height: 500,
     width: 700
 });
@@ -21,7 +21,56 @@ window.onload = function () {
 }
 
 function drawLineChartForGameTrend(dataSet) {
-
+    option = {
+        title: {
+            text: 'Stacked Line'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: dataset.label
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: dataset.time
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: function (value) {
+                    return echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', value + minStartTime);
+                }
+            }
+        },
+        series: [
+            {
+                name: 'True',
+                type: 'line',
+                stack: 'Total',
+                data: dataset.true
+            },
+            {
+                name: 'Prediction',
+                type: 'line',
+                stack: 'Total',
+                data: dataset.predict
+            }
+        ]
+    };
+    LineChartForGameTrend.setOption(option);
 }
 
 // TODO: implement Custome Game Name
