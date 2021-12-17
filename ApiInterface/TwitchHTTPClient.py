@@ -294,9 +294,13 @@ def getDailyMeanViewerCount():
     sql = "SELECT Date(Time) hour, " + sql + " FROM `{}` ".format(table_id) + "group by hour"
 
     df = pandas_gbq.read_gbq(sql)
-    results = {'time': ['time'] + df['hour'].tolist()}
+    results = []
+    results.append(['time'] + df['hour'].tolist())
     for game in game_list:
-        results[game] = [game] + [str(round(x)) for x in df[game].tolist()]
+        results.append([game] + [str(round(x)) for x in df[game].tolist()])
+    # results = {'time': ['time'] + df['hour'].tolist()}
+    # for game in game_list:
+    #     results[game] = [game] + [str(round(x)) for x in df[game].tolist()]
 
     return results
 
