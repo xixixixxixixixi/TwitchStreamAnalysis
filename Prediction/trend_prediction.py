@@ -21,6 +21,7 @@ def fetch_data(game_name):
 
     SQL = "SELECT Time, {} FROM `{}` order by Time".format(game_name, table_id)
     df = pandas_gbq.read_gbq(SQL)
+    print(df)
     df = df.rename(columns={'Time': 'ds', game_name: 'y'})
 
     return df

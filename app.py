@@ -63,6 +63,7 @@ def predictionPage():  # put application's code here
 def getViewerPrediction():  # put application's code here
     if request.method == 'POST':
         game_name = request.data
+        print(game_name)
         result = TwitchHTTPClient.getPrediction(game_name)
         return json.dumps(result)
 
