@@ -54,6 +54,11 @@ def getDynamicPopularGamesBarChart():  # put application's code here
         return json.dumps(result)
 
 
+@app.route('/renderPredictionPage')
+def predictionPage():  # put application's code here
+    return render_template("prediction.html")
+
+
 @app.route('/getViewerPrediction', methods=['POST'])
 def getViewerPrediction():  # put application's code here
     if request.method == 'POST':
