@@ -8,174 +8,122 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
+<div id="pieChart"></div>
 <div id="sp"></div>
 <!--<div class="sp"></div>-->
 <div id="barDynamicHistory"></div>
-<div id="barDynamicHistory1"></div>
 
 <script type="text/javascript">
-
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
     // var domain = "https://proj6893.herokuapp.com"
-    var domain = "http://127.0.0.1:5000";
+    var domain = "127.0.0.1:5000";
 
     var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
         height: 500,
         width: 700
     });
-
-    var barDynamicHistory1 = echarts.init(document.getElementById('barDynamicHistory1'), null, {
-        height: 500,
-        width: 700
-    });
+    // https://dev.twitch.tv/docs/embed/chat
 
     window.onload = function () {
-        drawBarDynamicHistory([]);
+        console.log("data");
+        drawBarDynamicHistory();
     }
 
-    function drawBarDynamicHistory(dataSet) {
-        if (dataSet == null || dataSet.length === 0) {
-            return;
-        }
-        const dataToShow = [];
-        // const data2 = dataSet.data;
-        let viewerCount = dataSet["viewerCount"];
-        let label = dataSet["gameLabel"];
-        for (let i = 0; i < viewerCount.length; ++i) {
-            dataToShow.push(100);
-        }
+    function drawBarDynamicHistory() {
+
         option = {
-            xAxis: {
-                max: 'dataMax'
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
             },
-            yAxis: {
-                type: 'category',
-                data: label,
-                inverse: true,
-                animationDuration: 300,
-                animationDurationUpdate: 300,
-                max: 9 // only the largest 3 bars will be displayed
+            legend: {
+                data: [
+                    'Direct',
+                    'Marketing',
+                    'Search Engine',
+                    'Email',
+                    'Union Ads',
+                    'Video Ads',
+                    'Baidu',
+                    'Google',
+                    'Bing',
+                    'Others'
+                ]
             },
             series: [
                 {
-                    realtimeSort: true,
-                    name: 'X',
-                    type: 'bar',
-                    data: dataToShow,
+                    name: 'Access From',
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: [0, '30%'],
                     label: {
-                        show: true,
-                        position: 'right',
-                        valueAnimation: true
-                    }
+                        position: 'inner',
+                        fontSize: 14
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: 1548, name: 'Search Engine'},
+                        {value: 775, name: 'Direct'},
+                        {value: 679, name: 'Marketing', selected: true}
+                    ]
+                },
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: ['45%', '60%'],
+                    labelLine: {
+                        length: 30
+                    },
+                    label: {
+                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                        backgroundColor: '#F6F8FC',
+                        borderColor: '#8C8D8E',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        rich: {
+                            a: {
+                                color: '#6E7079',
+                                lineHeight: 22,
+                                align: 'center'
+                            },
+                            hr: {
+                                borderColor: '#8C8D8E',
+                                width: '100%',
+                                borderWidth: 1,
+                                height: 0
+                            },
+                            b: {
+                                color: '#4C5058',
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#fff',
+                                backgroundColor: '#4C5058',
+                                padding: [3, 4],
+                                borderRadius: 4
+                            }
+                        }
+                    },
+                    data: [
+                        {value: 1048, name: 'Baidu'},
+                        {value: 335, name: 'Direct'},
+                        {value: 310, name: 'Email'},
+                        {value: 251, name: 'Google'},
+                        {value: 234, name: 'Union Ads'},
+                        {value: 147, name: 'Bing'},
+                        {value: 135, name: 'Video Ads'},
+                        {value: 102, name: 'Others'}
+                    ]
                 }
-            ],
-            legend: {
-                show: true
-            },
-            animationDuration: 0,
-            animationDurationUpdate: 3000,
-            animationEasing: 'linear',
-            animationEasingUpdate: 'linear'
+            ]
         };
-
-        function run() {
-            for (var i = 0; i < viewerCount.length; ++i) {
-                for (var j = 0; j < 5; ++j) {
-                    dataToShow[i] = viewerCount[i][j];
-                    barDynamicHistory.setOption(option);
-                }
-
-            }
-            // barDynamicHistory.setOption({
-            //     series: [
-            //         {
-            //             type: 'bar',
-            //             data
-            //         }
-            //     ]
-            // });
-        }
-
-        setInterval(function () {
-            run();
-        }, 3000);
+        barDynamicHistory.setOption(option);
     }
-
-    var dataSetForHistoryDynamicChart;
-    $.ajax({
-        url: domain + "/getDynamicPopularGamesBarChart",
-        type: 'POST',
-        data: JSON.stringify(['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
-            'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
-            'TeamfightTactics', 'Minecraft', 'Pokemon']),
-        cache: false,
-        processData: false,
-        contentType: 'application/json',
-        success: function (r) {
-            console.log(r)
-            dataSetForHistoryDynamicChart = JSON.parse(r);
-            console.log(dataSetForHistoryDynamicChart);
-            drawBarDynamicHistory(dataSetForHistoryDynamicChart);
-        }
-    })
-
-    //
-    // function drawBarDynamicHistory1() {
-    //     const data = [];
-    //     const data2 = [[123, 234, 456], [423, 214, 740], [963, 159, 753], [777, 888, 999], [111, 444, 555]];
-    //     for (let i = 0; i < 5; ++i) {
-    //         data.push(100);
-    //     }
-    //     option = {
-    //         xAxis: {
-    //             max: 'dataMax'
-    //         },
-    //         yAxis: {
-    //             type: 'category',
-    //             data: ['lol', 'cs', 'C', 'D', 'E'],
-    //             inverse: true,
-    //             animationDuration: 300,
-    //             animationDurationUpdate: 300,
-    //             max: 4 // only the largest 3 bars will be displayed
-    //         },
-    //         series: [
-    //             {
-    //                 realtimeSort: true,
-    //                 name: 'X',
-    //                 type: 'bar',
-    //                 data: data,
-    //                 label: {
-    //                     show: true,
-    //                     position: 'right',
-    //                     valueAnimation: true
-    //                 }
-    //             }
-    //         ],
-    //         legend: {
-    //             show: true
-    //         },
-    //         animationDuration: 0,
-    //         animationDurationUpdate: 3000,
-    //         animationEasing: 'linear',
-    //         animationEasingUpdate: 'linear'
-    //     };
-    //
-    //     function run() {
-    //         for (var i = 0; i < data.length; ++i) {
-    //             for (var j = 0; j < data2[i].length; ++j) {
-    //                 data[i] = data2[i][j];
-    //                 barDynamicHistory.setOption(option);
-    //             }
-    //         }
-    //
-    //     }
-    //
-    //     setTimeout(function () {
-    //         run();
-    //     }, 0);
-    //     setInterval(function () {
-    //         run();
-    //     }, 3000);
-    // }
 
 
 </script>
@@ -190,28 +138,6 @@
         margin-top: 50px;
     }
 
-    #barChartForTopKGames {
-        width: 300px;
-        height: 400px;
-        margin-top: 100px;
-        margin-left: 100px;
-    }
-
-    #barChartForTopKTags {
-        width: 300px;
-        height: 400px;
-        margin-top: 200px;
-        margin-bottom: 200px;
-        margin-left: 100px;
-    }
-
-    #barChartForTop10Anchors {
-        width: 300px;
-        height: 400px;
-        margin-top: 200px;
-        margin-bottom: 200px;
-        margin-left: 100px;
-    }
 
     #sp {
         width: 100px;

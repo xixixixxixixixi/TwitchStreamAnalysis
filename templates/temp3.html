@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitch Stream Analysis</title>
+    <!--    <script src="../ApiInterface/echarts.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="pieChart"></div>
+<div id="sp"></div>
+<!--<div class="sp"></div>-->
+<div id="barDynamicHistory"></div>
+
+<script type="text/javascript">
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
+    // var domain = "https://proj6893.herokuapp.com"
+    var domain = "127.0.0.1:5000";
+
+    var barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
+        height: 500,
+        width: 700
+    });
+    // https://dev.twitch.tv/docs/embed/chat
+
+    window.onload = function () {
+        console.log("data");
+        drawBarDynamicHistory();
+    }
+
+    function drawBarDynamicHistory() {
+
+        option = {
+            xAxis: {},
+            yAxis: {},
+            series: [
+                {
+                    symbolSize: 20,
+                    data: [
+                        [10.0, 8.04],
+                        [8.07, 6.95],
+                        [13.0, 7.58],
+                        [9.05, 8.81],
+                        [11.0, 8.33],
+                        [14.0, 7.66],
+                        [13.4, 6.81],
+                        [10.0, 6.33],
+                        [14.0, 8.96],
+                        [12.5, 6.82],
+                        [9.15, 7.2],
+                        [11.5, 7.2],
+                        [3.03, 4.23],
+                        [12.2, 7.83],
+                        [2.02, 4.47],
+                        [1.05, 3.33],
+                        [4.05, 4.96],
+                        [6.03, 7.24],
+                        [12.0, 6.26],
+                        [12.0, 8.84],
+                        [7.08, 5.82],
+                        [5.02, 5.68]
+                    ],
+                    type: 'scatter'
+                }
+            ]
+        };
+        barDynamicHistory.setOption(option);
+    }
+
+
+</script>
+</body>
+</html>
+
+<style>
+    #pieChart {
+        width: 300px;
+        height: 200px;
+        margin-bottom: 150px;
+        margin-top: 50px;
+    }
+
+
+    #sp {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+

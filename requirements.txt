@@ -6,3 +6,4 @@ python-twitch-client == 0.7.1
 pandas_gbq == 0.15.0
 google-auth-oauthlib==0.4.6
 prophet==1.0.1
+pmdarima==1.8.4
