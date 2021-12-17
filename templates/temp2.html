@@ -17,7 +17,7 @@
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
     // var domain = "https://proj6893.herokuapp.com"
-    var domain = "127.0.0.1:5000";
+    let domain = "http://127.0.0.1:5000";
 
     var lineAndPie = echarts.init(document.getElementById('lineAndPie'), null, {
         height: 500,
@@ -30,7 +30,10 @@
     }
 
     function drawLineAndPie(dataSet) {
-
+        console.log(dataSet)
+        if (dataSet == null || dataSet.length === 0) {
+            return;
+        }
         setTimeout(function () {
             option = {
                 legend: {},
@@ -40,11 +43,14 @@
                 },
                 dataset: {
                     source: [
-                        ['product', '12-14', '12-15', '12-16', '12-17', '12-18', '12-19'],
-                        ['lol', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-                        ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-                        ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-                        ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
+                        dataSet["time"],
+                        dataSet["ApexLegends"],
+                        dataSet["CallofDuty"]
+                        // ['product', '12-14', '12-15', '12-16', '12-17', '12-18', '12-19'],
+                        // ['lol', 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+                        // ['Matcha Latte', 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+                        // ['Cheese Cocoa', 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+                        // ['Walnut Brownie', 25.2, 37.1, 41.2, 18, 33.9, 49.1]
                     ]
                 },
                 xAxis: {type: 'category'},
