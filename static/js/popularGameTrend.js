@@ -122,7 +122,7 @@ function submitRequestForGameTrend() {
         }
     })
 }
-
-setInterval(function () {
-    console.log($('#gameList').val())
-}, 1000)
+//
+// setInterval(function () {
+//     console.log($('#gameList').val())
+// }, 1000)
