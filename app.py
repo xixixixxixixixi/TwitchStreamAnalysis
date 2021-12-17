@@ -51,10 +51,13 @@ def getMeanViewerCount():  # put application's code here
         return json.dumps(result)
 
 
-@app.route('/getChannelStreamSchedule/<num>', methods=['GET'])
-def getChannelStreamSchedule(num):  # put application's code here
-    if request.method == 'GET':
-        result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
+@app.route('/getDynamicPopularGamesBarChart', methods=['POST'])
+def getDynamicPopularGamesBarChart():  # put application's code here
+    if request.method == 'POST':
+        game_list = request.data
+        print(game_list)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        result = TwitchHTTPClient.getDynamicHistory(game_list)
         return json.dumps(result)
 
 
