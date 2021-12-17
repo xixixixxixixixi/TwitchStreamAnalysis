@@ -1,4 +1,3 @@
-import pandas as pd
 import pmdarima as pm
 from prophet import Prophet
 import matplotlib.pyplot as plt
@@ -19,9 +18,9 @@ def fig_plot(method_name, time_axis, true_values, pred_values, start_idx):
     rmse = sqrt(
         mean_squared_error(true_values[start_idx: len(true_values)], pred_values[start_idx: len(pred_values)]))
     print('Root mean squared error RMSE of {} method is {}'.format(method_name, rmse))
-    MAPE = mean_absolute_percentage_error(true_values[start_idx: len(true_values)], pred_values[start_idx: len(pred_values)])
-    print('R Square of {} method is {}'.format(method_name, MAPE))
-    plt.title('{}            (RMSE = {}, MAPE = {})'.format(method_name, rmse, MAPE))
+    mape = mean_absolute_percentage_error(true_values[start_idx: len(true_values)], pred_values[start_idx: len(pred_values)])
+    print('R Square of {} method is {}'.format(method_name, mape))
+    plt.title('{}            (RMSE = {}, mape = {})'.format(method_name, rmse, mape))
     plt.grid()
     plt.show()
 
@@ -68,7 +67,6 @@ if __name__ == "__main__":
     # fig_plot('ARIMA', df['ds'].to_numpy(), df['y'].to_numpy(), pred_sarima, portion)
 
     # ARIMA
-    #%%
     model = ARIMA(train_set['y'], order=(1, 0, 0))
     model_fit = model.fit()
     pred_arima = model_fit.predict(start=1, end=df.shape[0])

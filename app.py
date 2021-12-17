@@ -10,10 +10,11 @@ from ApiInterface import TwitchHTTPClient
 app = Flask(__name__)
 CORS(app, support_credentials = True)
 
-# bk
+
 @app.route('/')
 def hello_world():  # put application's code here
     return render_template("index.html")
+
 
 @app.route('/topKGames/<num>', methods=['GET'])
 def topKGames(num):  # put application's code here
@@ -21,11 +22,13 @@ def topKGames(num):  # put application's code here
         data = TwitchHTTPClient.getTopKGames(int(num))
         return json.dumps(data)
 
+
 @app.route('/topKTags/<num>', methods=['GET'])
 def topKTags(num):  # put application's code here
     if request.method == 'GET':
         data = TwitchHTTPClient.getTopKTags(int(num))
         return json.dumps(data)
+
 
 @app.route('/getLanguageCount/<num>', methods=['GET'])
 def getLanguageCount(num):  # put application's code here
@@ -33,11 +36,13 @@ def getLanguageCount(num):  # put application's code here
         result = TwitchHTTPClient.getLanguageForRooms(int(num))
         return json.dumps(result)
 
+
 @app.route('/getChannelStreamSchedule/<num>', methods=['GET'])
 def getChannelStreamSchedule(num):  # put application's code here
     if request.method == 'GET':
         result = TwitchHTTPClient.getChannelStreamSchedule(int(num))
         return json.dumps(result)
+
 
 @app.route('/getDynamicPopularGamesBarChart', methods=['POST'])
 def getDynamicPopularGamesBarChart():  # put application's code here
@@ -47,6 +52,7 @@ def getDynamicPopularGamesBarChart():  # put application's code here
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         result = TwitchHTTPClient.getDynamicHistory(game_list)
         return json.dumps(result)
+
 
 if __name__ == '__main__':
     app.run()
