@@ -184,7 +184,7 @@ with DAG(
         op_kwargs={},
     )
 
-    fetch_data_task = [
+    fetch_each_game = [
         PythonOperator(
             task_id=f'game{i}',
             python_callable=get_stream_info,
@@ -264,7 +264,7 @@ with DAG(
     )
 
     for i in range(0, 10):
-        fetch_data_task[i] >> combination
+        fetch_each_game[i] >> combination
 
     # combination >> streamToBigQuery
 
