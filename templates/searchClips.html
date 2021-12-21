@@ -15,12 +15,13 @@
 </div>
 <div id="barChartForClipsViewerCount"></div>
 <div id="barChartForClipsDuration"></div>
-<div id="wordCloudChart"></div>
+<div id="clipsLinksContainer"></div>
+<div id="clipsVideosContainer"></div>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
-    // let domain = "https://proj6893.herokuapp.com";
-    let domain = "http://127.0.0.1:5000";
+    let domain = "https://proj6893.herokuapp.com";
+    // let domain = "http://127.0.0.1:5000";
 </script>
 <script>
 
@@ -32,7 +33,6 @@
     window.onload = function () {
         drawBarChartForClipsViewerCount([]);
         drawBarChartForClipsDuration([]);
-        drawWordCloudChartForClipsViewerCount([]);
     }
 
     function drawBarChartForClipsViewerCount(dataSet) {
@@ -118,60 +118,25 @@
         BarChartForClipsDuration.setOption(option);
     }
 
-    let wordCloudChartForClipsViewerCount = echarts.init(document.getElementById('wordCloudChart'), null, {
-        height: 800,
-        width: 800
-    });
-
-    // https://segmentfault.com/a/1190000023022232
-    function drawWordCloudChartForClipsViewerCount(dataSet) {
-        let option = {
-            title: {
-                left: 'left',
-                text: 'Word Cloud'
-            },
-            series: [{
-                type: 'wordCloud',
-                shape: 'diamond',
-                left: 'center',
-                top: 'center',
-                right: null,
-                bottom: null,
-                width: '70%',
-                height: '80%',
-                sizeRange: [12, 60],
-                rotationRange: [-90, 90],
-                rotationStep: 45,
-                gridSize: 8,
-                drawOutOfBound: false,
-                textStyle: {
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 256),
-                            Math.round(Math.random() * 256),
-                            Math.round(Math.random() * 256)
-                        ].join(',') + ')';
-                    },
-                    normal: {
-                        fontFamily: 'sans-serif',
-                        fontWeight: 'normal'
-                    },
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowColor: '#333'
-                    }
-                },
-                data: wordCloudDataPreprocess(dataSet)
-            }]
+    function generateLinksForClips(response) {
+        for (let i = 0; i < response.length; i++) {
+            let clip = response[i];
+            document.getElementById("clipsLinksContainer").innerHTML += "<img src=\"" +
+                clip.thumbnail_url
+                + "\"" + " onclick = generateEmbedVideo(\"" + clip.embed_url + "\")>";
         }
-        wordCloudChartForClipsViewerCount.setOption(option);
+        document.getElementById("clipsLinksContainer").innerHTML += "<br>"
     }
 
-    function wordCloudDataPreprocess(dataSet) {
-        return dataSet.map(x => ({
-            name: x.title,
-            value: x.view_count
-        }));
+
+    // https://dev.twitch.tv/docs/embed/video-and-clips/
+    function generateEmbedVideo(url) {
+        console.log(url)
+        document.getElementById("clipsVideosContainer").innerHTML =
+        "<iframe " +
+        " src=" + url + "&parent=proj6893.herokuapp.com"
+            " allowfullscreen=\"true\" >" +
+        "</iframe>"
     }
 
 
@@ -189,7 +154,7 @@
                 console.log(response);
                 drawBarChartForClipsViewerCount(response);
                 drawBarChartForClipsDuration(response);
-                drawWordCloudChartForClipsViewerCount(response);
+                generateLinksForClips(response);
             }
         })
     }

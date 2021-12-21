@@ -1,4 +1,3 @@
-
 let barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
     height: 500,
     width: 700
@@ -23,6 +22,10 @@ function drawBarDynamicHistory(dataSet) {
         // title: {
         //     text: 'Recent Growing Trend of Most Popular Games'
         // },
+        title: {
+            left: 'left',
+            text: 'Recent History Trend of Popular game viewer count'
+        },
         xAxis: {
             max: 'dataMax'
         },
