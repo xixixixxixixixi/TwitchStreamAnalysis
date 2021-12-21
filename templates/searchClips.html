@@ -16,7 +16,6 @@
 <div id="barChartForClipsViewerCount"></div>
 <div id="barChartForClipsDuration"></div>
 <div id="clipsLinksContainer"></div>
-<div id="clipsVideosContainer"></div>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
@@ -121,9 +120,9 @@
     function generateLinksForClips(response) {
         for (let i = 0; i < response.length; i++) {
             let clip = response[i];
-            document.getElementById("clipsLinksContainer").innerHTML += "<img src=\"" +
+            document.getElementById("clipsLinksContainer").innerHTML += "<div style='display: inline-block'><img src=\"" +
                 clip.thumbnail_url
-                + "\"" + " onclick = generateEmbedVideo(\"" + clip.embed_url + "\")>";
+                + "\"" + " onclick = generateEmbedVideo(\"" + clip.url + "\")></div>";
         }
         document.getElementById("clipsLinksContainer").innerHTML += "<br>"
     }
@@ -131,12 +130,13 @@
 
     // https://dev.twitch.tv/docs/embed/video-and-clips/
     function generateEmbedVideo(url) {
-        console.log(url)
-        document.getElementById("clipsVideosContainer").innerHTML =
-        "<iframe " +
-        " src=" + url + "&parent=proj6893.herokuapp.com"
-            " allowfullscreen=\"true\" >" +
-        "</iframe>"
+        window.open(url);
+        // console.log(url)
+        // document.getElementById("clipsVideosContainer").innerHTML =
+        // "<iframe " +
+        // " src=" + url + "&parent=proj6893.herokuapp.com"
+        //     " allowfullscreen=\"true\" >" +
+        // "</iframe>"
     }
 
 
@@ -163,4 +163,8 @@
 </body>
 </html>
 <style>
+     img{
+        width: 300px;
+        height: 200px;
+    }
 </style>
