@@ -20,7 +20,7 @@ def hello_world():  # put application's code here
 def predictionPage():  # put application's code here
     return render_template("prediction.html")
 
-@app.route('/renderClipSeacrh')
+@app.route('/renderClipSearch')
 def clipSearchPage():  # put application's code here
     return render_template("searchClips.html")
 
