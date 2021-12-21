@@ -10,7 +10,7 @@
 <body>
 <a href="/">Go Back To Main Page</a>
 <div>
-    Input the amount of game you want to analyze for word cloud: (max: 100)<label
+    Input the amount of game you want to analyze for word cloud(max: 100): <label
         for="searchGamesWordCloud"></label><input type="text" id="searchGamesWordCloud">
     <button onclick="requestWordCloudViewerData()">Submit</button>
 </div>
@@ -18,7 +18,7 @@
 <div id="gameWordCloudChart"></div>
 
 <div>
-    Input the amount of game you want to analyze for Streamer Ranking: (max: 100)<label for="searchRank"></label><input
+    Input amount of game and amount of streams for each game (split by "," max: 100): <label for="searchRank"></label><input
         type="text" id="searchRank">
     <button onclick="requestRankViewerData()">Submit</button>
 </div>
@@ -106,7 +106,7 @@
         let option = {
             title: {
                 left: 'left',
-                subtext: 'Most real time popular games and their most popular streams & viewer counts',
+                subtext: 'Most real time popular games and their most popular streamers & viewer counts',
             },
             series: [
                 {
@@ -158,8 +158,8 @@
 
     function requestRankViewerData() {
         // let k = document.getElementById("searchRank").value;
-        let k = 10;
-        let m = 10;
+        let k = document.getElementById("searchRank").value.split(",")[0];
+        let m = document.getElementById("searchRank").value.split(",")[1];
         $.ajax({
             url: domain + "/sankeyForGamesViewer/" + k + "/" + m,
             type: 'GET',
