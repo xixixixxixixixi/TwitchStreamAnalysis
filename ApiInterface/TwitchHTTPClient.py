@@ -57,7 +57,7 @@ def getTopKGames(k):
             gameDict[stream['game_name']] += stream['viewer_count']
         else:
             gameDict[stream['game_name']] = stream['viewer_count']
-        print(gameDict)
+        # print(gameDict)
         count += 1
         if count == 5000:
             break
@@ -99,7 +99,7 @@ def getTopKTags(k):
                 tagDict[tag['tag_id']][1] += 1
             else:
                 tagDict[tag['tag_id']] = [tag['localization_names']['en-us'], 1]
-        print(tagDict)
+        # print(tagDict)
         count += 1
         if count == 100:
             break
@@ -317,6 +317,18 @@ def getClipsByUserRequest(user_name):
             break
     return clip_list
 
-
-
+def getWordCloudDataForTopGamesViewerCount(k):
+    result_list = []
+    topGames = getTopKGames(int(k))
+    print(topGames)
+    for i in range(0, len(topGames)):
+        if i == 0:
+            continue
+        result_list.append(
+            {
+                "name": topGames[i][0],
+                "value": topGames[i][1]
+            }
+        )
+    return result_list
 

@@ -5,10 +5,11 @@ from flask import *
 from flask_cors import CORS
 import twitch
 from ApiInterface import TwitchHTTPClient
+
 # Credentials
 # build: https://stackabuse.com/deploying-a-flask-application-to-heroku/
 app = Flask(__name__)
-CORS(app, support_credentials = True)
+CORS(app, support_credentials=True)
 
 
 @app.route('/')
@@ -20,9 +21,16 @@ def hello_world():  # put application's code here
 def predictionPage():  # put application's code here
     return render_template("prediction.html")
 
+
 @app.route('/renderClipSearch')
 def clipSearchPage():  # put application's code here
     return render_template("searchClips.html")
+
+
+@app.route('/renderfurtherGameAnalysis')
+def clipSearchPage():  # put application's code here
+    return render_template("furtherGameAnalysis.html")
+
 
 @app.route('/topKGames/<num>', methods=['GET'])
 def topKGames(num):  # put application's code here
@@ -68,6 +76,7 @@ def getDynamicPopularGamesBarChart():  # put application's code here
         result = TwitchHTTPClient.getDynamicHistory(game_list)
         return json.dumps(result)
 
+
 @app.route('/getViewerPrediction', methods=['POST'])
 def getViewerPrediction():  # put application's code here
     if request.method == 'POST':
@@ -76,12 +85,21 @@ def getViewerPrediction():  # put application's code here
         result = TwitchHTTPClient.getPrediction(game_name.decode())
         return json.dumps(result)
 
+
 @app.route('/getClipsByUser', methods=['POST'])
 def getClipsByUser():  # put application's code here
     if request.method == 'POST':
         user_name = request.data
         print(user_name)
         result = TwitchHTTPClient.getClipsByUserRequest(user_name.decode())
+        print(result)
+        return json.dumps(result)
+
+
+@app.route('/wordCloudForGamesViewer/<num>', methods=['GET'])
+def wordCloudForGamesViewer(num):  # put application's code here
+    if request.method == 'GET':
+        result = TwitchHTTPClient.getWordCloudDataForTopGamesViewerCount(num)
         print(result)
         return json.dumps(result)
 

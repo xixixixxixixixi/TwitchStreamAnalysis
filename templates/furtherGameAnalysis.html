@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.js"></script>
+</head>
+<body>
+<a href="/">Go Back To Main Page</a>
+<div>
+    Input the amount of game you want to analyze: <label for="searchClips"></label><input type="text" id="searchClips">
+    <button id="searchClipsButton" onclick="requestWordCloudViewerData()">Analyze</button>
+</div>
+<div id="gameWordCloudChart"></div>
+<script type="text/javascript">
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
+    // let domain = "https://proj6893.herokuapp.com";
+    let domain = "http://127.0.0.1:5000";
+</script>
+<script>
+    window.onload = function () {
+        drawWordCloudChartForGamesViewerCount([]);
+    }
+
+    let wordCloudChartForGamesViewerCount = echarts.init(document.getElementById('gameWordCloudChart'), null, {
+        height: 800,
+        width: 800
+    });
+
+    // https://segmentfault.com/a/1190000023022232
+    function drawWordCloudChartForGamesViewerCount(dataSet) {
+        let option = {
+            title: {
+                left: 'left',
+                text: 'Word Cloud'
+            },
+            series: [{
+                type: 'wordCloud',
+                shape: 'diamond',
+                left: 'center',
+                top: 'center',
+                right: null,
+                bottom: null,
+                width: '70%',
+                height: '80%',
+                sizeRange: [12, 60],
+                rotationRange: [-90, 90],
+                rotationStep: 45,
+                gridSize: 8,
+                drawOutOfBound: false,
+                textStyle: {
+                    color: function () {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 256),
+                            Math.round(Math.random() * 256),
+                            Math.round(Math.random() * 256)
+                        ].join(',') + ')';
+                    },
+                    normal: {
+                        fontFamily: 'sans-serif',
+                        fontWeight: 'normal'
+                    },
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                data: dataSet
+            }]
+        }
+        wordCloudChartForGamesViewerCount.setOption(option);
+    }
+
+    // function wordCloudDataPreprocess(dataSet) {
+    //     return dataSet.map(x => ({
+    //         name: x.title,
+    //         value: x.view_count
+    //     }));
+    // }
+
+
+    function requestWordCloudViewerData() {
+        let k =  document.getElementById("searchClips").value;
+        $.ajax({
+            url: domain + "/wordCloudForGamesViewer/" + k,
+            type: 'GET',
+            cache: false,
+            processData: false,
+            contentType: 'application/json',
+            success: function (r) {
+                let response = JSON.parse(r);
+                console.log(response);
+                drawWordCloudChartForGamesViewerCount(response);
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
+<style>
+</style>
