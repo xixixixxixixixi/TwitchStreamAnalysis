@@ -103,6 +103,13 @@ def wordCloudForGamesViewer(num):  # put application's code here
         print(result)
         return json.dumps(result)
 
+@app.route('/sankeyForGamesViewer/<num>', methods=['GET'])
+def sankeyForGamesViewer(num):  # put application's code here
+    if request.method == 'GET':
+        result = TwitchHTTPClient.getSankeyForGamesViewer(num)
+        print(result)
+        return json.dumps(result)
+
 
 if __name__ == '__main__':
     app.run()

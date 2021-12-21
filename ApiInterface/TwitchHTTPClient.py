@@ -1,8 +1,9 @@
-#%%
-#!/usr/bin/env python
+# %%
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Columbia EECS E6893 Big Data Analytics
 import datetime as dt
+
 """
 This module is used to pull data from twitch API and preprocess the data
 
@@ -40,6 +41,8 @@ pandas_gbq.context.project = "big-data-analytics-326904"
     ['game4', 86.4, 65.2, 82.5],
     ['game5', 72.4, 53.9, 39.1]
 '''
+
+
 def getTopKGames(k):
     topGames = client.get_top_games()
     gameIds = []
@@ -49,7 +52,7 @@ def getTopKGames(k):
         count += 1
         if count == k:
             break
-    streams = client.get_streams(game_ids=gameIds,page_size=100)
+    streams = client.get_streams(game_ids=gameIds, page_size=100)
     count = 0
     gameDict = {}
     for stream in streams:
@@ -78,6 +81,8 @@ def getTopKGames(k):
     ['tag3', 2],
     ['tag4', 1]
 '''
+
+
 def getTopKTags(k):
     streams = client.get_streams(page_size=100)
     count = 0
@@ -118,7 +123,6 @@ def getTopKTags(k):
     # https://www.cnblogs.com/skzxc/p/12688423.html
 
 
-
 '''
     function: get language counts for top k rooms
 
@@ -128,6 +132,8 @@ def getTopKTags(k):
         {'name': 'cn', 'value': 2}
     ]
 '''
+
+
 def getLanguageForRooms(k):
     streams = client.get_streams(page_size=100)
     count = 0
@@ -146,40 +152,6 @@ def getLanguageForRooms(k):
         result.append({'value': language[1], 'name': language[0]})
     return result
 
-
-# # get top m chips with viewers for top k games
-# '''
-#     function: get top m chips with viewers for top k games
-#     documentation: https://dev.twitch.tv/docs/api/reference#get-clips
-#
-#     data format for result:
-#     ['clip', 'viewers'],
-#     ['clip1', 123],
-#     ['clip2', 456]
-# '''
-# def getTopKClips(m, k):
-#     topGames = client.get_top_games()
-#     gameIds = []
-#     count = 0
-#     for game in topGames:
-#         gameIds.append(game['id'])
-#         count += 1
-#         if count == k:
-#             break
-#     topKClipsDict = {}
-#     for gameId in gameIds:
-#         headers = {
-#             # 'content-type': 'application/json',
-#             'Authorization': 'Bearer ' + oauth_token,
-#             'Client-Id': client_id
-#         }
-#         url = 'https://api.twitch.tv/helix/clips' + '?' + 'game_id=' + gameId
-#         response = json.loads(requests.get(url, headers=headers).content.decode('utf-8'))
-#         for clip in response['data']:
-#
-#         print(response)
-#
-# getTopKClips(4,4)
 
 def getChannelStreamSchedule(k):
     streams = client.get_streams(page_size=100)
@@ -214,7 +186,7 @@ def getChannelStreamSchedule(k):
             scheduleDict['starttime'].append(str(startTime))
             scheduleDict['endtime'].append(str(endTime))
             scheduleDict['duration'].append(
-                str (
+                str(
                     dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ') -
                     dt.datetime.strptime(response['data']['segments'][0]['end_time'], '%Y-%m-%dT%H:%M:%SZ')
                 )
@@ -234,7 +206,6 @@ def getChannelStreamSchedule(k):
 #     return streams[0]['viewer_count']
 
 def getDynamicHistory(game_list):
-
     """
     Fetch data from Big Query
 
@@ -260,6 +231,7 @@ def getDynamicHistory(game_list):
     result["viewerCount"] = viewer_list
     print(df)
     return result
+
 
 # getDynamicHistory(['Chatting', 'GrandTheftAutoV', 'LeagueofLegends',
 #             'ApexLegends', 'Valorant', 'CallofDuty', 'Fortnite',
@@ -317,6 +289,7 @@ def getClipsByUserRequest(user_name):
             break
     return clip_list
 
+
 def getWordCloudDataForTopGamesViewerCount(k):
     result_list = []
     topGames = getTopKGames(int(k))
@@ -332,3 +305,11 @@ def getWordCloudDataForTopGamesViewerCount(k):
         )
     return result_list
 
+
+def getSankeyForGamesViewer(k):
+    result_list = []
+    topGames = getTopKGames(int(k))
+    print(topGames)
+    for i in range(0, len(topGames)):
+        if i == 0:
+            continue
