@@ -10,10 +10,20 @@
 <body>
 <a href="/">Go Back To Main Page</a>
 <div>
-    Input the amount of game you want to analyze: (max: 100)<label for="searchClips"></label><input type="text" id="searchClips">
-    <button id="searchClipsButton" onclick="requestWordCloudViewerData()">Analyze</button>
+    Input the amount of game you want to analyze for word cloud: (max: 100)<label
+        for="searchGamesWordCloud"></label><input type="text" id="searchGamesWordCloud">
+    <button onclick="requestWordCloudViewerData()">Submit</button>
 </div>
+
 <div id="gameWordCloudChart"></div>
+
+<div>
+    Input the amount of game you want to analyze for Streamer Ranking: (max: 100)<label for="searchRank"></label><input
+        type="text" id="searchRank">
+    <button onclick="requestRankViewerData()">Submit</button>
+</div>
+
+<div id="gameRankChart"></div>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
@@ -82,8 +92,47 @@
     // }
 
 
+    window.onload = function () {
+        drawRankChartForGamesViewerCount([]);
+    }
+
+
+    let rankChartForGamesViewerCount = echarts.init(document.getElementById('gameRankChart'), null, {
+        height: 800,
+        width: 800
+    });
+
+    // https://echarts.apache.org/examples/zh/editor.html?c=sankey-itemstyle
+    function drawRankChartForGamesViewerCount(dataSet) {
+        let option = {
+            type: 'sankey',
+            left: 50.0,
+            top: 20.0,
+            right: 150.0,
+            bottom: 25.0,
+        }
+        rankChartForGamesViewerCount.setOption(option);
+    }
+
+
     function requestWordCloudViewerData() {
-        let k =  document.getElementById("searchClips").value;
+        let k = document.getElementById("searchGamesWordCloud").value;
+        $.ajax({
+            url: domain + "/wordCloudForGamesViewer/" + k,
+            type: 'GET',
+            cache: false,
+            processData: false,
+            contentType: 'application/json',
+            success: function (r) {
+                let response = JSON.parse(r);
+                console.log(response);
+                drawWordCloudChartForGamesViewerCount(response);
+            }
+        })
+    }
+
+    function requestRankViewerData() {
+        let k = document.getElementById("searchRank").value;
         $.ajax({
             url: domain + "/wordCloudForGamesViewer/" + k,
             type: 'GET',
