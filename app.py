@@ -28,7 +28,7 @@ def clipSearchPage():  # put application's code here
 
 
 @app.route('/renderfurtherGameAnalysis')
-def clipSearchPage():  # put application's code here
+def furtherGameAnalysisPage():  # put application's code here
     return render_template("furtherGameAnalysis.html")
 
 
