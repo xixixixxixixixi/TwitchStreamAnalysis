@@ -305,6 +305,18 @@ def getDailyMeanViewerCount():
     return results
 
 
+def getClipsByUserRequest(user_name):
+    user_id = client.get_users(user_name)[0]["id"]
+    clips = client.get_clips(user_id)
+    clip_list = []
+    count = 0
+    for clip in clips:
+        clip_list.append(clip)
+        count += 1
+        if count == 10:
+            break
+    return clip_list
+
 
 
 

@@ -74,6 +74,15 @@ def getViewerPrediction():  # put application's code here
         result = TwitchHTTPClient.getPrediction(game_name.decode())
         return json.dumps(result)
 
+@app.route('/getClipsByUser', methods=['POST'])
+def getClipsByUser():  # put application's code here
+    if request.method == 'POST':
+        user_name = request.data
+        print(user_name)
+        result = TwitchHTTPClient.getClipsByUserRequest(user_name.decode())
+        print(result)
+        return json.dumps(result)
+
 
 if __name__ == '__main__':
     app.run()

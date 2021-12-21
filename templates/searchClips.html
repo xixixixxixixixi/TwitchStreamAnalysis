@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    Search clips data by user: <label for="searchClips"></label><input type="text" id="searchClips">
+    <button id="searchClipsButton" onclick="requestClips()"></button>
+</div>
+<script type="text/javascript">
+    // https://developers.google.com/chart/interactive/docs/gallery/piechart
+    // https://www.runoob.com/echarts/echarts-ajax-data.html
+    // let domain = "https://proj6893.herokuapp.com";
+    let domain = "http://127.0.0.1:5000";
+</script>
+<script>
+    function requestClips() {
+        let searchContent = document.getElementById("searchClips").value;
+        $.ajax({
+            url: domain + "/getClipsByUser",
+            type: 'POST',
+            cache: false,
+            processData: false,
+            data: searchContent,
+            contentType: 'application/json',
+            success: function (r) {
+                let response = JSON.parse(r);
+                console.log(response);
+            }
+        })
+    }
+</script>
+</body>
+</html>
