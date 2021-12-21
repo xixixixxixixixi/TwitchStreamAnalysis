@@ -16,6 +16,7 @@ import datetime
 import pandas_gbq
 from google.oauth2 import service_account
 from Prediction.trend_prediction import trend_prediction
+import random
 
 # Credentials
 client_id = '9tq8ugh8o679ce3bgoa29fhdpwfjbi'
@@ -306,10 +307,80 @@ def getWordCloudDataForTopGamesViewerCount(k):
     return result_list
 
 
-def getSankeyForGamesViewer(k):
-    result_list = []
-    topGames = getTopKGames(int(k))
-    print(topGames)
-    for i in range(0, len(topGames)):
-        if i == 0:
-            continue
+def getSankeyForGamesViewer(k, m):
+    top_games = client.get_top_games()
+    count = 0
+    node_dict = {}
+    for game in top_games:
+        if count == k:
+            break
+        node_dict[game["name"]] = []
+        popular_streams = client.get_streams(game_ids=[int(game["id"])])
+        stream_count = 0
+        for stream in popular_streams:
+            # print(stream)
+            if stream_count == m:
+                break
+            node_dict[game["name"]].append([stream["user_name"], stream["viewer_count"]])
+            stream_count += 1
+        count += 1
+    print(node_dict)
+    result_dict = {
+        "data": [],
+        "links": []
+    }
+    r = lambda: random.randint(0, 255)
+    color = '#{:02x}{:02x}{:02x}'.format(r(), r(), r())
+    result_dict["data"].append(
+        {
+            "name": "TopGames",
+            "itemStyle": {
+                "color": color,
+                "borderColor": color
+            }
+        }
+    )
+    for node in node_dict:
+        # https://stackoverflow.com/questions/13998901/generating-a-random-hex-color-in-python
+        r = lambda: random.randint(0, 255)
+        color = '#{:02x}{:02x}{:02x}'.format(r(), r(), r())
+        result_dict["data"].append(
+            {
+                "name": node,
+                "itemStyle": {
+                    "color": color,
+                    "borderColor": color
+                }
+            }
+        )
+        total_viewer_count_for_a_game = 0
+        for stream in node_dict[node]:
+            r = lambda: random.randint(0, 255)
+            color = '#{:02x}{:02x}{:02x}'.format(r(), r(), r())
+            result_dict["data"].append(
+                {
+                    "name": stream[0],
+                    "itemStyle": {
+                        "color": color,
+                        "borderColor": color
+                    }
+                }
+            )
+            result_dict["links"].append(
+                {
+                    "source": node,
+                    "target": stream[0],
+                    "value": int(stream[1])
+                }
+            )
+            total_viewer_count_for_a_game += int(stream[1])
+        result_dict["links"].append(
+            {
+                "source": 'TopGames',
+                "target": node,
+                "value": total_viewer_count_for_a_game
+            }
+        )
+    print(result_dict)
+    return result_dict
+# getSankeyForGamesViewer(10, 10)

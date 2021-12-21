@@ -33,6 +33,7 @@
 <script>
     window.onload = function () {
         drawWordCloudChartForGamesViewerCount([]);
+        drawRankChartForGamesViewerCount([]);
     }
 
     let wordCloudChartForGamesViewerCount = echarts.init(document.getElementById('gameWordCloudChart'), null, {
@@ -92,11 +93,6 @@
     // }
 
 
-    window.onload = function () {
-        drawRankChartForGamesViewerCount([]);
-    }
-
-
     let rankChartForGamesViewerCount = echarts.init(document.getElementById('gameRankChart'), null, {
         height: 800,
         width: 800
@@ -104,12 +100,41 @@
 
     // https://echarts.apache.org/examples/zh/editor.html?c=sankey-itemstyle
     function drawRankChartForGamesViewerCount(dataSet) {
+        if (dataSet == null || dataSet.length == 0) {
+            return;
+        }
         let option = {
-            type: 'sankey',
-            left: 50.0,
-            top: 20.0,
-            right: 150.0,
-            bottom: 25.0,
+            title: {
+                left: 'left',
+                subtext: 'Most real time popular games and their most popular streams & viewer counts',
+            },
+            series: [
+                {
+                    type: 'sankey',
+                    left: 50.0,
+                    top: 20.0,
+                    right: 150.0,
+                    bottom: 25.0,
+                    data: dataSet.data,
+                    links: dataSet.links,
+                    lineStyle: {
+                        color: 'source',
+                        curveness: 0.5
+                    },
+                    itemStyle: {
+                        color: '#1f77b4',
+                        borderColor: '#1f77b4'
+                    },
+                    label: {
+                        color: 'rgba(0,0,0,0.7)',
+                        fontFamily: 'Arial',
+                        fontSize: 10
+                    }
+                }
+            ],
+            tooltip: {
+                trigger: 'item'
+            }
         }
         rankChartForGamesViewerCount.setOption(option);
     }
@@ -132,9 +157,11 @@
     }
 
     function requestRankViewerData() {
-        let k = document.getElementById("searchRank").value;
+        // let k = document.getElementById("searchRank").value;
+        let k = 10;
+        let m = 10;
         $.ajax({
-            url: domain + "/wordCloudForGamesViewer/" + k,
+            url: domain + "/sankeyForGamesViewer/" + k + "/" + m,
             type: 'GET',
             cache: false,
             processData: false,
@@ -142,7 +169,7 @@
             success: function (r) {
                 let response = JSON.parse(r);
                 console.log(response);
-                drawWordCloudChartForGamesViewerCount(response);
+                drawRankChartForGamesViewerCount(response);
             }
         })
     }
