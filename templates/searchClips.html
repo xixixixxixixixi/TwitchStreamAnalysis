@@ -9,8 +9,10 @@
 <body>
 <div>
     Search clips data by user: <label for="searchClips"></label><input type="text" id="searchClips">
-    <button id="searchClipsButton" onclick="requestClips()"></button>
+    <button id="searchClipsButton" onclick="requestClips()">Search</button>
 </div>
+<div id="barChartForClipsViewerCount"></div>
+<div id="barChartForClipsDuration"></div>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
@@ -18,6 +20,100 @@
     let domain = "http://127.0.0.1:5000";
 </script>
 <script>
+
+    let BarChartForClipsViewerCount = echarts.init(document.getElementById('barChartForClipsViewerCount'), null, {
+        height: 500,
+        width: 700
+    });
+
+    window.onload = function () {
+        drawBarChartForClipsViewerCount([]);
+        drawBarChartForClipsDuration([]);
+    }
+
+    function drawBarChartForClipsViewerCount(dataSet) {
+        let option = {
+            title: {
+                left: 'left',
+                text: 'Top 10 most popular Clips and its viewer counts'
+            },
+            dataset: [
+                {
+                    dimensions: ['title', 'view_count'],
+                    source: dataSet
+                },
+                {
+                    transform: {
+                        type: 'sort',
+                        config: {dimension: 'view_count', order: 'desc'}
+                    }
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                axisLabel: {
+                    interval: 0,
+                    rotate: 15,
+                    textStyle: {fontSize: 11}
+                }
+            },
+            yAxis: {
+                textStyle: {fontSize: 12}
+            },
+            series: {
+                type: 'bar',
+                encode: {x: 'name', y: 'score'},
+                datasetIndex: 1
+            }
+        };
+        BarChartForClipsViewerCount.setOption(option);
+    }
+
+
+    let BarChartForClipsDuration = echarts.init(document.getElementById('barChartForClipsDuration'), null, {
+        height: 500,
+        width: 700
+    });
+
+
+    function drawBarChartForClipsDuration(dataSet) {
+        let option = {
+            title: {
+                left: 'left',
+                text: 'Top 10 most popular Clips and its duration'
+            },
+            dataset: [
+                {
+                    dimensions: ['title', 'duration', 'view_count'],
+                    source: dataSet
+                },
+                {
+                    transform: {
+                        type: 'sort',
+                        config: {dimension: 'view_count', order: 'desc'}
+                    }
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                axisLabel: {
+                    interval: 0,
+                    rotate: 15,
+                    textStyle: {fontSize: 11}
+                }
+            },
+            yAxis: {
+                textStyle: {fontSize: 12}
+            },
+            series: {
+                type: 'bar',
+                encode: {x: 'name', y: 'score'},
+                datasetIndex: 1
+            }
+        };
+        BarChartForClipsDuration.setOption(option);
+    }
+
     function requestClips() {
         let searchContent = document.getElementById("searchClips").value;
         $.ajax({
@@ -30,9 +126,14 @@
             success: function (r) {
                 let response = JSON.parse(r);
                 console.log(response);
+                drawBarChartForClipsViewerCount(response);
+                drawBarChartForClipsDuration(response);
             }
         })
     }
+
 </script>
 </body>
 </html>
+<style>
+</style>
