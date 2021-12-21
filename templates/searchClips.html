@@ -118,6 +118,7 @@
     }
 
     function generateLinksForClips(response) {
+        document.getElementById("clipsLinksContainer").innerHTML = "";
         for (let i = 0; i < response.length; i++) {
             let clip = response[i];
             document.getElementById("clipsLinksContainer").innerHTML += "<div style='display: inline-block'><img src=\"" +
