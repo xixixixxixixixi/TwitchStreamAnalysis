@@ -9,7 +9,6 @@ $.ajax({
         console.log(r)
         popularChannelData = JSON.parse(r);
         console.log(popularChannelData);
-        drawBarChartForTop10Anchors(popularChannelData);
         InformationInjection(popularChannelData);
     }
 })
@@ -37,6 +36,15 @@ function InformationInjection(popularChannelData) {
 function changeChannel() {
     let channel = $('#channelList').val();
     generateChannelPreview(channel);
+    setUpLink(channel);
+    
+    setInterval(function () {
+        console.log(commandName);
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            document.getElementById("sentimentResult").innerHTML = response.type;
+        });
+    }, 5000);
 }
 
 //

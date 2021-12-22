@@ -1,28 +1,25 @@
 // Define configuration options
-const opts = {
-    identity: {
-        username: "Yhl7",
-        password: "8mt1clasptu8nzn0l7dgoonhicom6i"
-    },
-    channels: [
-        "xQcOW"
-    ]
-};
+function setUpLink(channelName) {
+    const opts = {
+        identity: {
+            username: "Yhl7",
+            password: "8mt1clasptu8nzn0l7dgoonhicom6i"
+        },
+        channels: [
+            channelName
+        ]
+    };
+    const client = new tmi.client(opts);
+    client.on('message', onMessageHandler);
+    client.on('connected', onConnectedHandler);
+    client.connect();
+}
 
-// Create a client with our options
-const client = new tmi.client(opts);
-
-// Register our event handlers (defined below)
-client.on('message', onMessageHandler);
-client.on('connected', onConnectedHandler);
-
-// Connect to Twitch:
-client.connect();
 
 // https://rapidapi.com/twinword/api/sentiment-analysis
 
 
-let sentimentList = [0, 0, 0]
+let sentimentList = [0, 0, 0];
 let settings;
 let commandName;
 
@@ -50,13 +47,6 @@ function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
 }
 
-setInterval(function () {
-    console.log(commandName);
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        document.getElementById("sentimentResult").innerHTML = response.type;
-    });
-}, 5000);
 
 // setInterval(function () {
 //     console.log(commandName);
