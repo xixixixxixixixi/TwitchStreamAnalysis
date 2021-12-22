@@ -68,7 +68,7 @@ function generateChannelPreview(data) {
         data +
         "&parent=proj6893.herokuapp.com&muted=true\"\n" +
         "    height=\"720\"\n" +
-        "    width=\"1280\"\n" +
+        "    width=\"1248\"\n" +
         "    allowFullScreen=\"true\">\n" +
         "</iframe>";
 }
