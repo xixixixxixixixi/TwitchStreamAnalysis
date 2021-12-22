@@ -1,4 +1,4 @@
-<mxfile modified="2021-12-22T07:53:00.964Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="7iTBVCi7-2D3cfxkuF6x" version="16.0.3" type="github">
+<mxfile modified="2021-12-22T07:54:25.813Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="Ll9WysnfSDGCdganAsz7" version="16.0.3" type="github">
   <diagram id="d1ab7348-05c3-a1e3-ca4d-12c340fd6b49" name="Page-1">
     <mxGraphModel dx="2726" dy="1133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
@@ -81,13 +81,13 @@
           <mxGeometry x="370" y="1040" width="150" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-465" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Word Cloud for Top Most Popular 1~100 Games&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1000" y="950" width="190" height="60" as="geometry" />
+          <mxGeometry x="1010" y="1060" width="190" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-466" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Sentiment Analysis for Real Time Chat Room Content&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1000" y="845" width="190" height="70" as="geometry" />
+          <mxGeometry x="1010" y="960" width="190" height="70" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-467" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Sankey Graph Showing Current Dominators of the Top Games&amp;nbsp;&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1000" y="1050" width="190" height="70" as="geometry" />
+          <mxGeometry x="1010" y="1160" width="190" height="70" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-470" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;font-weight: normal&quot; id=&quot;docs-internal-guid-44fc3ba5-7fff-c942-bf4b-065634f15c47&quot;&gt;&lt;img width=&quot;116px;&quot; height=&quot;26px;&quot; src=&quot;https://lh4.googleusercontent.com/mZoXLWP54xSfcWBHUq2xZiAg4_svW9ON2EQuy0g6ocJ39IBxLDp8i68R8vdkYrFj9F9xRIZcYoxhL9_2C4QwCl2JD3BcgYRsrj-ZPZzkXQMPd0bsGHJuidOQ5mP6Nl6suM-XYheTX-Dv&quot;&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
           <mxGeometry x="1430" y="460" width="140" height="50" as="geometry" />
@@ -118,6 +118,12 @@
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-482" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://static.javatpoint.com/bootstrappages/images/bootstrap-tutorial.png;" vertex="1" parent="1">
           <mxGeometry x="1595" y="770" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-483" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Stream Integration and Chat Room Monitor&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="870" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-484" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Top 10 Most Popular Clips Video Links(For one specific user)&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="1620" width="320" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
