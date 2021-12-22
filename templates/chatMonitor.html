@@ -8,7 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.js"></script>
 </head>
 <body>
+<div id="sentiment">
+    Current Sentiment Result:
+    <div id="sentimentResult"></div>
+</div>
+<!--https://dev.twitch.tv/docs/embed/chat-->
+<div id="popularChannelInspection">
+    <div id="popularChannelSelection">
+        <select id="channelList"></select>
+    </div>
+    <div id="popularChannelChat"></div>
+    <div id="popularChannelStream"></div>
+</div>
+<script>
+    let channel;
+    let domain = "https://proj6893.herokuapp.com";
+    // let domain = "http://127.0.0.1:5000";
+</script>
 <script src="static/js/tmi.js"></script>
 <script src="static/js/bot.js"></script>
+<script src="static/js/popularChannelInspection.js"></script>
 </body>
 </html>

@@ -1,54 +1,85 @@
 // Define configuration options
-const opts = {
-    identity: {
-        username: "Yhl7",
-        password: "8mt1clasptu8nzn0l7dgoonhicom6i"
-    },
-    channels: [
-        "xQcOW"
-    ]
-};
+function setUpLink(channelName) {
+    let opts = {
+        identity: {
+            username: "Yhl7",
+            password: "8mt1clasptu8nzn0l7dgoonhicom6i"
+        },
+        channels: [
+            channelName
+        ]
+    };
+    const client = new tmi.client(opts);
+    client.on('message', onMessageHandler);
+    client.on('connected', onConnectedHandler);
+    client.connect();
+}
 
-let sentence = "";
-// Create a client with our options
-const client = new tmi.client(opts);
-
-// Register our event handlers (defined below)
-client.on('message', onMessageHandler);
-client.on('connected', onConnectedHandler);
-
-// Connect to Twitch:
-client.connect();
 
 // https://rapidapi.com/twinword/api/sentiment-analysis
-const settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://api.twinword.com/api/sentiment/analyze/latest/?text=" + sentence,
-    "method": "GET",
-    "headers": {
-        "X-Twaip-Key": "YjOGT8qTVDV8HUnPOAbYCCrcGSlu3umY61BEP8sdZ3TTK17x3XYxidM95mFOap0SQrYWbm58hCj7MSgZmGsMxw=="
-    }
-};
-setInterval(function () {
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        sentence = "";
-    });
-}, 10000)
 
+
+let sentimentList = [0, 0, 0];
+let settings;
+let commandName;
 
 // Called every time a message comes in
 function onMessageHandler(target, context, msg, self) {
     if (self) {
         return;
     }
-    const commandName = msg.trim();
-    console.log(commandName);
-    sentence += commandName;
+    commandName = msg.trim();
+    // console.log(commandName);
+
+    settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://twinword-sentiment-analysis.p.rapidapi.com/analyze/?text=" + commandName,
+        "headers": {
+            "x-rapidapi-host": "twinword-sentiment-analysis.p.rapidapi.com",
+            "x-rapidapi-key": "3369bc862cmsh26322dc653e1d9dp120fd5jsn4f6912e00a99"
+        }
+    };
 }
 
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler(addr, port) {
     console.log(`* Connected to ${addr}:${port}`);
 }
+
+
+// setInterval(function () {
+//     console.log(commandName);
+//     $.ajax(settings).done(function (response) {
+//         console.log(response);
+//         if (sentimentList.reduce((a, b) => a + b, 0) === 1) {
+//             let max = 0;
+//             let sentiment = "neutral";
+//             for (let i = 0; i < sentimentList.length; i++) {
+//                 if (sentimentList[i] > max) {
+//                     max = sentimentList[i];
+//                     if (i === 0) {
+//                         sentiment = "Positive";
+//                     } else if (i === 1) {
+//                         sentiment = "Neutral";
+//                     } else {
+//                         sentiment = "Negative";
+//                     }
+//                 }
+//             }
+//             sentimentList = [0, 0, 0];
+//             console.log(sentiment);
+//             document.getElementById("sentimentResult").innerHTML = sentiment;
+//         } else {
+//             if (response.type == "positive") {
+//                 sentimentList[0]++;
+//             } else if (response.type == "neutral") {
+//                 sentimentList[1]++;
+//             } else {
+//                 sentimentList[2]++;
+//             }
+//         }
+//     });
+// }, 5000);
+
+
