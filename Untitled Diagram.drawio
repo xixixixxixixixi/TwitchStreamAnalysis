@@ -1,38 +1,41 @@
-<mxfile modified="2021-12-22T07:16:32.212Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="-hm0gsZPCQd7KhlaIGCh" version="16.0.3" type="github">
+<mxfile modified="2021-12-22T07:22:59.453Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="2AoqYZFkgK3NqqHxThkP" version="16.0.3" type="github">
   <diagram id="d1ab7348-05c3-a1e3-ca4d-12c340fd6b49" name="Page-1">
     <mxGraphModel dx="1557" dy="1133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="FwzKtPki3mb1ld9PXNBR-415" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="220" width="530" height="530" as="geometry" />
+          <mxGeometry x="220" width="870" height="870" as="geometry" />
         </mxCell>
-        <mxCell id="FwzKtPki3mb1ld9PXNBR-412" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry width="530" height="530" as="geometry" />
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-412" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=none;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
+          <mxGeometry width="869.9999999999999" height="869.9999999999999" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-413" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;font-weight: normal&quot; id=&quot;docs-internal-guid-d2ad3ce6-7fff-bb0f-2b52-ee0412647c6d&quot;&gt;&lt;img width=&quot;61px;&quot; height=&quot;30px;&quot; src=&quot;https://lh4.googleusercontent.com/3M0_QrC6NOvyVFvNuZ7Qsbdb1Xkd3erEcJI-ABMaz8Opn-za4dnpS1rptQpAAXjEYj_kRNltr24Ht6fb31hB9-uftv2vhH52vJ4IoNZTPnvXo3OxmNg4O5PWSajKk8VpVLnP8qtjHtrF&quot;&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry width="117.69230769230768" height="67.94871794871797" as="geometry" />
+          <mxGeometry width="136.5230769230769" height="78.82051282051285" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-427" value="&lt;span id=&quot;docs-internal-guid-2ce76dfb-7fff-349d-ac28-97f2d1292088&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Most popular games&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="19.615384615384613" y="53" width="156.9230769230769" height="53" as="geometry" />
+          <mxGeometry x="22.75384615384615" y="61.48" width="182.0307692307692" height="61.48" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-428" value="&lt;span id=&quot;docs-internal-guid-f2099569-7fff-49e5-ad49-60f66e554181&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Most popular tags&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="21.145384615384614" y="127.2" width="156.9230769230769" height="42.400000000000006" as="geometry" />
+          <mxGeometry x="24.52864615384615" y="147.552" width="182.0307692307692" height="49.184000000000005" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-429" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Liveroom languages distribution&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="19.615384615384613" y="190.8" width="156.9230769230769" height="53" as="geometry" />
+          <mxGeometry x="22.75384615384615" y="221.328" width="182.0307692307692" height="61.48" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-430" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Most popular languages&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="19.615384615384613" y="275.6" width="156.9230769230769" height="84.80000000000001" as="geometry" />
+          <mxGeometry x="22.75384615384615" y="319.696" width="182.0307692307692" height="98.36800000000001" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-431" value="&lt;span id=&quot;docs-internal-guid-a5e62a4f-7fff-e1d5-d023-8a1d94ddb87b&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Popular channels streaming schedule&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="19.615384615384613" y="375.24" width="158.4530769230769" height="127.2" as="geometry" />
+          <mxGeometry x="22.75384615384615" y="435.2784" width="183.8055692307692" height="147.552" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-433" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Dynamic Gorwing(Sorting) Trend of Popular Games&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
-          <mxGeometry x="186.34615384615384" y="53" width="215.76923076923077" height="53" as="geometry" />
+          <mxGeometry x="216.16153846153844" y="61.48" width="250.29230769230767" height="61.48" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-434" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Word Cloud for Popular Games&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="FwzKtPki3mb1ld9PXNBR-415">
+          <mxGeometry x="266.79999999999995" y="285.30199999999996" width="282.634" height="44.196" as="geometry" />
         </mxCell>
         <mxCell id="2" value="&lt;b&gt;Google &lt;/b&gt;Cloud Platform" style="fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;fontSize=14;align=left;spacing=10;fontColor=#717171;9E9E9E;verticalAlign=top;spacingTop=-4;fontStyle=0;spacingLeft=40;html=1;" parent="1" vertex="1">
-          <mxGeometry x="220" y="560" width="270" height="400" as="geometry" />
+          <mxGeometry x="240" y="960" width="270" height="400" as="geometry" />
         </mxCell>
         <mxCell id="3" value="" style="shape=mxgraph.gcp2.google_cloud_platform;fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;" parent="2" vertex="1">
           <mxGeometry width="23" height="20" relative="1" as="geometry">
