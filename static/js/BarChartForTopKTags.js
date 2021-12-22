@@ -1,7 +1,7 @@
 
 var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
     height: 500,
-    width: 850
+    width: 1248
 });
 
 var BarChartForTopKTags1 = echarts.init(document.getElementById('barChartForTopKTags1'), null, {

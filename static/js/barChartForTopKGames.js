@@ -1,7 +1,7 @@
 
 let BarChartForTopKGames = echarts.init(document.getElementById('barChartForTopKGames'), null, {
     height: 500,
-    width: 850
+    width: 1248
 });
 let BarChartForTopKGames1 = echarts.init(document.getElementById('barChartForTopKGames1'), null, {
     height: 500,

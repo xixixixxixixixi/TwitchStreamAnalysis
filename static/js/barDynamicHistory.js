@@ -1,6 +1,6 @@
 let barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
     height: 500,
-    width: 850
+    width: 1248
 });
 
 let barDynamicHistory1 = echarts.init(document.getElementById('barDynamicHistory1'), null, {
