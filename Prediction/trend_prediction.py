@@ -30,7 +30,7 @@ def fetch_data(game_name):
 def trend_prediction(game_name):
     df = fetch_data(game_name)
     m = Prophet(daily_seasonality=True, weekly_seasonality=True, changepoint_prior_scale=0.01).fit(df)
-    future = m.make_future_dataframe(periods=200, freq='3min')
+    future = m.make_future_dataframe(periods=480, freq='3min')
     forecast = m.predict(future)
     prediction = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
     print(prediction)
@@ -39,9 +39,9 @@ def trend_prediction(game_name):
 
     return (prediction['ds'].tolist(),
             df['y'].tolist(),
-            prediction['yhat'].tolist(),
-            prediction['yhat_lower'].tolist(),
-            prediction['yhat_upper'].tolist())
+            prediction['yhat'].astype('int').tolist(),
+            prediction['yhat_lower'].astype('int').tolist(),
+            prediction['yhat_upper'].astype('int').tolist())
 
 
 if __name__ == "__main__":

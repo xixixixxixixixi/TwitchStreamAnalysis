@@ -254,7 +254,8 @@ def getPrediction(game_name):
 
     """
     time, y, yhat, _, _ = trend_prediction(game_name)
-    prediction = {'label': ['True', 'Predict'], 'time': time, 'true': y, 'pred': [int(pred) for pred in yhat]}
+    prediction = {'label': ['True', 'Predict'], 'time': time[-3360:], 'true': y[-3360:],
+                  'pred': yhat[-3840:]}
     return prediction
 
 
@@ -384,3 +385,4 @@ def getSankeyForGamesViewer(k, m):
     print(result_dict)
     return result_dict
 # getSankeyForGamesViewer(10, 10)
+

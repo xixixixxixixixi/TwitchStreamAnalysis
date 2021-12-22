@@ -34,25 +34,12 @@ default_args = {
     'email_on_retry': False,
     'retries': 1,
     'retry_delay': timedelta(seconds=30),
-    # 'queue': 'bash_queue',
-    # 'pool': 'backfill',
-    # 'priority_weight': 10,
-    # 'end_date': datetime(2016, 1, 1),
-    # 'wait_for_downstream': False,
-    # 'dag': dag,
-    # 'sla': timedelta(hours=2),
-    # 'execution_timeout': timedelta(seconds=300),
-    # 'on_failure_callback': some_function,
-    # 'on_success_callback': some_other_function,
-    # 'on_retry_callback': another_function,
-    # 'sla_miss_callback': yet_another_function,
-    # 'trigger_rule': 'all_success'
 }
 
 
-top_games = [['509658', 'Chatting'], ['32982', 'GrandTheftAutoV'], ['21779', 'LeagueofLegends'],
-             ['511224', 'ApexLegends'], ['516575', 'Valorant'], ['512710', 'CallofDuty'], 
-             ['33214', 'Fortnite'], ['513143', 'TeamfightTactics'], ['27471', 'Minecraft'], ['1584745140', 'Pokemon']]
+# top_games = [['509658', 'Chatting'], ['32982', 'GrandTheftAutoV'], ['21779', 'LeagueofLegends'],
+#              ['511224', 'ApexLegends'], ['516575', 'Valorant'], ['512710', 'CallofDuty'],
+#              ['33214', 'Fortnite'], ['513143', 'TeamfightTactics'], ['27471', 'Minecraft'], ['1584745140', 'Pokemon']]
 
 # ['509658', 'Just Chatting'], ['32982', 'Grand Theft Auto V'], ['21779', 'League of Legends'],
 # ['511224', 'Apex Legends'], ['516575', 'VALORANT'], ['512710', 'Call of Duty: Warzone'],
@@ -62,13 +49,33 @@ top_games = [['509658', 'Chatting'], ['32982', 'GrandTheftAutoV'], ['21779', 'Le
 t = datetime.now(tz=pytz.timezone('US/Eastern')).strftime("%Y-%m-%d %H:%M:%S")
 
 
-def get_stream_info(game_id, ti):
+def get_top_games(**kwargs):
+    """
+    Get list of top k games
+
+    """
+    games = twitch.get_top_games()
+    count = 0
+    top_games = []
+    for game in games["data"]:
+        if count == 10:
+            break
+        print(game)
+        top_games.append([game["id"], game["name"]])
+        count += 1
+    print(top_games)
+    kwargs['ti'].xcom_push(key='top_games', value=top_games)
+
+
+def get_stream_info(index, ti):
     """
 
     Get streams information of every game via Twitch API
     Compute the total viewer count and pass it to next task
 
     """
+    top_games = ti.xcom_pull(key='top_games', task_ids='get_top_games')
+    game_id = top_games[int(index)][0]
     cursor = 'start'
     viewer_count = 0
     stop_flag = False
@@ -101,6 +108,7 @@ def combine(**kwargs):
     {'time':  YYYY-MM-DD HH:mm:SS, 'game_name1': viewer_count1, ..., 'game_name10': viewer_count10}
 
     """
+    top_games = kwargs['ti'].xcom_pull(key='top_games', task_ids='get_top_games')
     data = {'Time': t}
     total = 0
     for game in top_games:
@@ -131,7 +139,7 @@ def save_to_bq(**kwargs):
     Save data to Big Query
 
     """
-
+    top_games = kwargs['ti'].xcom_pull(key='top_games', task_ids='get_top_games')
     # Construct a BigQuery client object.
     bq_client = bigquery.Client()
 
@@ -170,65 +178,80 @@ with DAG(
 ) as dag:
     # t* examples of tasks created by instantiating operators
 
-    chatting = PythonOperator(
-        task_id='Chatting',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '509658'},
+    get_top_games = PythonOperator(
+        task_id='get_top_games',
+        python_callable=get_top_games,
+        op_kwargs={},
     )
 
-    grandTheftAutoV = PythonOperator(
-        task_id='GrandTheftAutoV',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '32982'},
-    )
+    fetch_each_game = [
+        PythonOperator(
+            task_id=f'game{i}',
+            python_callable=get_stream_info,
+            op_kwargs={'index': i},
+        ) for i in range(0, 10)
+    ]
 
-    leagueOfLegends = PythonOperator(
-        task_id='LeagueofLegends',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '21779'},
-    )
 
-    apexLegends = PythonOperator(
-        task_id='ApexLegends',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '511224'},
-    )
-
-    valorant = PythonOperator(
-        task_id='Valorant',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '516575'},
-    )
-
-    callOfDuty = PythonOperator(
-        task_id='CallofDuty',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '512710'},
-    )
-
-    fortnite = PythonOperator(
-        task_id='Fortnite',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '33214'},
-    )
-
-    teamFightTactics = PythonOperator(
-        task_id='TeamfightTactics',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '513143'},
-    )
-
-    minecraft = PythonOperator(
-        task_id='Minecraft',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '27471'},
-    )
-
-    pokemon = PythonOperator(
-        task_id='Pokemon',
-        python_callable=get_stream_info,
-        op_kwargs={'game_id': '1584745140'},
-    )
+    # chatting = PythonOperator(
+    #     task_id='Chatting',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '509658'},
+    # )
+    #
+    # grandTheftAutoV = PythonOperator(
+    #     task_id='GrandTheftAutoV',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '32982'},
+    # )
+    #
+    # leagueOfLegends = PythonOperator(
+    #     task_id='LeagueofLegends',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '21779'},
+    # )
+    #
+    # apexLegends = PythonOperator(
+    #     task_id='ApexLegends',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '511224'},
+    # )
+    #
+    # valorant = PythonOperator(
+    #     task_id='Valorant',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '516575'},
+    # )
+    #
+    # callOfDuty = PythonOperator(
+    #     task_id='CallofDuty',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '512710'},
+    # )
+    #
+    # fortnite = PythonOperator(
+    #     task_id='Fortnite',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '33214'},
+    # )
+    #
+    # teamFightTactics = PythonOperator(
+    #     task_id='TeamfightTactics',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '513143'},
+    # )
+    #
+    # minecraft = PythonOperator(
+    #     task_id='Minecraft',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '27471'},
+    # )
+    #
+    # pokemon = PythonOperator(
+    #     task_id='Pokemon',
+    #     python_callable=get_stream_info,
+    #     op_kwargs={'game_id': '1584745140'},
+    # )
 
     combination = PythonOperator(
         task_id='Combination',
@@ -240,9 +263,14 @@ with DAG(
         python_callable=save_to_bq,
     )
 
+    for i in range(0, 10):
+        fetch_each_game[i] >> combination
 
-    # task dependencies
+    # combination >> streamToBigQuery
 
-    [chatting, grandTheftAutoV, leagueOfLegends, apexLegends, valorant, callOfDuty, fortnite,
-     teamFightTactics, minecraft, pokemon] >> combination
-    combination >> streamToBigQuery
+
+    # # task dependencies
+    #
+    # [chatting, grandTheftAutoV, leagueOfLegends, apexLegends, valorant, callOfDuty, fortnite,
+    #  teamFightTactics, minecraft, pokemon] >> combination
+    # combination >> streamToBigQuery
