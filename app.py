@@ -14,7 +14,7 @@ CORS(app, support_credentials=True)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return render_template("index.html")
+    return render_template("homepage.html")
 
 @app.route('/renderChatMonitor')
 def chatMonitorPage():  # put application's code here
