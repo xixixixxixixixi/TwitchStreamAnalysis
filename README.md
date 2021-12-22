@@ -21,7 +21,7 @@ Further analysis.
 ![](StuffForREADME/data_collection.png)
 
 # Training Model
-- Compared the result of several models, and finally decided to use Prophet
+- Compared the result of several models(e.g. Random Forest, ARIMA, Prophet), and finally decided to use Prophet
 as the prediction model.
 
 
