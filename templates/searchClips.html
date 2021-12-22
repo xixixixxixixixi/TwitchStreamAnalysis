@@ -134,7 +134,8 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Hottest Clips Viewer Counts</div>
-                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their viewer counts
+                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their viewer
+                            counts
                         </div>
                     </div>
                 </div>
@@ -150,7 +151,8 @@
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Hottest Clips Duration</div>
-                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their duration
+                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their
+                            duration
                         </div>
                     </div>
                 </div>
@@ -158,7 +160,15 @@
         </div>
     </div>
 </section>
-<div id="clipsLinksContainer"></div>
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">See some Clips here</h2>
+        </div>
+        <div class="row" id="clipsLinksContainer">
+        </div>
+    </div>
+</section>
 <section class="page-section bg-light" id="team">
     <div class="container">
         <div class="text-center">
@@ -200,7 +210,8 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <div id="barChartForClipsViewerCount1"></div>
-                            <p>This chart shows the top 10 most popular Clips and their viewer counts. You can type in the name to search the clips you want to see.</p>
+                            <p>This chart shows the top 10 most popular Clips and their viewer counts. You can type in
+                                the name to search the clips you want to see.</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -233,7 +244,8 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <div id="barChartForClipsDuration1"></div>
-                            <p>This chart shows the top 10 most popular Clips and their durations. You can type in the name to search the clips you want to see.</p>
+                            <p>This chart shows the top 10 most popular Clips and their durations. You can type in the
+                                name to search the clips you want to see.</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -325,10 +337,6 @@
 
     function drawBarChartForClipsDuration(dataSet) {
         let option = {
-            title: {
-                left: 'left',
-                text: 'Top 10 most popular Clips and its duration'
-            },
             dataset: [
                 {
                     dimensions: ['title', 'duration', 'view_count'],
@@ -366,9 +374,10 @@
         document.getElementById("clipsLinksContainer").innerHTML = "";
         for (let i = 0; i < response.length; i++) {
             let clip = response[i];
-            document.getElementById("clipsLinksContainer").innerHTML += "<div style='display: inline-block'><img src=\"" +
+            document.getElementById("clipsLinksContainer").innerHTML += "<div class='col-lg-4 col-sm-6 mb-4'><div class='portfolio-item'><a class='portfolio-link' data-bs-toggle='modal' onclick='generateEmbedVideo(\"" + clip.url + "\")'><div class='portfolio-hover'><div class='portfolio-hover-content'><i class='fas fa-plus fa-3x'></i></div></div>"
+                + "<div style='display: inline-block'><img style='width: 416px; height: 300px' src=\"" +
                 clip.thumbnail_url
-                + "\"" + " onclick = generateEmbedVideo(\"" + clip.url + "\")></div>";
+                + "\"" + " onclick = generateEmbedVideo(\"" + clip.url + "\")></div>" + "</a></div></div>";
         }
         document.getElementById("clipsLinksContainer").innerHTML += "<br>"
     }
