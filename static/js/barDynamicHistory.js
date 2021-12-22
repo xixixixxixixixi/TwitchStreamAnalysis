@@ -1,6 +1,11 @@
 let barDynamicHistory = echarts.init(document.getElementById('barDynamicHistory'), null, {
     height: 500,
-    width: 700
+    width: 850
+});
+
+let barDynamicHistory1 = echarts.init(document.getElementById('barDynamicHistory1'), null, {
+    height: 500,
+    width: 850
 });
 
 window.onload = function () {
@@ -24,7 +29,7 @@ function drawBarDynamicHistory(dataSet) {
         // },
         title: {
             left: 'left',
-            text: 'Recent History Trend of Popular game viewer count'
+            // text: 'Recent History Trend of Popular game viewer count'
         },
         xAxis: {
             max: 'dataMax'
@@ -40,7 +45,6 @@ function drawBarDynamicHistory(dataSet) {
         series: [
             {
                 realtimeSort: true,
-                name: 'Viewer Count',
                 type: 'bar',
                 data: dataToShow,
                 label: {
@@ -64,6 +68,7 @@ function drawBarDynamicHistory(dataSet) {
             for (var j = 0; j < 5; ++j) {
                 dataToShow[i] = viewerCount[i][j];
                 barDynamicHistory.setOption(option);
+                barDynamicHistory1.setOption(option);
             }
 
         }

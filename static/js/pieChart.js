@@ -1,7 +1,12 @@
 
 let pieChart = echarts.init(document.getElementById('pieChart'), null, {
     height: 450,
-    width: 700
+    width: 850
+});
+
+let pieChart1 = echarts.init(document.getElementById('pieChart1'), null, {
+    height: 450,
+    width: 850
 });
 
 window.onload = function () {
@@ -12,7 +17,7 @@ function drawPieChart(dataSet) {
     let option = {
         title: {
             left: 90,
-            text: 'Most Popular Live Rooms in Different Language'
+            // text: 'Most Popular Live Rooms in Different Language'
         },
         legend: {
             right: 'left',
@@ -41,6 +46,7 @@ function drawPieChart(dataSet) {
         ]
     };
     pieChart.setOption(option);
+    pieChart1.setOption(option);
 }
 
 // ajax for pie chart

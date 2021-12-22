@@ -1,6 +1,10 @@
 var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
     height: 500,
-    width: 700
+    width: 850
+});
+var barChartForTop10Anchors1 = echarts.init(document.getElementById('barChartForTop10Anchors1'), null, {
+    height: 500,
+    width: 850
 });
 
 window.onload = function () {
@@ -38,7 +42,7 @@ function drawBarChartForTop10Anchors(dataSet) {
 
     let option = {
         title: {
-            text: 'Streaming Schedule for popular channels'
+            // text: 'Streaming Schedule for popular channels'
         },
         tooltip: {
             trigger: 'axis',
@@ -107,6 +111,7 @@ function drawBarChartForTop10Anchors(dataSet) {
         ]
     };
     barChartForTop10Anchors.setOption(option);
+    barChartForTop10Anchors1.setOption(option);
 }
 
 var barDataSetForTop10Anchors;

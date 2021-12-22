@@ -1,7 +1,12 @@
 
 var BarChartForTopKTags = echarts.init(document.getElementById('barChartForTopKTags'), null, {
     height: 500,
-    width: 700
+    width: 850
+});
+
+var BarChartForTopKTags1 = echarts.init(document.getElementById('barChartForTopKTags1'), null, {
+    height: 500,
+    width: 850
 });
 
 window.onload = function () {
@@ -12,7 +17,7 @@ function drawBarChartForTopKTags(dataSet) {
     let option = {
         title: {
             left: 'left',
-            text: 'Most Popular Tags'
+            // text: 'Most Popular Tags'
         },
         dataset: [
             {
@@ -45,6 +50,7 @@ function drawBarChartForTopKTags(dataSet) {
         }
     };
     BarChartForTopKTags.setOption(option);
+    BarChartForTopKTags1.setOption(option);
 }
 
 // ajax for top K Tags
