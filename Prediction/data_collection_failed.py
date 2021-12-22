@@ -264,7 +264,7 @@ with DAG(
     )
 
     for i in range(0, 10):
-        fetch_each_game[i] >> combination
+        get_top_games >> fetch_each_game[i] >> combination
 
     # combination >> streamToBigQuery
 
