@@ -1,6 +1,6 @@
 // Define configuration options
 function setUpLink(channelName) {
-    const opts = {
+    let opts = {
         identity: {
             username: "Yhl7",
             password: "8mt1clasptu8nzn0l7dgoonhicom6i"
