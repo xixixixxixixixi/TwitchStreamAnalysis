@@ -34,8 +34,8 @@ def trend_prediction(game_name):
     forecast = m.predict(future)
     prediction = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
     print(prediction)
-    fig = m.plot(forecast)
-    fig.show()
+    # fig = m.plot(forecast)
+    # fig.show()
 
     return (prediction['ds'].tolist(),
             df['y'].tolist(),
