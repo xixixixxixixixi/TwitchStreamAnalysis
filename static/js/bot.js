@@ -48,38 +48,3 @@ function onConnectedHandler(addr, port) {
 }
 
 
-// setInterval(function () {
-//     console.log(commandName);
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         if (sentimentList.reduce((a, b) => a + b, 0) === 1) {
-//             let max = 0;
-//             let sentiment = "neutral";
-//             for (let i = 0; i < sentimentList.length; i++) {
-//                 if (sentimentList[i] > max) {
-//                     max = sentimentList[i];
-//                     if (i === 0) {
-//                         sentiment = "Positive";
-//                     } else if (i === 1) {
-//                         sentiment = "Neutral";
-//                     } else {
-//                         sentiment = "Negative";
-//                     }
-//                 }
-//             }
-//             sentimentList = [0, 0, 0];
-//             console.log(sentiment);
-//             document.getElementById("sentimentResult").innerHTML = sentiment;
-//         } else {
-//             if (response.type == "positive") {
-//                 sentimentList[0]++;
-//             } else if (response.type == "neutral") {
-//                 sentimentList[1]++;
-//             } else {
-//                 sentimentList[2]++;
-//             }
-//         }
-//     });
-// }, 5000);
-
-

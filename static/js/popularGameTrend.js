@@ -1,19 +1,12 @@
-// let dataForTopKGames;
-// $.ajax({
-//     url: domain + "/topKGames/" + 10,
-//     type: 'GET',
-//     cache: false,
-//     processData: false,
-//     contentType: 'application/json',
-//     success: function (r) {
-//         dataForTopKGames = JSON.parse(r);
-//         console.log(dataForTopKGames);
-//         gameTrendInformationInjection(dataForTopKGames);
-//     }
-// })
+
 let LineChartForGameTrend = echarts.init(document.getElementById('lineChartForGameTrend'), null, {
     height: 500,
     width: 1248
+});
+
+let LineChartForGameTrend1 = echarts.init(document.getElementById('lineChartForGameTrend1'), null, {
+    height: 500,
+    width: 850
 });
 
 // TODO: implement Custome Game Name
@@ -68,6 +61,7 @@ function drawLineChartForGameTrend(dataSet) {
         ]
     };
     LineChartForGameTrend.setOption(option);
+    LineChartForGameTrend1.setOption(option);
 }
 
 

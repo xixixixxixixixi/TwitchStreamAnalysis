@@ -254,7 +254,7 @@ def getPrediction(game_name):
 
     """
     time, y, yhat, _, _ = trend_prediction(game_name)
-    prediction = {'label': ['True', 'Predict'], 'time': time[-3360:], 'true': y[-3360:],
+    prediction = {'label': ['True', 'Predict'], 'time': time[-3840:], 'true': y[-3360:],
                   'pred': yhat[-3840:]}
     return prediction
 
