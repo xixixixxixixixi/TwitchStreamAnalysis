@@ -20,7 +20,7 @@ function drawLineChartForGameTrend(dataSet) {
     // let minStartTime = covertToDatetimeFormat(dataSet);
     let option = {
         title: {
-            text: 'Viewer Count Trend'
+            // text: 'Viewer Count Trend'
         },
         tooltip: {
             trigger: 'axis'
