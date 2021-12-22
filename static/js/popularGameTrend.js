@@ -11,7 +11,6 @@ let LineChartForGameTrend1 = echarts.init(document.getElementById('lineChartForG
 
 // TODO: implement Custome Game Name
 window.onload = function () {
-    console.log("111111111111111111")
     gameTrendInformationInjection();
     drawLineChartForGameTrend([]);
 }
@@ -109,8 +108,3 @@ function submitRequestForGameTrend() {
         }
     })
 }
-
-//
-// setInterval(function () {
-//     console.log($('#gameList').val())
-// }, 1000)
