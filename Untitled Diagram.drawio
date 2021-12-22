@@ -1,11 +1,11 @@
-<mxfile modified="2021-12-22T07:39:42.192Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="Vh2C9UtiytdLsQUZMFk9" version="16.0.3" type="github">
+<mxfile modified="2021-12-22T07:41:29.679Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="iNUegzT-BtpstzO0w6a-" version="16.0.3" type="github">
   <diagram id="d1ab7348-05c3-a1e3-ca4d-12c340fd6b49" name="Page-1">
     <mxGraphModel dx="1557" dy="1133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="2" value="&lt;b&gt;Google &lt;/b&gt;Cloud Platform" style="fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;fontSize=14;align=left;spacing=10;fontColor=#717171;9E9E9E;verticalAlign=top;spacingTop=-4;fontStyle=0;spacingLeft=40;html=1;" parent="1" vertex="1">
-          <mxGeometry x="150" y="827" width="270" height="400" as="geometry" />
+          <mxGeometry x="50" y="860" width="270" height="400" as="geometry" />
         </mxCell>
         <mxCell id="3" value="" style="shape=mxgraph.gcp2.google_cloud_platform;fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;" parent="2" vertex="1">
           <mxGeometry width="23" height="20" relative="1" as="geometry">
@@ -82,6 +82,9 @@
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-462" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Word Cloud for Popular 1~100 Games&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1000" y="630" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-464" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Prediction Model(Prophet)&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="370" y="1040" width="150" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
