@@ -7,3 +7,4 @@ pandas_gbq == 0.15.0
 google-auth-oauthlib==0.4.6
 prophet==1.0.1
 pmdarima==1.8.4
+monkeylearn==3.6.0
