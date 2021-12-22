@@ -16,6 +16,9 @@ CORS(app, support_credentials=True)
 def hello_world():  # put application's code here
     return render_template("index.html")
 
+@app.route('/renderChatMonitor')
+def chatMonitorPage():  # put application's code here
+    return render_template("chatMonitor.html")
 
 @app.route('/renderPredictionPage')
 def predictionPage():  # put application's code here

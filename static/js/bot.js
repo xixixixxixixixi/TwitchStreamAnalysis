@@ -2,11 +2,11 @@
 // Define configuration options
 const opts = {
   identity: {
-    username: process.env.BOT_USERNAME,
-    password: process.env.OAUTH_TOKEN
+    username: "Yhl7",
+    password: "8mt1clasptu8nzn0l7dgoonhicom6i"
   },
   channels: [
-    process.env.CHANNEL_NAME
+    "xQcOW"
   ]
 };
 
@@ -28,13 +28,9 @@ function onMessageHandler (target, context, msg, self) {
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
-  if (commandName === '!d20') {
-    const num = rollDice(commandName);
-    client.say(target, `You rolled a ${num}. Link: https://glitch.com/~twitch-chatbot`);
-    console.log(`* Executed ${commandName} command`);
-  } else {
-    console.log(`* Unknown command ${commandName}`);
-  }
+
+  // console.log(`* Unknown command ${commandName}`);
+  console.log(commandName);
 }
 
 // Function called when the "dice" command is issued
