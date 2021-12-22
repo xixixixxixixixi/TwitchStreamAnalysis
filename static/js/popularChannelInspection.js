@@ -37,7 +37,7 @@ function changeChannel() {
     let channel = $('#channelList').val();
     generateChannelPreview(channel);
     setUpLink(channel);
-    
+
     setInterval(function () {
         console.log(commandName);
         $.ajax(settings).done(function (response) {
