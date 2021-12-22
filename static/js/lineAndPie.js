@@ -3,6 +3,11 @@ let lineAndPie = echarts.init(document.getElementById('lineAndPie'), null, {
     width: 1248
 });
 
+let lineAndPie1 = echarts.init(document.getElementById('lineAndPie1'), null, {
+    height: 700,
+    width: 850
+});
+
 window.onload = function () {
     drawLineAndPie([]);
 }
@@ -129,7 +134,26 @@ function drawLineAndPie(dataSet) {
                 });
             }
         });
+        lineAndPie1.on('updateAxisPointer', function (event) {
+            const xAxisInfo = event.axesInfo[0];
+            if (xAxisInfo) {
+                const dimension = xAxisInfo.value + 1;
+                lineAndPie.setOption({
+                    series: {
+                        id: 'pie',
+                        label: {
+                            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                        },
+                        encode: {
+                            value: dimension,
+                            tooltip: dimension
+                        }
+                    }
+                });
+            }
+        });
         lineAndPie.setOption(option);
+        lineAndPie1.setOption(option);
     });
 }
 

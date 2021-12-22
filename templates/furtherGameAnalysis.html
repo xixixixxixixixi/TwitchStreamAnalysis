@@ -10,13 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Agency - Start Bootstrap Theme</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../static/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
@@ -90,28 +87,143 @@
         </div>
     </div>
 </section>
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="section-heading text-uppercase" style="margin-bottom: 50px">See some real-time data analysis
+                here</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Portfolio item 1-->
+                <div class="portfolio-item">
+                    <div>
+                        Input the amount of game you want to analyze for word cloud(max: 100): <label
+                            for="searchGamesWordCloud"></label><input type="text" id="searchGamesWordCloud">
+                        <button onclick="requestWordCloudViewerData()">Submit</button>
+                    </div>
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <div id="gameWordCloudChart"></div>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Hottest Language</div>
+                        <div class="portfolio-caption-subheading text-muted">Most Popular Live Rooms in Different
+                            Language
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <!-- Portfolio item 5-->
+                <div class="portfolio-item">
+                    <div>
+                        Input amount of game and amount of streams for each game (split by "," max: 100): <label
+                            for="searchRank"></label><input
+                            type="text" id="searchRank">
+                        <button onclick="requestRankViewerData()">Submit</button>
+                    </div>
+                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <div id="gameRankChart"></div>
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Viewer count</div>
+                        <div class="portfolio-caption-subheading text-muted">Recent History Trend of Popular game viewer
+                            count
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../static/img/close-icon.svg" alt="Close modal"/>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">Project Name</h2>
+                            <div id="gameWordCloudChart1"></div>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
+                            <ul class="list-inline">
+                                <li>
+                                    <strong>Client:</strong>
+                                    Threads
+                                </li>
+                                <li>
+                                    <strong>Category:</strong>
+                                    Illustration
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <i class="fas fa-times me-1"></i>
+                                Close Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Portfolio item 2 modal popup-->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-bs-dismiss="modal"><img src="../static/img/close-icon.svg" alt="Close modal"/>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <h2 class="text-uppercase">Project Name</h2>
+                        <div id="gameRankChart1"></div>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
+                            <ul class="list-inline">
+                                <li>
+                                    <strong>Client:</strong>
+                                    Explore
+                                </li>
+                                <li>
+                                    <strong>Category:</strong>
+                                    Graphic Design
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <i class="fas fa-times me-1"></i>
+                                Close Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <a href="/">Go Back To Main Page</a>
-<div>
-    Input the amount of game you want to analyze for word cloud(max: 100): <label
-        for="searchGamesWordCloud"></label><input type="text" id="searchGamesWordCloud">
-    <button onclick="requestWordCloudViewerData()">Submit</button>
-</div>
 
-<div id="gameWordCloudChart"></div>
-
-<div>
-    Input amount of game and amount of streams for each game (split by "," max: 100): <label
-        for="searchRank"></label><input
-        type="text" id="searchRank">
-    <button onclick="requestRankViewerData()">Submit</button>
-</div>
-
-<div id="gameRankChart"></div>
 <script type="text/javascript">
     // https://developers.google.com/chart/interactive/docs/gallery/piechart
     // https://www.runoob.com/echarts/echarts-ajax-data.html
-    let domain = "https://proj6893.herokuapp.com";
-    // let domain = "http://127.0.0.1:5000";
+    // let domain = "https://proj6893.herokuapp.com";
+    let domain = "http://127.0.0.1:5000";
 </script>
 <script>
     window.onload = function () {
@@ -120,6 +232,11 @@
     }
 
     let wordCloudChartForGamesViewerCount = echarts.init(document.getElementById('gameWordCloudChart'), null, {
+        height: 800,
+        width: 1248
+    });
+
+    let wordCloudChartForGamesViewerCount1 = echarts.init(document.getElementById('gameWordCloudChart1'), null, {
         height: 800,
         width: 800
     });
@@ -166,17 +283,15 @@
             }]
         }
         wordCloudChartForGamesViewerCount.setOption(option);
+        wordCloudChartForGamesViewerCount1.setOption(option);
     }
 
-    // function wordCloudDataPreprocess(dataSet) {
-    //     return dataSet.map(x => ({
-    //         name: x.title,
-    //         value: x.view_count
-    //     }));
-    // }
-
-
     let rankChartForGamesViewerCount = echarts.init(document.getElementById('gameRankChart'), null, {
+        height: 800,
+        width: 1248
+    });
+
+    let rankChartForGamesViewerCount1 = echarts.init(document.getElementById('gameRankChart1'), null, {
         height: 800,
         width: 800
     });
@@ -220,6 +335,7 @@
             }
         }
         rankChartForGamesViewerCount.setOption(option);
+        rankChartForGamesViewerCount1.setOption(option);
     }
 
 
@@ -258,6 +374,10 @@
     }
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/js/scripts.js"></script>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<script type="text/javascript"></script>
 </body>
 </html>
 <style>
