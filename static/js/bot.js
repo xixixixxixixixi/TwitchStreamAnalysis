@@ -27,8 +27,6 @@ const settings = {
     "url": "https://api.twinword.com/api/sentiment/analyze/latest/?text=" + sentence,
     "method": "GET",
     "headers": {
-        "Content-Type": "application/json",
-        "Host": "api.twinword.com",
         "X-Twaip-Key": "YjOGT8qTVDV8HUnPOAbYCCrcGSlu3umY61BEP8sdZ3TTK17x3XYxidM95mFOap0SQrYWbm58hCj7MSgZmGsMxw=="
     }
 };
