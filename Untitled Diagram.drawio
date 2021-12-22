@@ -1,11 +1,11 @@
-<mxfile modified="2021-12-22T07:54:25.813Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="Ll9WysnfSDGCdganAsz7" version="16.0.3" type="github">
+<mxfile modified="2021-12-22T07:57:31.434Z" host="app.diagrams.net" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="ghLv1Wa6hcgL75PsT_Dp" version="16.0.3" type="github">
   <diagram id="d1ab7348-05c3-a1e3-ca4d-12c340fd6b49" name="Page-1">
-    <mxGraphModel dx="2726" dy="1133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2726" dy="1960" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="2" value="&lt;b&gt;Google &lt;/b&gt;Cloud Platform" style="fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;fontSize=14;align=left;spacing=10;fontColor=#717171;9E9E9E;verticalAlign=top;spacingTop=-4;fontStyle=0;spacingLeft=40;html=1;" parent="1" vertex="1">
-          <mxGeometry x="30" y="880" width="270" height="400" as="geometry" />
+          <mxGeometry x="40" y="980" width="250" height="330" as="geometry" />
         </mxCell>
         <mxCell id="3" value="" style="shape=mxgraph.gcp2.google_cloud_platform;fillColor=#F6F6F6;strokeColor=none;shadow=0;gradientColor=none;" parent="2" vertex="1">
           <mxGeometry width="23" height="20" relative="1" as="geometry">
@@ -13,13 +13,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-416" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;font-weight: normal&quot; id=&quot;docs-internal-guid-316909c4-7fff-a354-a37e-04a39da19070&quot;&gt;&lt;img width=&quot;109px;&quot; height=&quot;38px;&quot; src=&quot;https://lh4.googleusercontent.com/LxayjPjzjKkCL0HYA65VXoyyoOscfMtLdCUFHOa9yM1X0BcX8T2q-nmVEjxp1F3qQI8b09Z7yQ7Oi-YrYqKAyorxqajZQehFD1gsuJcjzZGV7gm6len-y3f4YwtNdV7CPeT-UqFcx-w3&quot;&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2">
-          <mxGeometry x="74.27337662337662" y="112.0009696969697" width="92.36842105263159" height="72.72727272727273" as="geometry" />
+          <mxGeometry x="68.77164502164501" y="92.4008" width="85.5263157894737" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-426" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="2" source="FwzKtPki3mb1ld9PXNBR-417" target="FwzKtPki3mb1ld9PXNBR-416">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-417" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;font-weight: normal&quot; id=&quot;docs-internal-guid-be7de013-7fff-e863-e018-794752b9adc6&quot;&gt;&lt;img width=&quot;99px;&quot; height=&quot;38px;&quot; src=&quot;https://lh4.googleusercontent.com/p6YRfAzZ8uXK-DK0cqEtbSDvuzZEOvNlf43y3y0LMpIiRHml8wVQ-_PGyCu_Ihr4Py0xikhgj9YvjcO5uYjP1bFE-3CY24jQOp2UOvnxXTiE6FW6G4hS2_1EoFUIKpSK_PI-m5OdvvJZ&quot;&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="2">
-          <mxGeometry x="77.82621428571431" y="254.53939393939396" width="85.26315789473685" height="72.72727272727273" as="geometry" />
+          <mxGeometry x="72.06130952380956" y="209.995" width="78.94736842105264" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-423" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FwzKtPki3mb1ld9PXNBR-422" target="FwzKtPki3mb1ld9PXNBR-417">
           <mxGeometry relative="1" as="geometry" />
@@ -29,8 +29,11 @@
             <mxPoint x="450" y="450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-491" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="FwzKtPki3mb1ld9PXNBR-422" target="FwzKtPki3mb1ld9PXNBR-489">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-422" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;b style=&quot;font-weight: normal&quot; id=&quot;docs-internal-guid-10e85950-7fff-221c-757d-98746445bb83&quot;&gt;&lt;img width=&quot;69px;&quot; height=&quot;42px;&quot; src=&quot;https://lh4.googleusercontent.com/X52n6nIi6jDqoepzxWdQs9FHmvJdhyaC0_WNMeD2bkYeshL-ofyDqp7nEUyaDXw-bSMHPeZ2HCtH1UnEVc7JYRm8Pd8ADoOUmh9U-MvJmXZkl06Tbhu9JHNu4-7Vtsmsyg2eG3Eg_0I-&quot;&gt;&lt;/b&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-300" y="710" width="90" height="60" as="geometry" />
+          <mxGeometry x="-310" y="710" width="100" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-427" value="&lt;span id=&quot;docs-internal-guid-2ce76dfb-7fff-349d-ac28-97f2d1292088&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Most popular games(Simple Bar Chart)&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="569.71" y="400" width="210.29" height="60" as="geometry" />
@@ -54,22 +57,22 @@
           <mxGeometry x="580" y="202.1" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-454" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Prediction&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="570" y="850" width="120" height="60" as="geometry" />
+          <mxGeometry x="570" y="935" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-455" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Viewer Count of Popular Games Trend Prediction&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="569.71" y="940" width="210" height="60" as="geometry" />
+          <mxGeometry x="569.71" y="1025" width="210" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-456" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;span style=&quot;font-size: 14pt ; font-family: &amp;#34;times new roman&amp;#34; ; background-color: transparent ; vertical-align: baseline&quot;&gt;Trend and Ratio distribution of Popular Games&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1040" width="200" height="60" as="geometry" />
+          <mxGeometry x="570" y="1125" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-457" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Clips Analysis&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="569.71" y="1260" width="120" height="60" as="geometry" />
+          <mxGeometry x="110.00000000000006" y="-260" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-458" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Top 10 Most Popular Clips and its Viewer Counts(For one specific user)&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1363" width="320" height="80" as="geometry" />
+          <mxGeometry x="110.29000000000002" y="-157" width="320" height="80" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-459" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Top 10 Most Popular Clips and its duration(For one specific user)&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1493" width="320" height="80" as="geometry" />
+          <mxGeometry x="110.29000000000002" y="-27" width="320" height="80" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-460" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Further Game Visualization&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1000" y="440" width="120" height="60" as="geometry" />
@@ -77,8 +80,11 @@
         <mxCell id="FwzKtPki3mb1ld9PXNBR-462" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Sankey Graph Showing Current Dominators of the Top Games&amp;nbsp;&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1000" y="640" width="190" height="70" as="geometry" />
         </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-488" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="FwzKtPki3mb1ld9PXNBR-464" target="FwzKtPki3mb1ld9PXNBR-487">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-464" value="&lt;font face=&quot;times new roman&quot;&gt;&lt;span style=&quot;font-size: 18.6667px&quot;&gt;Prediction Model(Prophet)&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="370" y="1040" width="150" height="60" as="geometry" />
+          <mxGeometry x="320" y="1020" width="140" height="160" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-465" value="&lt;span id=&quot;docs-internal-guid-b67f78e4-7fff-6282-d4a9-ceaf25853f4b&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Word Cloud for Top Most Popular 1~100 Games&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1010" y="1060" width="190" height="60" as="geometry" />
@@ -123,7 +129,16 @@
           <mxGeometry x="1010" y="870" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="FwzKtPki3mb1ld9PXNBR-484" value="&lt;span id=&quot;docs-internal-guid-ad0c3780-7fff-cd07-1164-dee59d45e2b9&quot; style=&quot;font-size: 18.6667px&quot;&gt;&lt;p dir=&quot;ltr&quot; style=&quot;line-height: 1.2 ; margin-top: 0pt ; margin-bottom: 0pt&quot;&gt;&lt;font face=&quot;times new roman&quot;&gt;Top 10 Most Popular Clips Video Links(For one specific user)&lt;/font&gt;&lt;/p&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1620" width="320" height="80" as="geometry" />
+          <mxGeometry x="110.29000000000002" y="100" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-485" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=18;startArrow=none;startFill=0;endArrow=classic;endFill=1;" edge="1" parent="1" source="FwzKtPki3mb1ld9PXNBR-416" target="FwzKtPki3mb1ld9PXNBR-464">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-487" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="570" y="935" width="260" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="FwzKtPki3mb1ld9PXNBR-489" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="110.00000000000006" y="-260" width="340.29" height="500" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
