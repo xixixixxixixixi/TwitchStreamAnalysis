@@ -133,9 +133,8 @@
                         <div id="barChartForClipsViewerCount"></div>
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Hottest Language</div>
-                        <div class="portfolio-caption-subheading text-muted">Most Popular Live Rooms in Different
-                            Language
+                        <div class="portfolio-caption-heading">Hottest Clips Viewer Counts</div>
+                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their viewer counts
                         </div>
                     </div>
                 </div>
@@ -150,9 +149,8 @@
                         <div id="barChartForClipsDuration"></div>
                     </a>
                     <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Viewer count</div>
-                        <div class="portfolio-caption-subheading text-muted">Recent History Trend of Popular game viewer
-                            count
+                        <div class="portfolio-caption-heading">Hottest Clips Duration</div>
+                        <div class="portfolio-caption-subheading text-muted">Top 10 most popular Clips and their duration
                         </div>
                     </div>
                 </div>
@@ -169,26 +167,21 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
-                            <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
                             <div id="barChartForClipsViewerCount1"></div>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
+                            <p>This chart shows the top 10 most popular Clips and their viewer counts. You can type in the name to search the clips you want to see.</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
-                                    Threads
+                                    Hottest Clips Viewer Counts
                                 </li>
                                 <li>
                                     <strong>Category:</strong>
-                                    Illustration
+                                    BarChart
                                 </li>
                             </ul>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                 <i class="fas fa-times me-1"></i>
-                                Close Project
+                                Close
                             </button>
                         </div>
                     </div>
@@ -207,26 +200,21 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
-                            <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
                             <div id="barChartForClipsDuration1"></div>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
+                            <p>This chart shows the top 10 most popular Clips and their durations. You can type in the name to search the clips you want to see.</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
-                                    Explore
+                                    Hottest Clips Duration
                                 </li>
                                 <li>
                                     <strong>Category:</strong>
-                                    Graphic Design
+                                    BarChart
                                 </li>
                             </ul>
                             <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                 <i class="fas fa-times me-1"></i>
-                                Close Project
+                                Close
                             </button>
                         </div>
                     </div>
@@ -238,8 +226,6 @@
 <a href="/">Go Back To Main Page</a>
 <div id="clipsLinksContainer"></div>
 <script type="text/javascript">
-    // https://developers.google.com/chart/interactive/docs/gallery/piechart
-    // https://www.runoob.com/echarts/echarts-ajax-data.html
     let domain = "https://proj6893.herokuapp.com";
     // let domain = "http://127.0.0.1:5000";
 </script>
@@ -262,10 +248,6 @@
 
     function drawBarChartForClipsViewerCount(dataSet) {
         let option = {
-            title: {
-                left: 'left',
-                text: 'Top 10 most popular Clips and its viewer counts'
-            },
             dataset: [
                 {
                     dimensions: ['title', 'view_count'],
