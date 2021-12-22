@@ -13,7 +13,7 @@
 // })
 let LineChartForGameTrend = echarts.init(document.getElementById('lineChartForGameTrend'), null, {
     height: 500,
-    width: 2000
+    width: 1248
 });
 
 // TODO: implement Custome Game Name

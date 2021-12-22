@@ -22,7 +22,7 @@ def chatMonitorPage():  # put application's code here
 
 @app.route('/renderPredictionPage')
 def predictionPage():  # put application's code here
-    return render_template("prediction.html")
+    return render_template("prediction(backup).html")
 
 
 @app.route('/renderClipSearch')

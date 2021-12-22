@@ -1,6 +1,6 @@
 let lineAndPie = echarts.init(document.getElementById('lineAndPie'), null, {
-    height: 500,
-    width: 700
+    height: 700,
+    width: 1248
 });
 
 window.onload = function () {

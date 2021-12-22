@@ -1,6 +1,6 @@
 var barChartForTop10Anchors = echarts.init(document.getElementById('barChartForTop10Anchors'), null, {
     height: 500,
-    width: 850
+    width: 1248
 });
 var barChartForTop10Anchors1 = echarts.init(document.getElementById('barChartForTop10Anchors1'), null, {
     height: 500,

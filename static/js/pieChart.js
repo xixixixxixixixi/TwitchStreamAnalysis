@@ -1,7 +1,7 @@
 
 let pieChart = echarts.init(document.getElementById('pieChart'), null, {
     height: 450,
-    width: 850
+    width: 1248
 });
 
 let pieChart1 = echarts.init(document.getElementById('pieChart1'), null, {

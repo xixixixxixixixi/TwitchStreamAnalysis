@@ -11450,10 +11450,17 @@ header.masthead .masthead-heading {
   }
 }
 #portfolio .portfolio-item {
-  max-width: 850px;
+  max-width: 1248px;
   margin-left: auto;
   margin-right: auto;
 }
+
+#portfolio1 .portfolio-item1 {
+  max-width: 2000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #portfolio .portfolio-item .portfolio-link {
   position: relative;
   display: block;

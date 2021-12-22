@@ -240,6 +240,13 @@ with DAG(
         python_callable=save_to_bq,
     )
 
+<<<<<<< HEAD:Prediction/data_collection.py
+=======
+    for i in range(0, 10):
+        get_top_games >> fetch_each_game[i] >> combination
+
+    # combination >> streamToBigQuery
+>>>>>>> 7f2652741f124abee85547ae9654556dccac251f:Prediction/data_collection_failed.py
 
     # task dependencies
 
