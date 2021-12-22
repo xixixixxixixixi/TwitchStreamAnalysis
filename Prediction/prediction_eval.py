@@ -5,6 +5,8 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 from statsmodels.tsa.arima.model import ARIMA
 from math import sqrt
 from trend_prediction import fetch_data
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
 
 
 def fig_plot(method_name, time_axis, true_values, pred_values, start_idx):
@@ -45,27 +47,27 @@ if __name__ == "__main__":
     pred_prophet = forecast[['ds', 'yhat']]
     rmse_prophet = sqrt(mean_squared_error(test_set['y'].to_numpy(), pred_prophet['yhat'][portion: df.shape[0]]))
     fig_plot('Prophet', df['ds'].to_numpy(), df['y'].to_numpy(), pred_prophet['yhat'].to_numpy(), portion)
-
-    # # Seasonal ARIMA
-    # smodel = pm.auto_arima(train_set['y'],
-    #                        start_p=1,
-    #                        start_q=1,
-    #                        test='adf',
-    #                        max_p=3,
-    #                        max_q=3,
-    #                        m=5,
-    #                        start_P=0,
-    #                        seasonal=True,
-    #                        d=None,
-    #                        D=1,
-    #                        trace=True,
-    #                        error_action='ignore',
-    #                        suppress_warnings=True,
-    #                        stepwise=True)
-    # fitted = smodel.predict(n_periods=test_set.shape[0])
-    # pred_sarima = train_set['y'].tolist() + fitted.tolist()
-    # fig_plot('ARIMA', df['ds'].to_numpy(), df['y'].to_numpy(), pred_sarima, portion)
-
+    #
+    # # # Seasonal ARIMA
+    # # smodel = pm.auto_arima(train_set['y'],
+    # #                        start_p=1,
+    # #                        start_q=1,
+    # #                        test='adf',
+    # #                        max_p=3,
+    # #                        max_q=3,
+    # #                        m=5,
+    # #                        start_P=0,
+    # #                        seasonal=True,
+    # #                        d=None,
+    # #                        D=1,
+    # #                        trace=True,
+    # #                        error_action='ignore',
+    # #                        suppress_warnings=True,
+    # #                        stepwise=True)
+    # # fitted = smodel.predict(n_periods=test_set.shape[0])
+    # # pred_sarima = train_set['y'].tolist() + fitted.tolist()
+    # # fig_plot('ARIMA', df['ds'].to_numpy(), df['y'].to_numpy(), pred_sarima, portion)
+    #
     # ARIMA
     model = ARIMA(train_set['y'], order=(1, 0, 0))
     model_fit = model.fit()
@@ -77,3 +79,31 @@ if __name__ == "__main__":
     pred_arima = pred_arima + forecast
 
     fig_plot('ARIMA', df['ds'].to_numpy(), df['y'].to_numpy(), pred_arima, portion)
+
+    # # RF Regression
+    # df = pd.read_csv('RawDataRF.csv')
+    # data = df.groupby('time').describe()
+    # y = df.groupby('time').sum().reset_index()
+    # y['time'] = pd.to_datetime(y['time'])
+    # col_name = ['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max']
+    # data.columns = col_name
+    # for i in range(1, 4):
+    #     for col in col_name:
+    #         c = col + '(t-{})'.format(i)
+    #         data[c] = data[col].shift(i)
+    # portion = round(data.shape[0] * 0.8)
+    # #%%
+    # x_train = data[3:portion].iloc[:, [i for i in range(8, 32)]]
+    # x_test = data[portion:df.shape[0]].iloc[:, [i for i in range(8, 32)]]
+    # #%%
+    # y_train = y[3:portion]
+    # y_test = y[portion:df.shape[0]]
+    #
+    # # reg = svm.SVR()
+    # reg = RandomForestRegressor(random_state=200)
+    # reg.fit(x_train, y_train['viewer_count'])
+    # y_pred = reg.predict(x_test)
+    # y_pred = pd.DataFrame(y_pred, index=y_test['time'], columns=['viewer_count']).reset_index()
+    # fig_plot('RF Forest', y_train['time'].tolist() + y_test['time'].tolist(),
+    #          y_train['viewer_count'].tolist() + y_test['viewer_count'].tolist(),
+    #          y_train['viewer_count'].tolist() + y_pred['viewer_count'].tolist(), portion)
