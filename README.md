@@ -39,15 +39,24 @@ https://www.youtube.com/watch?v=Zmr3t9IqcMI
 
 
 # Instructions of running our project
+# Instructions of running our project
 Since there are API tokens contained in our code, thus for security reason, we have commented
 those areas. However, we have deployed our project on the Heroku Platform. 
-To run our project, please visit the link below. If you want to test them locally, please use your own
-API and GCP credentials. Or please contact us. Note that key.json stores parts of the GCP service account credentials.
+
+To run our project, please
+1. Open every html file, and switch the domain variable to be local host.
+2. Fill in api tokens using you own ones.
+3. use pycharm to run flask framework, and then visit 127.0.0.1:5000 in chrome. 
+4. Alternatively, you can visit our deployment https://proj6893.herokuapp.com. Please note that tokens sometimes expires. Please contact us if the web app fail to work. And we will provide updated versions of credentials for you.
+
+Note that Stream Integration is only available when we delpoy them on cloud platform(Due to browser domain policy). We have shown this part in our youtube link.
+
+Please use your own API and GCP credentials. Or please contact us. Note that key.json stores parts of the GCP service account credentials.
 Same, for security reasons, we have commented all contents in those files.
 
 Please note that based on our experience of developing with Twitch API, Twitch has web bot focusing on detecting if 
 there are leaked tokens on Github. If it finds one, it deactivate it. We have met this several times. 
-Even if I removed my keys in the repo, however, credentials are still accessible through commit history.
+Even if I removed my keys in the repo, however, sometimes the keys still expire.
 So if you find out that our web app does not work, it is really possible to be this reason. Please contact us if you 
 have problem testing the web page. We will provide new credentials for your testing.
 
