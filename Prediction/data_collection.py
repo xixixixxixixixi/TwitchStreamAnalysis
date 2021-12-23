@@ -14,8 +14,10 @@ from google.cloud import bigquery
 from twitchAPI.twitch import Twitch
 
 # Credentials
-client_id = '918pxgmrcct2dbuwu7tih5na23ogxq'
-app_secret = 'iql4q3a29cuvoag9rnxskt7eov7ty4'
+# TODO: According to what TA said, we should delete any token included in our project.
+#  Note that the content of key.json is deleted for security reason, please contact us if you want to reproduce this project
+client_id = 'TWITCH APP CLIENT ID'
+app_secret = 'TWITCH APP SECRET'
 
 
 # Twitch API
@@ -138,7 +140,9 @@ def save_to_bq(**kwargs):
     data = [kwargs['ti'].xcom_pull(key='all_streams', task_ids='Combination')]
 
     # Load data to bigquery
-    table_id = 'big-data-analytics-326904.project.top_game_viewers'
+    # TODO: According to what TA said, we should delete any token included in our project.
+    #  Note that the content of key.json is deleted for security reason, please contact us if you want to reproduce this project
+    table_id = 'YOUR GCP BIG QUERY TABLE ID'
 
     schema = schema_def(top_games)
 

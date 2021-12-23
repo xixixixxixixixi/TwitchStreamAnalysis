@@ -38,7 +38,9 @@ See YouTube Link.
 # Instructions of running our project
 Since there are API tokens contained in our code, thus for security reason, we have commented
 those areas. However, we have deployed our project on the Heroku Platform. 
-To run our project, please visit the link below.
+To run our project, please visit the link below. If you want to test them locally, please use your own
+API and GCP credentials. Or please contact us. Note that key.json stores parts of the GCP service account credentials.
+Same, for security reasons, we have commented all contents in those files.
 
 # Deployment
 We deployed this project on 

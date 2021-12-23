@@ -1,12 +1,3 @@
 {
-  "type": "service_account",
-  "project_id": "big-data-analytics-326904",
-  "private_key_id": "07b71f56f143bd51c4f6bcc4d5ddfc0b231b2ffc",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDD08BdpfzCTVR7\nGmXBIAAwhp9HT1SXVPliKIVvyjCeg3FnurqU7cYbTdVKuuLLD5dGV1CJ0yMeAF80\nknLBcj41W20VMSOVLV5ol7K9Mx5rbY8WjR5B3X4A5+vX8sm9E5/y454v3SY1my3f\nVQ5l8BeQouikVIkEUHsUgVREL71uLtvvQSgx88hF1RtbolNEWLQOULS58L5Qc2Zf\nlm0pDLC1+wHHqy8QdVEbGc94zy+SpPEu2MVlvXz1Ld1dyochB76Iw5J1wYT1Ar6v\nh5y8n31mTuO4BI0V2c825xonB/vPtxqN/0tnb7PiFoC3xDN2hZBWkttFRzrl6pEy\nhX1/HItrAgMBAAECggEACTLcsel2po/oXIIAbqJ4r87bE4fz8sngjw5VOkuWnhOR\nk6xPUGic6jJtRv3hYmWAlyLJ2zeKSkH9NuR8NH8P0gTR6nFs+PhxG1uo3z9T+frj\nAk2tsq1bWmKKjxHODS4rUMcFar0qKtF3xapiq0IscTRd1j5MU2IObgenNC7D6LWA\np9YyJnCxDW1lWKbQzo7xPN31jTtNoP1pgbPCMnyech+E9RloGP6tqG0sq+rrp3sV\ng6d9f18oCPo1CtOBtkynmKXa/GJeA7W0hT/NhZYG4fwVhNoGvj9vzrPYkYTZC5hv\n/iPe7tiFxdK8Z0RH0wjglTMjac3vzrLNF1+W84nbcQKBgQD2wi0YUgm4HF1yB9mt\ngD5DUFq88/w61ipCi6cq92Dsr2mm5BcT0hPdoIvk7BU26t7KlRgvzoYOfv0+PJcE\nHs8XbSoK9XUe77VqCHbvPTnSqZEMecijgn6lFvAXL9zh/7/EiuKhPmOOt6qriYMg\nobktwyPXLDDgOCA9snaq9ott8QKBgQDLKUP2NZRevF6GcFW6O7RXD/AHZBdI87vQ\nc/2R6+rN/AJ75IEr92yqJV+hh6Vs6udfYJTKExEP5o6WeoIXoIW/ko90xVTOSy12\nVcsit5uDkbXbfU4dsUceeKO0+aDjTrMOcuMH0bG+RXJXfPKGGk0aWOn/El0x66aA\nuSwGdGAjGwKBgEW7KbMtu8FjgqSuwzzceLvdAUdUS3r0+oxDmsHxllpMV7bpzfuz\n6hk/PUk7zeLvDHaDG4qm+gsup7HmvWZUroEYQEFIjAhqBQIp0jJZQvXdJTg5UhGi\n1tcgXEixJeJXu4F3HgQi9U9nZ7uB6KRYD1R3SLGNs2IpejL1M8OsWEqBAoGAFIS/\na29v472MonFYBy4egaiHaoeuXlzXfC8qzgEQvusT6SVj8mfT3r9VkD/d8kkrQxPD\nE0GnuH5lqkcHOpGo0Hdh674+WXN4TPpPQNtgZoJh5qAaMp+D+kze49lOaYa6SNxL\nl6+TDw9+g92HtQmU/fM69tsI9JDDST7qdmBskT8CgYEAjxF0dKZORpxXvnXG5tTZ\nGVHQUcp8qjNwbSXJeXGeDrsMsueo6IRu7apE5wTN7Hb++hx8TiDQCXFIboKZGicv\naiYBDsLLLfgmapJ1D9LYfBhIYOMLPhVLu0u59pAZQX9tIMHPhLzsNnppR8yJjpsS\nXYbFQkz9Ti5B1mXTYkg6eZ4=\n-----END PRIVATE KEY-----\n",
-  "client_email": "django@big-data-analytics-326904.iam.gserviceaccount.com",
-  "client_id": "100090381282013013155",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/django%40big-data-analytics-326904.iam.gserviceaccount.com"
+"PLEASE ENTER YOURS": "PLEASE ENTER YOURS"
 }

@@ -3,7 +3,7 @@ function setUpLink(channelName) {
     let opts = {
         identity: {
             username: "Yhl7",
-            password: "8mt1clasptu8nzn0l7dgoonhicom6i"
+            password: "PLEASE ENTER YOUR TWITCH PASSWORD CREDENTIAL"
         },
         channels: [
             channelName
@@ -37,7 +37,7 @@ function onMessageHandler(target, context, msg, self) {
         "url": "https://twinword-sentiment-analysis.p.rapidapi.com/analyze/?text=" + commandName,
         "headers": {
             "x-rapidapi-host": "twinword-sentiment-analysis.p.rapidapi.com",
-            "x-rapidapi-key": "3369bc862cmsh26322dc653e1d9dp120fd5jsn4f6912e00a99"
+            "x-rapidapi-key": "PLEASE ENTER YOUR API KEY"
         }
     };
 }

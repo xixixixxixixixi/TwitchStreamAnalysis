@@ -2,11 +2,13 @@ import pandas_gbq
 from google.oauth2 import service_account
 from prophet import Prophet
 
+# TODO: According to what TA said, we should delete any token included in our project.
+#  Note that the content of key.json is deleted for security reason, please contact us if you want to reproduce this project
 credentials = service_account.Credentials.from_service_account_file('key.json')
-table_id = 'big-data-analytics-326904.project.top_game_viewers'
+table_id = 'YOUR BIG QUERY TABLE ID'
 
 pandas_gbq.context.credentials = credentials
-pandas_gbq.context.project = "big-data-analytics-326904"
+pandas_gbq.context.project = "YOUR GCP PROJECT ID"
 
 
 def fetch_data(game_name):

@@ -19,16 +19,19 @@ from Prediction.trend_prediction import trend_prediction
 import random
 
 # Credentials
-client_id = '9tq8ugh8o679ce3bgoa29fhdpwfjbi'
-oauth_token = 'b55lks0s75s1xqlcgxe42uyz0p4etw'
+# Twitch API tokens
+client_id = 'Twitch API client_id'
+oauth_token = 'Twitch oauth_token'
 
 client = twitch.TwitchHelix(client_id=client_id, oauth_token=oauth_token)
 
 # Connect Big Query
-table_id = 'big-data-analytics-326904.project.top_game_viewers'
+table_id = 'YOUR BIG QUERY TABLE ID'
+# TODO: According to what TA said, we should delete any token included in our project.
+#  Note that the content of key.json is deleted for security reason, please contact us if you want to reproduce this project
 credentials = service_account.Credentials.from_service_account_file("key.json")
 pandas_gbq.context.credentials = credentials
-pandas_gbq.context.project = "big-data-analytics-326904"
+pandas_gbq.context.project = "YOUR GCP PROJECT ID"
 
 # get top k games with viewers
 '''
