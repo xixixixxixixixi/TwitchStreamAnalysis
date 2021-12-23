@@ -16,7 +16,7 @@ from twitchAPI.twitch import Twitch
 # Credentials
 client_id = '918pxgmrcct2dbuwu7tih5na23ogxq'
 app_secret = 'iql4q3a29cuvoag9rnxskt7eov7ty4'
- 
+
 
 # Twitch API
 twitch = Twitch(client_id, app_secret)
