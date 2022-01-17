@@ -39,7 +39,6 @@ https://www.youtube.com/watch?v=Zmr3t9IqcMI
 
 
 # Instructions of running our project
-# Instructions of running our project
 Since there are API tokens contained in our code, thus for security reason, we have commented
 those areas. However, we have deployed our project on the Heroku Platform. 
 
